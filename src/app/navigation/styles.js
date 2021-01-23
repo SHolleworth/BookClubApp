@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         elevation: 1,
     },
-    navSelectorContainer: {
+    navIndicatorContainer: {
         position: 'absolute',
         top: 0, right: 0, bottom: 0, left: 0,
         height: '100%',
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-    navSelector: {
+    navIndicator: {
         height: 1.2,
         width: '100%',
         backgroundColor: 'black',

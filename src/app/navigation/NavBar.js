@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import { View, Image, Text, useWindowDimensions, TouchableOpacity } from 'react-native';
 import styles from './styles'
-import Animated, { block, Clock, clockRunning, cond, Easing, interpolate, not, sqrt, startClock, stopClock, timing, useCode, pow, sub, multiply } from 'react-native-reanimated'
-
-const {
+import { useSelector, useDispatch } from 'react-redux'
+import Animated, 
+{
     Value,
     set,
-} = Animated
+    block,
+    Clock,
+    clockRunning, 
+    cond, 
+    Easing, 
+    interpolate, 
+    not, 
+    startClock,  
+    timing, 
+    useCode,
+} from 'react-native-reanimated'
+import { updateTab } from './navSlice';
 
-export const selectorTransition = (clock) => {
+export const indicatorTransition = (clock) => {
     const state = {
         finished: new Value(0),
         position: new Value(0),
@@ -38,37 +49,38 @@ const NavBar = () => {
     const book = require("../../assets/images/2x/book.png")
     const settings = require("../../assets/images/2x/settings.png")
     
-    const selectorWidth = (useWindowDimensions().width - (styles.navBar.padding )) / 4
+    const indicatorWidth = (useWindowDimensions().width - (styles.navBar.padding )) / 4
 
-    const [tab, setTab] = useState(0)
-    const [currentSelectorPosition, setCurrentSelectorPosition] = useState(0)
+    const tab = useSelector(state => state.nav.tab)
+
+    const [currentIndicatorPosition, setCurrentIndicatorPosition] = useState(0)
 
     const clock = new Clock()
-    const selectorDest = new Value(0)
+    const indicatorDest = new Value(0)
     const animationProgress = new Value(0)
 
     useCode(() => [
-        setCurrentSelectorPosition(selectorTranslate),
-        set(selectorDest, tab * selectorWidth),
+        setCurrentIndicatorPosition(indicatorTranslate),
+        set(indicatorDest, tab * indicatorWidth),
         cond(not(clockRunning(clock)), startClock(clock)),
-        set(animationProgress, selectorTransition(clock)),
+        set(animationProgress, indicatorTransition(clock)),
     ], [tab])
 
-    const selectorTranslate = interpolate(animationProgress, {
+    const indicatorTranslate = interpolate(animationProgress, {
         inputRange: [0, 1],
-        outputRange: [currentSelectorPosition, selectorDest]
+        outputRange: [currentIndicatorPosition, indicatorDest]
     })
 
     return (
         <View style={ styles.navBar }>
             <View style={{ flexDirection: 'row', flex: 1 }}>
-                <Animated.View style={[ styles.navSelectorContainer, { transform: [{ translateX: selectorTranslate }] } ]} >
-                    <View style={ styles.navSelector } />
+                <Animated.View style={[ styles.navIndicatorContainer, { transform: [{ translateX: indicatorTranslate }] } ]} >
+                    <View style={ styles.navIndicator } />
                 </Animated.View>
-                <NavTouchable id={ 0 } tab={ "Home" } image={ home } moveSelector={ setTab } />
-                <NavTouchable id={ 1 } tab={ "Shelves" } image={ book } moveSelector={ setTab } />
-                <NavTouchable id={ 2 } tab={ "Clubs" } moveSelector={ setTab } />
-                <NavTouchable id={ 3 } tab={ "Settings" } image={ settings } moveSelector={ setTab } />
+                <NavTouchable id={ 0 } tab={ "Home" } image={ home } />
+                <NavTouchable id={ 1 } tab={ "Shelves" } image={ book } />
+                <NavTouchable id={ 2 } tab={ "Clubs" } />
+                <NavTouchable id={ 3 } tab={ "Settings" } image={ settings } />
             </View>
         </View>
     );
@@ -83,8 +95,10 @@ export default NavBar;
 const NavTouchable = (props) => {
     const dimensions =  styles.navBar.height - 40
 
+    const dispatch = useDispatch()
+
     const handleTouch = () => {
-        props.moveSelector(props.id)
+        dispatch(updateTab(props.id))
     }
 
     return (
