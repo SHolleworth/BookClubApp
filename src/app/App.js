@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View, ScrollView, useWindowDimensions } from 'react-native'
+import { View, useWindowDimensions } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateTab } from './navigation/navSlice';
+import { updateTab } from './NavBar/navSlice'
+import { ScrollView } from 'react-native-gesture-handler'
 
-import NavBar from './navigation/NavBar'
+import NavBar from './NavBar/NavBar'
+
+import Home from '../tabs/Home'
+import Shelves from '../tabs/Shelves/Shelves'
 
 const App = () => {
-  const appWidth = useWindowDimensions().width * 4;
   const tabWidth = useWindowDimensions().width;
 
   const dispatch = useDispatch()
@@ -15,10 +18,8 @@ const App = () => {
 
   const scrollView = useRef(null)
 
-  const [isDragging, setIsDragging] = useState(false)
-
   useEffect(() => {
-    scrollView.current.scrollTo({x: tab * tabWidth})
+    scrollView.current.scrollTo({ x: tab * tabWidth })
   }, [tab])
 
   const handleTabUpdate = ({ nativeEvent }) => {
@@ -42,9 +43,10 @@ const App = () => {
         horizontal={true}
         pagingEnabled={true}
         onMomentumScrollEnd={handleTabUpdate}
+        showsHorizontalScrollIndicator={false}
         ref={scrollView}>
-        <View style={{ backgroundColor: "red", flex: 1, width: tabWidth }}></View>
-        <View style={{ backgroundColor: "blue", flex: 1, width: tabWidth }}></View>
+        <Home width={tabWidth}/>
+        <Shelves width={tabWidth}/>
         <View style={{ backgroundColor: "green", flex: 1, width: tabWidth }}></View>
         <View style={{ backgroundColor: "yellow", flex: 1, width: tabWidth }}></View>
       </ScrollView>

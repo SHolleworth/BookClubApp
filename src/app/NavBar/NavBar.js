@@ -86,10 +86,6 @@ const NavBar = () => {
     );
 };
 
-const useAnimation = () => {
-    
-}
-
 export default NavBar;
 
 const NavTouchable = (props) => {
@@ -99,6 +95,7 @@ const NavTouchable = (props) => {
 
     const handleTouch = () => {
         dispatch(updateTab(props.id))
+        console.log(updateTab())
     }
 
     return (

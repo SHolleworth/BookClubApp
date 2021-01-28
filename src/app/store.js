@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import navReducer from './navigation/navSlice'
+import navReducer from './NavBar/navSlice'
+import shelvesReducer from '../tabs/Shelves/shelvesSlice'
 
 export default configureStore({
     reducer: {
-        nav: navReducer
+        nav: navReducer,
+        shelves: shelvesReducer,
     }
 })
