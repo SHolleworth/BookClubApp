@@ -4,7 +4,7 @@ import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { globalStyles } from '../../constants';
 import styles from './styles'
 
-import { searchGoogleBooks } from '../../handlers/requestHandler'
+import { sendBookQuery } from '../../handlers/socketHandler';
 
 const SearchBar = (props) => {
     const [value, onChangeText] = useState("")
@@ -29,7 +29,7 @@ const SearchBar = (props) => {
     }
 
     const search = () => {
-        requestHandler.searchGoogleBooks(value)
+        sendBookQuery(value)
     }
 
     return (

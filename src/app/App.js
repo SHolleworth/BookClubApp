@@ -8,6 +8,7 @@ import NavBar from './NavBar/NavBar'
 
 import Home from '../tabs/Home'
 import Shelves from '../tabs/Shelves/Shelves'
+import { connectToServer } from '../handlers/socketHandler'
 
 const App = () => {
   const tabWidth = useWindowDimensions().width;
@@ -35,6 +36,10 @@ const App = () => {
 
     dispatch(updateTab(newTab))
   }
+
+  useEffect(() => {
+    connectToServer()
+  },[])
 
   return(
     <>
