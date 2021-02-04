@@ -20,6 +20,17 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
+    book: {
+        height: 120,
+        width: 80,
+    },
+    bookContainer: {
+        height: 120,
+        width: 80,
+        marginLeft: 10,
+        backgroundColor: 'white',
+        elevation: 5,
+    },
     placeholder: {
         height: 120,
         width: 120,

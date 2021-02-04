@@ -17,7 +17,7 @@ import Animated,
     timing, 
     useCode,
 } from 'react-native-reanimated'
-import { updateTab } from './navSlice';
+import { updateTab } from '../../state/navSlice';
 
 export const indicatorTransition = (clock) => {
     const state = {
@@ -95,7 +95,6 @@ const NavTouchable = (props) => {
 
     const handleTouch = () => {
         dispatch(updateTab(props.id))
-        console.log(updateTab())
     }
 
     return (

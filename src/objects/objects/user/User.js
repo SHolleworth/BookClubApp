@@ -1,9 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var idAssigner_1 = __importDefault(require("../../utility/idAssigner"));
+import idAssigner from '../../utility/idAssigner';
+import {ShelfObject} from '../shelf/Shelf';
+
 /**
 *Represents any User
 *@constructor
@@ -18,10 +15,8 @@ var idAssigner_1 = __importDefault(require("../../utility/idAssigner"));
 *@param {boolean} online - Whether the user is online.
 *@param {Shelf[]} shelves - The users bookshelves.
   */
-function User(id, info, online, shelves) {
-    this.id = id ? id : idAssigner_1.default();
+export default function User(id, info, online){
+    this.id = id ? id : idAssigner();
     this.info = info;
     this.online = online;
-    this.shelves = shelves ? shelves : [];
 }
-exports.default = User;

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = { tab : 0 }
 
-const navSlice =  createSlice({
+const navSlice = createSlice({
     name: 'nav',
     initialState,
     reducers: {

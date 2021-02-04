@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, View, Image, Text, BackHandler } from 'react-native';
 import { useDispatch } from 'react-redux'
-import { updateTab } from '../../app/NavBar/navSlice';
+import { updateTab } from '../../state/navSlice';
 import styles from './styles'
 
 const ToShelvesButton = () => {

@@ -1,14 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import {Image, useWindowDimensions, View, Keyboard} from 'react-native';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { globalStyles } from '../../constants';
 import styles from './styles'
 
-import { sendBookQuery } from '../../handlers/socketHandler';
+import { sendVolumeQuery } from '../../handlers/socketHandler';
+import SearchResult from '../SearchResult/';
+import { formatGoogleBooksVolumeData } from '../../objects/objects/book/Book';
+import { useSelector } from 'react-redux';
+import CloseButton from '../CloseButton';
 
 const SearchBar = (props) => {
+
+    const width = useSelector(state => state.ui.tabWidth)
+
+
+    const defaultStyle = { width: width - 40, left: width + 20, top: useWindowDimensions().height - 200, height: 80 }
+    const contentShowingStyle = { ...defaultStyle, height: 500, top: defaultStyle.top - 500 + defaultStyle.height, alignItems: 'flex-end' }
+
+
     const [value, onChangeText] = useState("")
-    const [top, setTop] = useState(useWindowDimensions().height - 200)
+
+    const [style, setStyle] = useState(defaultStyle)
+
+    const [showingResults, setShowingResults] = useState(false)
+
+    const [results, setResults] = useState([])
+
+
 
     useEffect(() => {
         Keyboard.addListener('keyboardDidShow', keyboardDidShow)
@@ -20,29 +39,82 @@ const SearchBar = (props) => {
         }
     },[])
 
+
+
+
     const keyboardDidShow = (event) => {
-        setTop(top - event.endCoordinates.height)
+        const newStyle = {...defaultStyle, top: defaultStyle.top - event.endCoordinates.height}
+        setStyle(newStyle)
+        setShowingResults(false)
     }
+
+
+
 
     const keyboardDidHide = (event) => {
-        setTop(top + event.endCoordinates.height)
+        const newStyle = {...defaultStyle, top: defaultStyle.top + event.endCoordinates.height}
+        setStyle(newStyle)
     }
 
-    const search = () => {
-        sendBookQuery(value)
+
+
+    const search = async () => {
+        try {
+            const response = await sendVolumeQuery(value)
+
+            displayResults(response)
+        }
+        catch (error) {
+
+            console.log(error)
+
+        }
     }
+
+
+
+    const displayResults = (response) => {
+        const books = (response.map(item => formatGoogleBooksVolumeData(item)))
+
+        setResults(books.map((book, index) => <SearchResult key={ index } id={ index } book={ book } />))
+
+        setStyle(contentShowingStyle)
+
+        setShowingResults(true)
+    }
+
+    const hideResults = () => {
+        setStyle(defaultStyle)
+
+        setShowingResults(false)
+    }
+
+
 
     return (
-        <View style={[ styles.background, { width: props.width - 40, left: props.width + 20, top }]}>
-            <TextInput 
-            style={ styles.textInput }
-            placeholder={ "Search by title" }
-            onChangeText={ text => onChangeText(text) } />
-            <TouchableOpacity 
-            style={ styles.button }
-            onPress={ search }>
-                <View style={ styles.button }></View>
-            </TouchableOpacity>
+        <View style={[ styles.background, style]}>
+            {showingResults ?
+            <View style={ styles.scrollView }>
+                <ScrollView contentContainerStyle={ styles.resultsContainer }>
+                    {results}
+                </ScrollView>
+            </View>: null}
+            <View style={ styles.inputContainer }>
+                <TextInput 
+                style={ styles.textInput }
+                placeholder={ "Search by title" }
+                onChangeText={ text => onChangeText(text) } />
+                <TouchableOpacity 
+                style={ styles.button }
+                onPress={ search }>
+                    <View style={ styles.button }></View>
+                </TouchableOpacity>
+            </View>
+            {showingResults ?
+                <CloseButton close={ hideResults } />
+            :
+                null
+            } 
         </View>
     );
 };

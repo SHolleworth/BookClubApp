@@ -9,11 +9,14 @@ import NewShelfDialogue from '../../components/NewShelfDialogue'
 import SearchBar from '../../components/SearchBar'
 
 import { globalStyles } from '../../constants'
+import { getShelves } from '../../state/shelvesSlice';
 
 const Shelves = (props) => {
     const plus = require('../../assets/images/2x/plus.png')
 
     const [dialogueOpen, setDialogueOpen] = useState(false)
+
+    const width = useSelector(state => state.ui.tabWidth)
 
     const shelves = useSelector(state => state.shelves)
 
@@ -28,20 +31,32 @@ const Shelves = (props) => {
     return (
         <>
             <ScrollView 
-            style={[ styles.background, { width: props.width } ]}
-            showsVerticalScrollIndicator={ false }>
+                style={[ styles.background, { width } ]}
+                showsVerticalScrollIndicator={ false }
+            >
+
                 <TouchableOpacity
-                style={[ globalStyles.button, styles.newShelfButton ]}
-                onPress={openDialogue}>
+                    style={[ globalStyles.button, styles.newShelfButton ]}
+                    onPress={ openDialogue }
+                >
+
                     <Text style={ globalStyles.buttonText }>New Shelf</Text>
+
                     <Image style={ styles.newShelfButtonImage } source={ plus }/>
+
                 </TouchableOpacity>
-                <View style={styles.shelvesContainer}>
-                    {shelvesToRender}
+
+                <View style={ styles.shelvesContainer }>
+
+                    { shelvesToRender }
+
                 </View> 
+
             </ScrollView>
-            {dialogueOpen ? <NewShelfDialogue width={props.width} setDialogueOpen={setDialogueOpen}/> : null}
-            <SearchBar width={ props.width } />
+
+            { dialogueOpen ? <NewShelfDialogue setDialogueOpen={setDialogueOpen}/> : null }
+
+            <SearchBar />
         </>
     );
 };

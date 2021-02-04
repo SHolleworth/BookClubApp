@@ -1,32 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit'
-import Shelf from '../../objects/objects/shelf/Shelf'
+import Shelf from '../objects/objects/shelf/Shelf'
 
 const shelfInfo = {
     name: "Test Shelf 1",
-    color: null,
 }
 
-const books = []
-
-const initialState = [{...new Shelf(null, shelfInfo, books)}]
+const initialState = [{...new Shelf(null, null, shelfInfo)}]
 
 const shelvesSlice = createSlice({
     name: 'shelves',
     initialState,
     reducers: {
+        setShelves(state, action) {
+            state.shelves = action.payload
+        },
         addShelf(state, action) {
-            console.log(action.payload)
             state.push(action.payload)
         },
         setName(state, action) {
             const { shelfId, name } = action.payload
             state.find(shelf => shelf.id === shelfId ).info.name = name
-        },
-        addBook(state, action) {
-
-        },
-        removeBook(state, action) {
-
         },
         findBook(state, action) {
 
@@ -34,6 +27,8 @@ const shelvesSlice = createSlice({
     }
 })
 
+export const getShelves = state => state.shelves
+
 export default shelvesSlice.reducer
 
-export const { addShelf, setName, addBook, removeBook, findBook } = shelvesSlice.actions
+export const { setShelves, addShelf, setName, findBook } = shelvesSlice.actions
