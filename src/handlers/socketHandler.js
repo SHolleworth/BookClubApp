@@ -108,12 +108,13 @@ export const loginAsUser = async (user) => {
             socket.on('login_as_user_response', userData => {
                 
                 const { user, shelves, books } = userData
+                
+                store.dispatch(setBooks(books))
 
                 store.dispatch(setCurrentUser(user))
 
                 store.dispatch(setShelves(shelves))
 
-                store.dispatch(setBooks(books))
 
                 return resolve("Logged in as " + user.username)
             })

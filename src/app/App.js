@@ -28,7 +28,7 @@ const App = () => {
 
   const showingBookDetailWindow = useSelector(state => state.ui.showingBookDetailWindow)
 
-  const testNum = 5
+  const testNum = 4
 
   const testUser = { userId: uuidv4(), username: `Test User ${testNum}`, password: `testpassword${testNum}` }
   

@@ -33,7 +33,7 @@ const SearchResult = ({ book }) => {
         <View style={ styles.background }>
             <TouchableOpacity onPress={ dispatchBookDetailAction }>
                 <View style={ styles.detail }>
-                    <Image source={thumbnail} style={{ flex:1, width: thumbnailDimensions.width, height: thumbnailDimensions.height }} />
+                    <Image source={{ uri: thumbnail }} style={{ flex:1, width: thumbnailDimensions.width, height: thumbnailDimensions.height }} />
                     <View style={{ flex: 4, marginLeft: 10 }}>
                         <Text style={ styles.title }>{title}</Text>
                         <Text style={ styles.authors }>{authors}</Text>

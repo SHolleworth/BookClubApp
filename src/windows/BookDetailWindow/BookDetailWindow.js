@@ -38,7 +38,7 @@ const BookDetailWindow = () => {
                 <View style={{ flexDirection: 'row', height: thumbnailDimensions.height + 20}}>
                     <Image
                         style={{ height: thumbnailDimensions.height, width: thumbnailDimensions.width }}
-                        source={ thumbnail } />
+                        source={{ uri: thumbnail }} />
                     <View style={{ flex: 1, marginLeft: 20 }}>
                         <Text style={ styles.title }>{title}</Text>
                         <Text style={ styles.authors }>{authors}</Text>

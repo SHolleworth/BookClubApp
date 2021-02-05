@@ -15,6 +15,8 @@ const shelvesSlice = createSlice({
 
             state.shelves = [...action.payload]
 
+            console.log(state.shelves)
+
         },
 
         addShelf(state, action) {
@@ -30,7 +32,7 @@ const shelvesSlice = createSlice({
             state.shelves.find(shelf => shelf.id === shelfId ).name = name
 
         },
-        
+
         findBook(state, action) {
 
         }

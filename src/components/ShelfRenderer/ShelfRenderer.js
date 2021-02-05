@@ -12,7 +12,7 @@ const ShelfRenderer = (props) => {
 
     const shelf = props.shelf
 
-    const booksInShelf = useSelector(state => state.books.filter(book => book.shelfId === shelf.id)) 
+    const booksInShelf = useSelector(state => state.books.filter(book => book.shelf_id == shelf.id)) 
 
     const dispatch = useDispatch()
 
@@ -20,17 +20,17 @@ const ShelfRenderer = (props) => {
         return (
             <TouchableOpacity key={ id } onPress={() => dispatch(openBookDetailWindow(book))}> 
                 <View key={ id } style={ styles.bookContainer }>
-                    <Image key={ id } style={ styles.book } source={ book.info.thumbnail }/>
+                    <Image key={ id } style={ styles.book } source={{ uri: book.info.thumbnail }}/>
                 </View>
             </TouchableOpacity>
         )
     }
-
+    
     const bookComponents = booksInShelf.length > 0 ?
-        booksInShelf.map( (book, i) => createShelfItem(book, i))
-    : 
+        booksInShelf.map((book, i) => createShelfItem(book, i))
+        : 
         placeholderOpacities.map((opacity, i) => <Image key={ i } style={[ styles.placeholder, { opacity } ]} source={ placeholder } />)
-
+        
 
     return (
         <View style={ styles.background }>

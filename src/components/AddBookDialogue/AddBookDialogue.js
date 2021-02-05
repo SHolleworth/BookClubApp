@@ -29,7 +29,7 @@ const AddBookDialogue = () => {
 
     const addNewBook = async () => {
         try {
-            book.shelfId = shelfId
+            book.shelf_id = shelfId
 
             const response = await postNewBook(book)
 

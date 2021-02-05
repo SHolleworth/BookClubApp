@@ -20,9 +20,9 @@ import makeId from '../../utility/idAssigner';
  */
 export default function Book(id, shelfId, info, volumeId, status, progress, chapters){
     this.id = id;
-    this.shelfId = shelfId;
+    this.shelf_id = shelfId;
     this.info = info;
-    this.volumeId = volumeId;
+    this.volume_id = volumeId;
     this.status = status;
     this.progress = progress;
     this.chapters = chapters ? chapters : [];
@@ -34,7 +34,7 @@ export const formatGoogleBooksVolumeData = (data) => {
 
     const { title, authors, publishedDate, publisher, description, mainCategory } = volumeInfo
 
-    const thumbnail = volumeInfo.hasOwnProperty('imageLinks') ? { uri: volumeInfo.imageLinks.thumbnail } : require('../../../assets/images/2x/book.png')
+    const thumbnail = volumeInfo.hasOwnProperty('imageLinks') ? volumeInfo.imageLinks.thumbnail : '../../../assets/images/2x/book.png'
 
     const info = {
         title,
