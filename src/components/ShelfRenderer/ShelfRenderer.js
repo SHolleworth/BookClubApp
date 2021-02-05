@@ -33,10 +33,10 @@ const ShelfRenderer = (props) => {
 
 
     return (
-        <View style={styles.background}>
-            <Text style={styles.name}>{shelf.info.name}</Text>
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                    <View style={styles.shelfContent}>{bookComponents}</View>
+        <View style={ styles.background }>
+            <Text style={ styles.name }>{ shelf.name }</Text>
+                <ScrollView horizontal={ true } showsHorizontalScrollIndicator={ false }>
+                    <View style={ styles.shelfContent }>{ bookComponents }</View>
                 </ScrollView>
         </View>
     );

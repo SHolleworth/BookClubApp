@@ -10,14 +10,10 @@ const booksSlice = createSlice({
 
             state.push(action.payload)
 
-            console.log(action.payload.shelfId)
-
         },
         setBooks(state, action) {
 
-            state = action.payload
-
-            console.log("Books: " + state)
+            state = [...action.payload]
 
         }
     },

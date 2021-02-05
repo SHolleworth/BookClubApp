@@ -38,32 +38,32 @@ const App = () => {
 
     dispatch(setTabWidth(windowWidth))
 
-    // registerNewUser(testUser)
-    //   .then(response => {
+    registerNewUser(testUser)
+      .then(response => {
         
-    //     console.log(response)
+        console.log(response)
         
-    //   })
-    //   .then(() => {
+      })
+      .then(() => {
         
-    //     return loginAsUser(testUser)
+        return loginAsUser(testUser)
 
-    //   })
-    //   .then((message) => {
+      })
+      .then((message) => {
         
-    //     console.log(message)
+        console.log(message)
 
-    //   })
-    //   .catch(error => {
+      })
+      .catch(error => {
 
-    //     console.error(error)
+        console.error(error)
       
-    //   })
-    //   .finally(() => {
+      })
+      .finally(() => {
         
-    //     setLoading(false)
+        setLoading(false)
 
-    //   })
+      })
 
   },[])
 

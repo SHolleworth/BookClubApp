@@ -19,7 +19,7 @@ import makeId from '../../utility/idAssigner';
  * @param {Chapter[]} chapters - User defined chapters. 
  */
 export default function Book(id, shelfId, info, volumeId, status, progress, chapters){
-    this.id = id ? id : makeId();
+    this.id = id;
     this.shelfId = shelfId;
     this.info = info;
     this.volumeId = volumeId;

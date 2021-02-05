@@ -16,7 +16,7 @@ import {ShelfObject} from '../shelf/Shelf';
 *@param {Shelf[]} shelves - The users bookshelves.
   */
 export default function User(id, info, online){
-    this.id = id ? id : idAssigner();
+    this.id = id;
     this.info = info;
     this.online = online;
 }

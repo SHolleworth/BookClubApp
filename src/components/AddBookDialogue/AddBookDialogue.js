@@ -9,6 +9,7 @@ import styles from './styles'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { addBook } from '../../state/booksSlice';
 import { getShelves } from '../../state/shelvesSlice';
+import { postNewBook } from '../../handlers/socketHandler';
 
 const AddBookDialogue = () => {
 
@@ -26,10 +27,21 @@ const AddBookDialogue = () => {
         dispatch(closeAddBookDialogue())
     }
 
-    const confirm = () => {
-        book.shelfId = shelfId
-        dispatch(addBook(book))
-        dispatch(closeAddBookDialogue())
+    const addNewBook = async () => {
+        try {
+            book.shelfId = shelfId
+
+            const response = await postNewBook(book)
+
+            dispatch(addBook(book))
+
+            dispatch(closeAddBookDialogue())
+
+        }
+        catch (error) {
+            console.error(error)
+        }
+  
     }
 
     const updateShelfId = (value) => {
@@ -37,7 +49,7 @@ const AddBookDialogue = () => {
         console.log("Shelf id: " + value)
     }
 
-    const pickerItems = shelves.map((shelf, i) => <Picker.Item key={ i } label={ shelf.info.name } value={ shelf.id } /> )
+    const pickerItems = shelves.map((shelf, i) => <Picker.Item key={ i } label={ shelf.name } value={ shelf.id } /> )
 
     if (showing) {
         return (
@@ -51,7 +63,7 @@ const AddBookDialogue = () => {
                 </Picker>
                 <TouchableOpacity 
                     style={[ globalStyles.button, styles.button ]}
-                    onPress={ confirm }
+                    onPress={ addNewBook }
                 >
                     <Text style={ globalStyles.buttonText }>Okay</Text>
                 </TouchableOpacity>

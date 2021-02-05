@@ -4,7 +4,7 @@ const initialState = {
     tabWidth: null,
     showingBookDetailWindow: false,
     bookForDetailWindow: {},
-    showingAddBookDialogue: true,
+    showingAddBookDialogue: false,
     bookForAddBookDialogue: {}
 }
 

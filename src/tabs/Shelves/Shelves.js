@@ -18,7 +18,7 @@ const Shelves = (props) => {
 
     const width = useSelector(state => state.ui.tabWidth)
 
-    const shelves = useSelector(state => state.shelves)
+    const shelves = useSelector(getShelves)
 
     const openDialogue = () => {
         setDialogueOpen(true)

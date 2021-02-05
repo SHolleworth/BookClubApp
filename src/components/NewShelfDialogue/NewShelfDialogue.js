@@ -3,8 +3,9 @@ import {Image, Text, TextInput, useWindowDimensions, View} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { colors, globalStyles } from '../../constants';
+import { postNewShelf } from '../../handlers/socketHandler';
 import Shelf from '../../objects/objects/shelf/Shelf';
-import { addShelf } from '../../state/shelvesSlice';
+import { addShelf, getShelfStatus } from '../../state/shelvesSlice';
 import CloseButton from '../CloseButton';
 import styles from './styles'
 
@@ -13,21 +14,33 @@ const NewShelfDialogue = (props) => {
 
     const dispatch = useDispatch()
 
+    const shelfStatus = useSelector(getShelfStatus)
+
+    const currentUserId = useSelector(state => state.user.currentUser.id)
+
     const width = useSelector(state => state.ui.tabWidth)
 
-    const addNewShelf = () => {
-        const info = {
-            name: value,
-            color: null
+    const addNewShelf = async () => {
+
+        try {
+
+            const newShelf = {...new Shelf(null, currentUserId, value)}
+
+            const response = await postNewShelf(newShelf)
+
+            console.log(response)
+
+            dispatch(addShelf(newShelf))
+
+            onChangeText("Enter Shelf Name")
+    
+            props.setDialogueOpen(false)
         }
+        catch (error) {
 
-        const books = []
+            console.error(error)
 
-        dispatch(addShelf({ ...new Shelf(null, 0, info) }))
-
-        onChangeText("Enter Shelf Name")
-
-        props.setDialogueOpen(false)
+        }
     }
 
     const close = () => {
@@ -46,7 +59,8 @@ const NewShelfDialogue = (props) => {
 
             <TouchableOpacity 
                 style={[ globalStyles.button, styles.button ]}
-                onPress={ addNewShelf }>
+                onPress={ addNewShelf }
+                disabled={ shelfStatus === 'loading' }>
                 <Text style={ globalStyles.buttonText }>Add Shelf</Text>
             </TouchableOpacity>
 
