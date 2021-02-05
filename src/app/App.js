@@ -30,7 +30,7 @@ const App = () => {
 
   const testNum = 4
 
-  const testUser = { userId: uuidv4(), username: `Test User ${testNum}`, password: `testpassword${testNum}` }
+  const testUser = { username: `testuser${testNum}`, password: `testpassword${testNum}` }
   
   useEffect(() => {
 

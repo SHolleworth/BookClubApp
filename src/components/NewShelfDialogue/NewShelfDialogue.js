@@ -3,8 +3,8 @@ import {Image, Text, TextInput, useWindowDimensions, View} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { colors, globalStyles } from '../../constants';
-import { postNewShelf } from '../../handlers/socketHandler';
-import Shelf from '../../objects/objects/shelf/Shelf';
+import { postNewShelf, retrieveBooks } from '../../handlers/socketHandler';
+import Shelf from '../../objects/Shelf';
 import { addShelf, getShelfStatus } from '../../state/shelvesSlice';
 import CloseButton from '../CloseButton';
 import styles from './styles'
@@ -16,7 +16,7 @@ const NewShelfDialogue = (props) => {
 
     const shelfStatus = useSelector(getShelfStatus)
 
-    const currentUserId = useSelector(state => state.user.currentUser.id)
+    const currentUser = useSelector(state => state.user.currentUser)
 
     const width = useSelector(state => state.ui.tabWidth)
 
@@ -24,13 +24,13 @@ const NewShelfDialogue = (props) => {
 
         try {
 
-            const newShelf = {...new Shelf(null, currentUserId, value)}
+            const newShelf = {...new Shelf(null, currentUser.id, value)}
 
             const response = await postNewShelf(newShelf)
 
             console.log(response)
 
-            dispatch(addShelf(newShelf))
+            await retrieveBooks(currentUser)
 
             onChangeText("Enter Shelf Name")
     

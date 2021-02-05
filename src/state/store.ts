@@ -6,7 +6,7 @@ import booksReducer from './booksSlice'
 import userReducer from './userSlice'
 import shelvesReducer from './shelvesSlice'
 
-export default configureStore({
+const store = configureStore({
     reducer: {
         shelves: shelvesReducer,
         nav: navReducer,
@@ -15,3 +15,7 @@ export default configureStore({
         user: userReducer,
     }
 })
+
+export type RootState = ReturnType<typeof store.getState>
+
+export default store

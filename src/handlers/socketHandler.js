@@ -108,20 +108,19 @@ export const loginAsUser = async (user) => {
             socket.on('login_as_user_response', userData => {
                 
                 const { user, shelves, books } = userData
-                
+
                 store.dispatch(setBooks(books))
 
                 store.dispatch(setCurrentUser(user))
 
                 store.dispatch(setShelves(shelves))
 
-
                 return resolve("Logged in as " + user.username)
             })
 
             socket.on('login_as_user_error', error => {
 
-                return reject(console.error(error))
+                return reject("Login as user Error " + error)
 
             })
 
@@ -169,12 +168,30 @@ export const postNewShelf = async (shelf) => {
 
 }
 
-export const retrieveShelves = async () => {
+export const retrieveShelves = async (user) => {
 
     return new Promise((resolve, reject) => {
         
         if (socket) {
 
+            socket.on('retrieve_shelves_response', shelves => {
+
+                store.dispatch(setShelves(shelves))
+
+                console.log("Retrieved shelves.")
+
+                return resolve()
+
+            })
+
+            socket.on('retrieve_shelves_error', error => {
+
+                return reject("Error retrieving shelves: " + error)
+
+            })
+
+
+            socket.emit('retrieve_shelves', user)
 
         }
       else {
@@ -217,4 +234,42 @@ export const postNewBook = async (book) => {
         }
 
     })
+}
+
+export const retrieveBooks = async (user) => {
+
+    return new Promise((resolve, reject) => {
+        
+        if (socket) {
+
+            socket.on('retrieve_books_response', data => {
+
+                store.dispatch(setShelves(data.shelves))
+
+                store.dispatch(setBooks(data.books))
+
+                console.log("Retrieved books.")
+
+                return resolve()
+
+            })
+
+            socket.on('retrieve_books_error', error => {
+
+                return reject("Error retrieving books: " + error)
+
+            })
+
+
+            socket.emit('retrieve_books', user)
+
+        }
+      else {
+
+            return reject( "Socket not connected")
+
+        }
+
+    })
+   
 }

@@ -1,0 +1,11 @@
+export interface ShelfObject {
+    id: number,
+    userId: number,
+    name: string,
+} 
+
+export default function Shelf(this: ShelfObject, id: number, userId: number, name: string) {
+    this.id = id;
+    this.userId = userId;
+    this.name = name;
+}

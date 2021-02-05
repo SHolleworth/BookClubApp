@@ -12,7 +12,7 @@ const ShelfRenderer = (props) => {
 
     const shelf = props.shelf
 
-    const booksInShelf = useSelector(state => state.books.filter(book => book.shelf_id == shelf.id)) 
+    const booksInShelf = useSelector(state => state.books.filter(book => book.shelfId == shelf.id)) 
 
     const dispatch = useDispatch()
 

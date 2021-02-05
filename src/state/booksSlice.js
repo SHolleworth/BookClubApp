@@ -15,8 +15,10 @@ const booksSlice = createSlice({
         },
         setBooks(state, action) {
 
-            action.payload.forEach(book => state.push(book))
+            state.length = 0
             
+            action.payload.forEach(book => state.push(book))
+
             console.log(state)
 
         }
