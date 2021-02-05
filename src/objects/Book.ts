@@ -1,6 +1,6 @@
 
 export interface BookInfoObject {
-    id: number,
+    id: number | null,
     title: string,
     authors: string[],
     publisher: string,
@@ -11,16 +11,16 @@ export interface BookInfoObject {
 }
 
 export interface BookObject {
-    id: number,
-    shelfId: number,
+    id: number | null,
     info: BookInfoObject,
+    shelfId: number | null,
     volumeId: string,
 }
 
 export default function Book(this: BookObject, id : number, shelfId: number, info: BookInfoObject, volumeId: string){
     this.id = id;
-    this.shelfId = shelfId;
     this.info = info;
+    this.shelfId = shelfId;
     this.volumeId = volumeId;
 }
 
@@ -32,7 +32,8 @@ export const formatGoogleBooksVolumeData = (data: any) => {
 
     const thumbnail = volumeInfo.hasOwnProperty('imageLinks') ? volumeInfo.imageLinks.thumbnail : '../../../assets/images/2x/book.png'
 
-    const info = {
+    const info: BookInfoObject = {
+        id: null,
         title,
         authors,
         publishedDate,
@@ -42,7 +43,14 @@ export const formatGoogleBooksVolumeData = (data: any) => {
         thumbnail,
     }
 
+    const id = null
+
+    const shelfId = null
+
     const volumeId = data.id
 
-    return {...new Book(null, null, info, volumeId, null, null, null)}
+    const book: BookObject = { id, info, shelfId, volumeId }
+
+    return book
+
 }

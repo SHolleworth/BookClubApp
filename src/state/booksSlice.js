@@ -1,30 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
-
-const initialState = []
-
-const booksSlice = createSlice({
+"use strict";
+var _a;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.setBooks = exports.addBook = void 0;
+var toolkit_1 = require("@reduxjs/toolkit");
+var initialState = [];
+var booksSlice = toolkit_1.createSlice({
     name: 'books',
-    initialState,
+    initialState: initialState,
     reducers: {
-        addBook(state, action) {
-
-            state.push(action.payload)
-
-            console.log(state)
-
+        addBook: function (state, action) {
+            state.push(action.payload);
+            console.log(state);
         },
-        setBooks(state, action) {
-
-            state.length = 0
-            
-            action.payload.forEach(book => state.push(book))
-
-            console.log(state)
-
+        setBooks: function (state, action) {
+            state.length = 0;
+            var newBooks = action.payload;
+            newBooks.forEach(function (book) { return state.push(book); });
+            console.log(state);
         }
     },
-})
-
-export default booksSlice.reducer
-
-export const { addBook, setBooks } = booksSlice.actions
+});
+exports.default = booksSlice.reducer;
+exports.addBook = (_a = booksSlice.actions, _a.addBook), exports.setBooks = _a.setBooks;

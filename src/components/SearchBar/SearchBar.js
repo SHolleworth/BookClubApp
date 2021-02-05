@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {Image, useWindowDimensions, View, Keyboard} from 'react-native';
+import { Image, useWindowDimensions, View, Keyboard } from 'react-native';
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import { globalStyles } from '../../constants';
 import styles from './styles'
 
 import { sendVolumeQuery } from '../../handlers/socketHandler';
 import SearchResult from '../SearchResult/';
-import { formatGoogleBooksVolumeData } from '../../objects/objects/book/Book';
+import { formatGoogleBooksVolumeData } from '../../objects/Book';
 import { useSelector } from 'react-redux';
 import CloseButton from '../CloseButton';
 

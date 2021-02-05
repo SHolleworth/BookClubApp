@@ -1,17 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit'
-
-const initialState = { tab : 0 }
-
-const navSlice = createSlice({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.updateTab = void 0;
+var toolkit_1 = require("@reduxjs/toolkit");
+var initialState = { tab: 0 };
+var navSlice = toolkit_1.createSlice({
     name: 'nav',
-    initialState,
+    initialState: initialState,
     reducers: {
-        updateTab(state, action) {
-            state.tab = action.payload
+        updateTab: function (state, action) {
+            state.tab = action.payload;
         }
     }
-})
-
-export const { updateTab } = navSlice.actions
-
-export default navSlice.reducer
+});
+exports.updateTab = navSlice.actions.updateTab;
+exports.default = navSlice.reducer;

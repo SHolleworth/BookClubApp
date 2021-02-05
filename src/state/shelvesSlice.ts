@@ -60,9 +60,9 @@ const shelvesSlice = createSlice({
     }
 })
 
-export const getShelves = state: RootState => state.shelves.shelves
+export const getShelves = (state: RootState) => state.shelves.shelves
 
-export const getShelfStatus = state => state.shelves.status
+export const getShelfStatus = (state: RootState) => state.shelves.status
 
 export default shelvesSlice.reducer
 

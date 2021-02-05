@@ -1,13 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { BookObject } from "../objects/Book";
 
+interface UiStateObject {
+    tabWidth: number | null,
+    showingBookDetailWindow: boolean
+    bookForDetailWindow: BookObject | null,
+    showingAddBookDialogue: boolean,
+    bookForAddBookDialogue: BookObject | null
+}
 
-
-const initialState = {
+const initialState: UiStateObject = {
     tabWidth: null,
     showingBookDetailWindow: false,
-    bookForDetailWindow: {},
+    bookForDetailWindow: null,
     showingAddBookDialogue: false,
-    bookForAddBookDialogue: {}
+    bookForAddBookDialogue: null
 }
 
 const uiSlice = createSlice({
@@ -23,7 +30,7 @@ const uiSlice = createSlice({
         },
         closeBookDetailWindow(state) {
             state.showingBookDetailWindow = false
-            state.bookForDetailWindow = {}
+            state.bookForDetailWindow = null
         },
         openAddBookDialogue(state, action) {
             state.bookForAddBookDialogue = action.payload
@@ -31,7 +38,7 @@ const uiSlice = createSlice({
         },
         closeAddBookDialogue(state) {
             state.showingAddBookDialogue = false
-            state.bookForAddBookDialogue = {}
+            state.bookForAddBookDialogue = null
         }
     }
 })
