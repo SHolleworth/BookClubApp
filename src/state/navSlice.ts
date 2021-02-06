@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { NavStateObject } from '../types'
+import { NavStateObject } from '../../../types'
 
 const initialState: NavStateObject = { tab : 0 }
 

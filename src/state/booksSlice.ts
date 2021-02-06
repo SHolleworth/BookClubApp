@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { BookObject } from "../objects/Book";
+import { BookObject } from "../../../types";
 
 const initialState: BookObject[] = []
 

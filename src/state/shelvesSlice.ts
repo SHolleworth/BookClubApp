@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { ShelfObject, ShelfStateObject } from '../types'
+import { ShelfObject, ShelfStateObject } from '../../../types'
 import { RootState } from './store'
 
 const initialState: ShelfStateObject = {

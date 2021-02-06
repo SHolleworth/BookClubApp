@@ -1,4 +1,4 @@
-import { BookInfoObject, BookObject } from "../types";
+import { BookInfoObject, BookObject } from "../../../types";
 
 export default function Book(this: BookObject, id : number, shelfId: number, info: BookInfoObject, volumeId: string){
     this.id = id;

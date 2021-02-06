@@ -1,5 +1,5 @@
 import booksReducer, { addBook, setBooks } from "../../src/state/booksSlice"
-import { BookInfoObject, BookObject } from "../../src/types"
+import { BookInfoObject, BookObject } from "../../../types"
 
 const id = 0
 const id2 = 1

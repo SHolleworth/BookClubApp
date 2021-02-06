@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UiStateObject } from "../types";
+import { UiStateObject } from "../../../types";
 
 const initialState: UiStateObject = {
     tabWidth: null,

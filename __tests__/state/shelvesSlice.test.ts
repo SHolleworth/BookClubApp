@@ -1,6 +1,6 @@
 
 import shelvesReducer, { addShelf, setShelves } from "../../src/state/shelvesSlice"
-import { ShelfObject } from "../../src/types"
+import { ShelfObject } from "../../../types"
 
 const sid = 0
 const sid2 = 1

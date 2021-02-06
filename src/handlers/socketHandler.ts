@@ -5,6 +5,7 @@ import { setCurrentUser } from '../state/userSlice'
 const io = require('socket.io-client')
 import store from '../state/store'
 import { Socket } from 'socket.io-client'
+import { BookObject, ShelfObject, UserLoginDataObject, UserLoginObject, UserObject, UserRegisterObject } from '../../../types'
 
 let socket: Socket | null = null
 
@@ -19,7 +20,7 @@ export const connectToServer = () => {
 const setListeners = () => {
 
     if(socket) {
-        socket.on('connect_error', (error: Error) => {
+        socket.on('connect_error', (error: string) => {
 
             console.log("Could not connect to server: " + error)
 
@@ -53,7 +54,7 @@ export const sendVolumeQuery = async (query: string) => {
 
             })
 
-            socket.on('google_books_by_title_error', (error: Error) => {
+            socket.on('google_books_by_title_error', (error: string) => {
 
                 reject(error)
 
@@ -69,7 +70,7 @@ export const sendVolumeQuery = async (query: string) => {
     })
 }
 
-export const registerNewUser = async(user) => {
+export const registerNewUser = async(user: UserRegisterObject) => {
     
     return new Promise((resolve, reject) => {
         
@@ -77,13 +78,13 @@ export const registerNewUser = async(user) => {
 
             console.log("Registering user.")
 
-            socket.on('register_new_user_response', response => {
+            socket.on('register_new_user_response', (response: string) => {
 
                 resolve(response)
 
             })
 
-            socket.on('register_new_user_error', error => {
+            socket.on('register_new_user_error', (error: string) => {
 
                 reject(error)
 
@@ -100,7 +101,7 @@ export const registerNewUser = async(user) => {
     })
 }
 
-export const loginAsUser = async (user) => {
+export const loginAsUser = async (user: UserLoginObject) => {
 
     return new Promise((resolve, reject) => {
         
@@ -108,7 +109,7 @@ export const loginAsUser = async (user) => {
 
             console.log("Logging in as " + user.username)
 
-            socket.on('login_as_user_response', userData => {
+            socket.on('login_as_user_response', (userData: UserLoginDataObject) => {
                 
                 const { user, shelves, books } = userData
 
@@ -121,7 +122,7 @@ export const loginAsUser = async (user) => {
                 return resolve("Logged in as " + user.username)
             })
 
-            socket.on('login_as_user_error', error => {
+            socket.on('login_as_user_error', (error: string) => {
 
                 return reject("Login as user Error " + error)
 
@@ -139,7 +140,7 @@ export const loginAsUser = async (user) => {
 
 }
 
-export const postNewShelf = async (shelf) => {
+export const postNewShelf = async (shelf: ShelfObject) => {
 
     return new Promise((resolve, reject) => {
         
@@ -147,13 +148,13 @@ export const postNewShelf = async (shelf) => {
 
             console.log("Posting Shelf: " + shelf.name)
 
-            socket.on('post_new_shelf_response', response => {
+            socket.on('post_new_shelf_response', (response: string) => {
                 
                 return resolve(response)
 
             })
 
-            socket.on('post_new_shelf_error', error => {
+            socket.on('post_new_shelf_error', (error: string)=> {
 
                 return reject(error)
 
@@ -171,23 +172,23 @@ export const postNewShelf = async (shelf) => {
 
 }
 
-export const retrieveShelves = async (user) => {
+export const retrieveShelves = async (user: UserObject) => {
 
     return new Promise((resolve, reject) => {
         
         if (socket) {
 
-            socket.on('retrieve_shelves_response', shelves => {
+            socket.on('retrieve_shelves_response', (shelves: ShelfObject[]) => {
 
                 store.dispatch(setShelves(shelves))
 
                 console.log("Retrieved shelves.")
 
-                return resolve()
+                return resolve("Retrieved shelves.")
 
             })
 
-            socket.on('retrieve_shelves_error', error => {
+            socket.on('retrieve_shelves_error', (error: string) => {
 
                 return reject("Error retrieving shelves: " + error)
 
@@ -207,7 +208,7 @@ export const retrieveShelves = async (user) => {
    
 }
 
-export const postNewBook = async (book) => {
+export const postNewBook = async (book: BookObject) => {
     
     return new Promise((resolve, reject) => {
         
@@ -215,13 +216,13 @@ export const postNewBook = async (book) => {
 
             console.log("Posting Book: " + book.info.title)
 
-            socket.on('post_new_book_response', response => {
+            socket.on('post_new_book_response', (response: string) => {
                 
                 return resolve(response)
 
             })
 
-            socket.on('post_new_book_error', error => {
+            socket.on('post_new_book_error', (error: string) => {
 
                 return reject(error)
 
@@ -239,13 +240,13 @@ export const postNewBook = async (book) => {
     })
 }
 
-export const retrieveBooks = async (user) => {
+export const retrieveBooks = async (user: UserObject) => {
 
     return new Promise((resolve, reject) => {
         
         if (socket) {
 
-            socket.on('retrieve_books_response', data => {
+            socket.on('retrieve_books_response', (data: { shelves: ShelfObject[], books: BookObject[] }) => {
 
                 store.dispatch(setShelves(data.shelves))
 
@@ -253,11 +254,11 @@ export const retrieveBooks = async (user) => {
 
                 console.log("Retrieved books.")
 
-                return resolve()
+                return resolve("Retrieved books.")
 
             })
 
-            socket.on('retrieve_books_error', error => {
+            socket.on('retrieve_books_error', (error: string) => {
 
                 return reject("Error retrieving books: " + error)
 
