@@ -1,21 +1,4 @@
-
-export interface BookInfoObject {
-    id: number | null,
-    title: string,
-    authors: string[],
-    publisher: string,
-    publishedDate: string,
-    description: string,
-    mainCategory: string,
-    thumbnail: string,
-}
-
-export interface BookObject {
-    id: number | null,
-    info: BookInfoObject,
-    shelfId: number | null,
-    volumeId: string,
-}
+import { BookInfoObject, BookObject } from "../types";
 
 export default function Book(this: BookObject, id : number, shelfId: number, info: BookInfoObject, volumeId: string){
     this.id = id;

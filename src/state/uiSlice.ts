@@ -1,13 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { BookObject } from "../objects/Book";
-
-interface UiStateObject {
-    tabWidth: number | null,
-    showingBookDetailWindow: boolean
-    bookForDetailWindow: BookObject | null,
-    showingAddBookDialogue: boolean,
-    bookForAddBookDialogue: BookObject | null
-}
+import { UiStateObject } from "../types";
 
 const initialState: UiStateObject = {
     tabWidth: null,

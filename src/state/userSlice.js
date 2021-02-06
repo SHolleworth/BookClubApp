@@ -12,7 +12,6 @@ var userSlice = toolkit_1.createSlice({
         setCurrentUser: function (state, action) {
             var newUser = action.payload;
             state.currentUser = newUser;
-            console.log(state);
         }
     }
 });

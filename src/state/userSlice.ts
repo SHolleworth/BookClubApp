@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserObject } from "../objects/User";
-
-interface UserStateObject {
-    currentUser: UserObject
-}
+import { UserObject, UserStateObject } from "../types";
 
 const initialState: UserStateObject = {
     currentUser: { id: null, username: null }
@@ -14,13 +10,11 @@ const userSlice = createSlice({
     initialState,
     reducers: {
 
-        setCurrentUser(state, action) {
+        setCurrentUser(state, action: { payload: UserObject }) {
 
             const newUser: UserObject = action.payload
 
             state.currentUser = newUser
-
-            console.log(state)
 
         }
     }

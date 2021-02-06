@@ -9,14 +9,22 @@ var booksSlice = toolkit_1.createSlice({
     initialState: initialState,
     reducers: {
         addBook: function (state, action) {
-            state.push(action.payload);
-            console.log(state);
+            var newBook = action.payload;
+            state.push(newBook);
         },
         setBooks: function (state, action) {
-            state.length = 0;
-            var newBooks = action.payload;
-            newBooks.forEach(function (book) { return state.push(book); });
-            console.log(state);
+            if (action.payload) {
+                //Empty the array
+                state.length = 0;
+                var newBooks = [];
+                if (Array.isArray(action.payload)) {
+                    newBooks = action.payload;
+                }
+                else {
+                    newBooks = [action.payload];
+                }
+                newBooks.forEach(function (book) { return state.push(book); });
+            }
         }
     },
 });

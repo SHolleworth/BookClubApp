@@ -13,24 +13,41 @@ var shelvesSlice = toolkit_1.createSlice({
     initialState: initialState,
     reducers: {
         setShelves: function (state, action) {
-            state.shelves.length = 0;
-            var newShelves = action.payload;
-            action.payload.forEach(function (shelf) {
-                state.shelves.push(shelf);
-            });
-            console.log(state.shelves);
+            if (action.payload) {
+                state.shelves.length = 0;
+                var newShelves = [];
+                if (Array.isArray(action.payload)) {
+                    newShelves = action.payload;
+                }
+                else {
+                    newShelves = [action.payload];
+                }
+                newShelves.forEach(function (shelf) {
+                    state.shelves.push(shelf);
+                });
+            }
+            else {
+                console.error("Error setting book, no payload delivered with action.");
+            }
         },
         addShelf: function (state, action) {
-            state.shelves.push(action.payload);
+            if (action.payload) {
+                state.shelves.push(action.payload);
+            }
+            else {
+                console.error("Error adding book, no payload delivered with action.");
+            }
         },
         setName: function (state, action) {
             var id = action.payload.id;
             var newName = action.payload.name;
             var shelfToEdit = state.shelves.find(function (shelf) { return shelf.id === id; });
-            if (shelfToEdit)
+            if (shelfToEdit) {
                 shelfToEdit.name = newName;
-            else
+            }
+            else {
                 console.error("Shelf with id " + id + " not found when trying to edit shelf name.");
+            }
         },
         findBook: function (state, action) {
         }

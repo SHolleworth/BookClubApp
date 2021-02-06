@@ -1,8 +1,4 @@
-
-export interface UserObject {
-    id: number | null,
-    username: string | null
-}
+import { UserObject } from "../types";
 
 export default function User(this: UserObject, id: number, username: string){
     this.id = id;

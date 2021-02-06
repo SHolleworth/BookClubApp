@@ -9,21 +9,35 @@ const booksSlice = createSlice({
     reducers: {
         addBook(state, action) {
 
-            state.push(action.payload)
+            const newBook: BookObject = action.payload
 
-            console.log(state)
+            state.push(newBook)
 
         },
-        setBooks(state, action) {
+        setBooks(state, action: {payload: BookObject[] | BookObject}) {
 
-            state.length = 0
+            if(action.payload) {
 
-            const newBooks: BookObject[] = action.payload
+                //Empty the array
+                state.length = 0
+
+                let newBooks: BookObject | BookObject[] = []
+
+                if(Array.isArray(action.payload)){
+
+                    newBooks = action.payload
             
-            newBooks.forEach(book => state.push(book))
+                }
+                else {
 
-            console.log(state)
+                    newBooks = [action.payload]
 
+                }
+                
+                newBooks.forEach(book => state.push(book))
+
+            }
+       
         }
     },
 })

@@ -1,8 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-
-interface NavStateObject {
-    tab: number
-}
+import { NavStateObject } from '../types'
 
 const initialState: NavStateObject = { tab : 0 }
 

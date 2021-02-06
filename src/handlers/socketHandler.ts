@@ -4,8 +4,9 @@ import { setCurrentUser } from '../state/userSlice'
 
 const io = require('socket.io-client')
 import store from '../state/store'
+import { Socket } from 'socket.io-client'
 
-let socket = null
+let socket: Socket | null = null
 
 export const connectToServer = () => {
 
@@ -17,26 +18,28 @@ export const connectToServer = () => {
 
 const setListeners = () => {
 
-    socket.on('connect_error', (error) => {
+    if(socket) {
+        socket.on('connect_error', (error: Error) => {
 
-        console.log("Could not connect to server: " + error)
+            console.log("Could not connect to server: " + error)
 
-    })
-    
-    socket.on('connect', () => {
+        })
+        
+        socket.on('connect', () => {
 
-        console.log("Socket connected to server.")
+            console.log("Socket connected to server.")
 
-    })
+        })
 
-    socket.on('disconnect', () => {
+        socket.on('disconnect', () => {
 
-        console.log("Socket disconnected.")
+            console.log("Socket disconnected.")
 
-    })
+        })
+    }
 }
  
-export const sendVolumeQuery = async (query) => {
+export const sendVolumeQuery = async (query: string) => {
 
     return new Promise((resolve, reject) => {
 
@@ -44,13 +47,13 @@ export const sendVolumeQuery = async (query) => {
 
             console.log("Sending query")
 
-            socket.on('google_books_by_title_response', (response) => {
+            socket.on('google_books_by_title_response', (response: Object[]) => {
 
                 resolve(response)
 
             })
 
-            socket.on('google_books_by_title_error', error => {
+            socket.on('google_books_by_title_error', (error: Error) => {
 
                 reject(error)
 

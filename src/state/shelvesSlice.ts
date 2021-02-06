@@ -1,12 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { ShelfObject } from '../objects/Shelf'
+import { ShelfObject, ShelfStateObject } from '../types'
 import { RootState } from './store'
-
-interface ShelfStateObject {
-    shelves: ShelfObject[],
-    status: string,
-    error: string | null
-}
 
 const initialState: ShelfStateObject = {
     shelves: [],
@@ -18,25 +12,51 @@ const shelvesSlice = createSlice({
     name: 'shelves',
     initialState,
     reducers: {
-        setShelves(state, action) {
+        setShelves(state, action: { payload: ShelfObject | ShelfObject[] }) {
 
-            state.shelves.length = 0
+            if(action.payload){
 
-            const newShelves: ShelfObject[] = action.payload 
+                state.shelves.length = 0
 
-            action.payload.forEach((shelf: ShelfObject) => {
+                let newShelves: ShelfObject[] = []
 
-                state.shelves.push(shelf)
-                
-            })
+                if(Array.isArray(action.payload)){
 
-            console.log(state.shelves)
+                    newShelves = action.payload 
 
+                }
+                else {
+
+                    newShelves = [action.payload]
+
+                }
+
+                newShelves.forEach((shelf: ShelfObject) => {
+
+                    state.shelves.push(shelf)
+                    
+                })
+            }
+            else {
+
+                console.error("Error setting book, no payload delivered with action.")
+
+            }
         },
 
-        addShelf(state, action) {
+        addShelf(state, action: { payload: ShelfObject }) {
 
-            state.shelves.push(action.payload)
+            if(action.payload) {
+
+                state.shelves.push(action.payload)
+
+            }
+            else {
+
+                console.error("Error adding book, no payload delivered with action.")
+
+            }
+
 
         },
 
@@ -48,10 +68,15 @@ const shelvesSlice = createSlice({
 
             const shelfToEdit = state.shelves.find(shelf => shelf.id === id )
 
-            if(shelfToEdit)
+            if(shelfToEdit){
+
                 shelfToEdit.name = newName
-            else
+            }
+            else{
+
                 console.error(`Shelf with id ${id} not found when trying to edit shelf name.`)
+
+            }
         },
 
         findBook(state, action) {
