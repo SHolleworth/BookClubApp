@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { Picker } from '@react-native-picker/picker'
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ import { postNewBook } from '../../handlers/socketHandler';
 
 const AddBookDialogue = () => {
 
-    const [shelfId, setShelfId] = useState('') 
+    const [shelfId, setShelfId] = useState(-99) 
 
     const showing = useSelector(state => state.ui.showingAddBookDialogue)
 
@@ -28,18 +28,23 @@ const AddBookDialogue = () => {
     }
 
     const addNewBook = async () => {
-        try {
-            book.shelfId = shelfId
 
-            const response = await postNewBook(book)
+        if(shelfId !== -99) {
 
-            dispatch(addBook(book))
+            try {
+                book.shelfId = shelfId
 
-            dispatch(closeAddBookDialogue())
+                const response = await postNewBook(book)
 
-        }
-        catch (error) {
-            console.error(error)
+                dispatch(addBook(book))
+
+                dispatch(closeAddBookDialogue())
+
+            }
+            catch (error) {
+                console.error(error)
+            }
+            
         }
   
     }
@@ -59,6 +64,7 @@ const AddBookDialogue = () => {
                     selectedValue={ shelfId }
                     onValueChange={ value => updateShelfId(value) }
                 >
+                    <Picker.Item label={ "Select a shelf" } value={ -99 }/>
                     {pickerItems}
                 </Picker>
                 <TouchableOpacity 
