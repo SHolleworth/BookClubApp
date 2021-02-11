@@ -10,8 +10,6 @@ const SearchResult = ({ book }) => {
 
     let { title, authors, mainCategory, thumbnail } = book.info
 
-    console.log(authors)
-
     const thumbnailDimensions = {width: 55, height: 90}
 
     if(title.length > 40) title = title.slice(0, 40) + "..."

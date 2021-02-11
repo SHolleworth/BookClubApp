@@ -18,11 +18,11 @@ const BookDetailWindow = () => {
 
     let { id, title, authors, mainCategory, description, publisher, publishedDate, thumbnail } = book.info
 
-    console.log(authors.length)
-
     let authorsString = ""
   
     if(authors) {
+
+        console.log(authors)
 
         authorsString = authors[0]
 
