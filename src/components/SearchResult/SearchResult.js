@@ -10,9 +10,35 @@ const SearchResult = ({ book }) => {
 
     let { title, authors, mainCategory, thumbnail } = book.info
 
+    console.log(authors)
+
     const thumbnailDimensions = {width: 55, height: 90}
 
-    if(title.length > 40) title = title.slice(0, 40) + "..." 
+    if(title.length > 40) title = title.slice(0, 40) + "..."
+
+    let authorsString = ""
+
+    if(authors) {
+
+        authorsString = authors[0]
+
+        if (authors.length > 1) {
+
+            authorsString = authors.reduce((acc, cur, ind) => {
+    
+                if (ind === authors.length - 1) {
+    
+                    return `${acc} and ${cur}.`
+    
+                }
+    
+                return `${acc}, ${cur}`
+                
+            })
+    
+        }
+
+    }
     
     // Image.getSize(thumbnail, (width, height) => {
     //     thumbnailDimensions.width = width
@@ -36,7 +62,7 @@ const SearchResult = ({ book }) => {
                     <Image source={{ uri: thumbnail }} style={{ flex:1, width: thumbnailDimensions.width, height: thumbnailDimensions.height }} />
                     <View style={{ flex: 4, marginLeft: 10 }}>
                         <Text style={ styles.title }>{title}</Text>
-                        <Text style={ styles.authors }>{authors}</Text>
+                        <Text style={ styles.authors }>{authorsString}</Text>
                         <Text style={ styles.genres }>{mainCategory}</Text>
                     </View>
                 </View>

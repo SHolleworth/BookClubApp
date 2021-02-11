@@ -18,6 +18,32 @@ const BookDetailWindow = () => {
 
     let { id, title, authors, mainCategory, description, publisher, publishedDate, thumbnail } = book.info
 
+    console.log(authors.length)
+
+    let authorsString = ""
+  
+    if(authors) {
+
+        authorsString = authors[0]
+
+        if (authors.length > 1) {
+
+            authorsString = authors.reduce((acc, cur, ind) => {
+    
+                if (ind === authors.length - 1) {
+    
+                    return `${acc} and ${cur}.`
+    
+                }
+    
+                return `${acc}, ${cur}`
+                
+            })
+    
+        }
+
+    }
+
     //if(title.length > 40) title = title.slice(0, 40) + "..."
 
     const thumbnailDimensions = { width: 130, height: 200 }
@@ -41,7 +67,7 @@ const BookDetailWindow = () => {
                         source={{ uri: thumbnail }} />
                     <View style={{ flex: 1, marginLeft: 20 }}>
                         <Text style={ styles.title }>{title}</Text>
-                        <Text style={ styles.authors }>{authors}</Text>
+                        <Text style={ styles.authors }>{authorsString}</Text>
                         <Text style={ styles.mainCategory }>{mainCategory}</Text>
                         <Text style={ styles.publishedBlock }>{publishedBlock}</Text>
                     </View>

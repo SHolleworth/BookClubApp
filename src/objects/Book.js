@@ -14,6 +14,7 @@ exports.formatGoogleBooksVolumeData = function (data) {
     var thumbnail = volumeInfo.hasOwnProperty('imageLinks') ? volumeInfo.imageLinks.thumbnail : '../../../assets/images/2x/book.png';
     var info = {
         id: null,
+        bookId: null,
         title: title,
         authors: authors,
         publishedDate: publishedDate,

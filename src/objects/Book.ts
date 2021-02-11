@@ -17,6 +17,7 @@ export const formatGoogleBooksVolumeData = (data: any) => {
 
     const info: BookInfoObject = {
         id: null,
+        bookId: null,
         title,
         authors,
         publishedDate,
