@@ -5,6 +5,7 @@ import uiReducer from './uiSlice'
 import booksReducer from './booksSlice'
 import userReducer from './userSlice'
 import shelvesReducer from './shelvesSlice'
+import clubsReducer from './clubsSlice'
 
 const store = configureStore({
     reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
         ui: uiReducer,
         books: booksReducer,
         user: userReducer,
+        clubs: clubsReducer,
     }
 })
 

@@ -13,6 +13,8 @@ import BookDetailWindow from '../windows/BookDetailWindow'
 import AddBookDialogue from '../components/AddBookDialogue'
 import { setTabWidth } from '../state/uiSlice'
 import { v4 as uuidv4 } from 'uuid'
+import Clubs from '../tabs/Clubs/Clubs'
+import ClubNamingWindow from '../windows/ClubNamingWindow'
 
 const App = () => {
 
@@ -28,7 +30,7 @@ const App = () => {
 
   const showingBookDetailWindow = useSelector(state => state.ui.showingBookDetailWindow)
 
-  const testNum = 3
+  const testNum = 4
 
   const testUser = { username: `testuser${testNum}`, password: `testpassword${testNum}` }
   
@@ -106,19 +108,21 @@ const App = () => {
           onMomentumScrollEnd={handleTabUpdate}
           showsHorizontalScrollIndicator={false}
           ref={scrollView}
-          >
+        >
 
           <Home />
 
           <Shelves />
 
-          <View style={{ backgroundColor: "green", flex: 1, width: tabWidth }}></View>
+          <Clubs />
 
           <View style={{ backgroundColor: "yellow", flex: 1, width: tabWidth }}></View>
 
         </ScrollView>
 
         {showingBookDetailWindow ? <BookDetailWindow /> : null}
+
+        <ClubNamingWindow />
 
         <AddBookDialogue />
       </>

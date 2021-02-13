@@ -4,6 +4,7 @@ import styles from './styles'
 
 import ToShelvesButton from '../../components/ToShelvesButton'
 import { useSelector } from 'react-redux';
+import StartClubButton from '../../components/StartClubButton/StartClubButton';
 
 const home = (props) => {
 
@@ -12,6 +13,7 @@ const home = (props) => {
     return (
         <View style={[styles.background, { width }]}>
             <ToShelvesButton />
+            <StartClubButton />
         </View>
     );
 };

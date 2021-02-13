@@ -9,6 +9,7 @@ var uiSlice_1 = __importDefault(require("./uiSlice"));
 var booksSlice_1 = __importDefault(require("./booksSlice"));
 var userSlice_1 = __importDefault(require("./userSlice"));
 var shelvesSlice_1 = __importDefault(require("./shelvesSlice"));
+var clubsSlice_1 = __importDefault(require("./clubsSlice"));
 var store = toolkit_1.configureStore({
     reducer: {
         shelves: shelvesSlice_1.default,
@@ -16,6 +17,7 @@ var store = toolkit_1.configureStore({
         ui: uiSlice_1.default,
         books: booksSlice_1.default,
         user: userSlice_1.default,
+        clubs: clubsSlice_1.default,
     }
 });
 exports.default = store;

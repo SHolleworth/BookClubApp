@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeBookDetailWindow, openAddBookDialogue } from '../../state/uiSlice';
 import { globalStyles } from '../../constants';
 import styles from './styles'
+import BackButton from '../../components/BackButton';
 
 const BookDetailWindow = () => {
     const dispatch = useDispatch()
@@ -54,12 +55,15 @@ const BookDetailWindow = () => {
         dispatch(openAddBookDialogue(book))
     }
 
+    const close = () => {
+        
+        dispatch(closeBookDetailWindow())
+
+    }
+
     return (
         <View style={[ styles.background, { height, width }]}>
-            <TouchableOpacity 
-                onPress={ () => {dispatch(closeBookDetailWindow())} }>
-                    <View style={ styles.backButton }/>
-            </TouchableOpacity>
+            <BackButton function={ close }/>
             <ScrollView>
                 <View style={{ flexDirection: 'row', height: thumbnailDimensions.height + 20}}>
                     <Image

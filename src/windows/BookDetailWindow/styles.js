@@ -1,13 +1,9 @@
 import {StyleSheet} from 'react-native';
-import { colors } from '../../constants';
+import { colors, globalStyles } from '../../constants';
 
 const styles = StyleSheet.create({
     background: {
-        position: 'absolute',
-        top:0, right: 0, bottom: 0, left: 0,
-        backgroundColor: 'white',
-        padding: 20,
-        elevation: 10,
+        ...globalStyles.windowBackground
     },
     title: {
         fontFamily: 'NotoSans-Bold',
@@ -23,13 +19,6 @@ const styles = StyleSheet.create({
     },
     description: {
         marginBottom: 30,
-    },
-    backButton: {
-        height: 40,
-        width: 40,
-        borderRadius: 20,
-        backgroundColor: 'black',
-        marginBottom: 20,
     },
 });
 

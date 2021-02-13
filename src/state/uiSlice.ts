@@ -6,7 +6,8 @@ const initialState: UiStateObject = {
     showingBookDetailWindow: false,
     bookForDetailWindow: null,
     showingAddBookDialogue: false,
-    bookForAddBookDialogue: null
+    bookForAddBookDialogue: null,
+    showingClubNamingWindow: true,
 }
 
 const uiSlice = createSlice({
@@ -31,6 +32,12 @@ const uiSlice = createSlice({
         closeAddBookDialogue(state) {
             state.showingAddBookDialogue = false
             state.bookForAddBookDialogue = null
+        },
+        openClubNamingWindow(state) {
+            state.showingClubNamingWindow = true
+        },
+        closeClubNamingWindow(state) {
+            state.showingClubNamingWindow = false
         }
     }
 })
@@ -40,7 +47,9 @@ export const {
     openBookDetailWindow, 
     closeBookDetailWindow, 
     openAddBookDialogue, 
-    closeAddBookDialogue 
+    closeAddBookDialogue,
+    openClubNamingWindow,
+    closeClubNamingWindow
 } = uiSlice.actions
 
 export default uiSlice.reducer

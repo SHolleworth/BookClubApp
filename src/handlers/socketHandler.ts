@@ -5,7 +5,8 @@ import { setCurrentUser } from '../state/userSlice'
 const io = require('socket.io-client')
 import store from '../state/store'
 import { Socket } from 'socket.io-client'
-import { BookObject, ShelfObject, UserLoginDataObject, UserLoginObject, UserObject, UserRegisterObject } from '../../../types'
+import { BookObject, ClubObject, ClubPostObject, ShelfObject, UserLoginDataObject, UserLoginObject, UserObject, UserRegisterObject } from '../../../types'
+import { setClubs } from '../state/clubsSlice'
 
 let socket: Socket | null = null
 
@@ -276,4 +277,71 @@ export const retrieveBooks = async (user: UserObject) => {
 
     })
    
+}
+
+export const postNewClub = async (club: ClubPostObject) => {
+    
+    return new Promise((resolve, reject) => {
+        
+        if (socket) {
+
+            socket.on('post_new_club_response', (response: string) => {
+
+                console.log(response)
+                
+                return resolve(response)
+
+            })
+
+            socket.on('post_new_club_error', (error: Error) => {
+
+                return reject(error)
+
+            })
+
+            socket.emit('post_new_club', club)
+
+        }
+        else {
+
+            return reject( "Socket not connected")
+
+        }
+
+
+    });
+
+}
+
+export const retrieveClubs = async (user: UserObject) => {
+    
+    return new Promise((resolve, reject) => {
+        
+        if (socket) {
+            
+            socket.on('retrieve_clubs_response', (clubs: ClubObject[]) => {
+                
+                store.dispatch(setClubs(clubs))
+
+                return resolve("Successfully retrieved clubs.")
+
+            })
+
+            socket.on('retrieve_clubs_error', (error: string) => {
+                
+                return reject(error)
+
+            })
+
+            socket.emit('retrieve_clubs', user)
+
+        }
+        else {
+
+            return reject("Socket not connected")
+
+        }
+
+    });
+
 }

@@ -39,12 +39,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.retrieveBooks = exports.postNewBook = exports.retrieveShelves = exports.postNewShelf = exports.loginAsUser = exports.registerNewUser = exports.sendVolumeQuery = exports.connectToServer = void 0;
+exports.retrieveClubs = exports.postNewClub = exports.retrieveBooks = exports.postNewBook = exports.retrieveShelves = exports.postNewShelf = exports.loginAsUser = exports.registerNewUser = exports.sendVolumeQuery = exports.connectToServer = void 0;
 var booksSlice_1 = require("../state/booksSlice");
 var shelvesSlice_1 = require("../state/shelvesSlice");
 var userSlice_1 = require("../state/userSlice");
 var io = require('socket.io-client');
 var store_1 = __importDefault(require("../state/store"));
+var clubsSlice_1 = require("../state/clubsSlice");
 var socket = null;
 exports.connectToServer = function () {
     socket = io('ws://192.168.1.65:3000');
@@ -196,6 +197,44 @@ exports.retrieveBooks = function (user) { return __awaiter(void 0, void 0, void 
                         return reject("Error retrieving books: " + error);
                     });
                     socket.emit('retrieve_books', user);
+                }
+                else {
+                    return reject("Socket not connected");
+                }
+            })];
+    });
+}); };
+exports.postNewClub = function (club) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, new Promise(function (resolve, reject) {
+                if (socket) {
+                    socket.on('post_new_club_response', function (response) {
+                        console.log(response);
+                        return resolve(response);
+                    });
+                    socket.on('post_new_club_error', function (error) {
+                        return reject(error);
+                    });
+                    socket.emit('post_new_club', club);
+                }
+                else {
+                    return reject("Socket not connected");
+                }
+            })];
+    });
+}); };
+exports.retrieveClubs = function (user) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, new Promise(function (resolve, reject) {
+                if (socket) {
+                    socket.on('retrieve_clubs_response', function (clubs) {
+                        store_1.default.dispatch(clubsSlice_1.setClubs(clubs));
+                        return resolve("Successfully retrieved clubs.");
+                    });
+                    socket.on('retrieve_clubs_error', function (error) {
+                        return reject(error);
+                    });
+                    socket.emit('retrieve_clubs', user);
                 }
                 else {
                     return reject("Socket not connected");

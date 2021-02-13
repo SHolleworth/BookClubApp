@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import { borderRadius } from '../../constants';
+import { borderRadius, colors } from '../../constants';
 
 const radius = borderRadius
 
@@ -7,14 +7,15 @@ const styles = StyleSheet.create({
     touchable: {
         height: 250,
         width: '100%',
-        elevation: 2,
+        marginBottom: 30,
         borderRadius: radius,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        elevation: 2,
     },
     background: {
         flex: 1,
         justifyContent:'flex-end',
-        backgroundColor: 'lightgrey',
+        backgroundColor: colors.lightColor,
         borderRadius: radius,
     },
     image: {
