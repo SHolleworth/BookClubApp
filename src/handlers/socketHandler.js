@@ -61,10 +61,19 @@ var setListeners = function (resolve, reject) {
             reject(error);
         });
         socket.on('connect', function () {
+            var state = store_1.default.getState();
+            var currentUserId = state.user.currentUser.id;
+            socket === null || socket === void 0 ? void 0 : socket.emit('update_socket_id', currentUserId);
             resolve("Socket connected to server.");
         });
         socket.on('disconnect', function () {
             console.log("Socket disconnected.");
+        });
+        socket.on('update_socket_id_response', function (message) {
+            console.log(message);
+        });
+        socket.on('update_socket_id_error', function (error) {
+            console.error(error);
         });
     }
 };

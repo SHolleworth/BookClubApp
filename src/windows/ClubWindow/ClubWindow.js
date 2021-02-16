@@ -27,6 +27,14 @@ const ClubWindow = () => {
     const scrollView = useRef(null)
 
     useEffect(() => {
+
+        if(scrollView.current)
+
+            scrollView.current.scrollTo({ x: tab * tabWidth, animated: false })
+        
+    }, [showing])
+
+    useEffect(() => {
   
       if(scrollView.current)
 

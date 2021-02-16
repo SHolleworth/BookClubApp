@@ -24,6 +24,7 @@ export const connectToServer = async () => {
 const setListeners = (resolve: any, reject: any) => {
 
     if(socket) {
+
         socket.on('connect_error', (error: string) => {
 
             reject(error)
@@ -31,6 +32,12 @@ const setListeners = (resolve: any, reject: any) => {
         })
         
         socket.on('connect', () => {
+
+            const state = store.getState()
+
+            const currentUserId = state.user.currentUser.id
+
+            socket?.emit('update_socket_id', currentUserId)
 
             resolve("Socket connected to server.")
 
@@ -42,7 +49,17 @@ const setListeners = (resolve: any, reject: any) => {
 
         })
 
+        socket.on('update_socket_id_response', (message: string) => {
 
+            console.log(message)
+            
+        })
+
+        socket.on('update_socket_id_error', (error: string) => {
+
+            console.error(error)
+            
+        })
     }
 }
  
