@@ -26,10 +26,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    backButtonContainer: {
-        alignSelf: 'flex-start',
-        flex: 3,
-    },
     spacer: {
         flex: 3,
     }

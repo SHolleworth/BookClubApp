@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { updateTab } from '../../state/navSlice';
 import styles from './styles'
 
-const ToShelvesButton = () => {
+const ShelvesPanel = () => {
     const book = require('../../assets/images/2x/book.png')
 
     const dispatch = useDispatch()
@@ -25,4 +25,4 @@ const ToShelvesButton = () => {
     );
 };
 
-export default ToShelvesButton;
+export default ShelvesPanel;

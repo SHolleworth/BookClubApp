@@ -6,11 +6,15 @@ import styles from './styles'
 const BackButton = (props) => {
 
     return (
-        <TouchableOpacity onPress={ props.function }>
+        <View style={[ styles.container, props.style ]}>
+            
+            <TouchableOpacity onPress={ props.function }>
 
-            <View style={ styles.backButton }/>
+                <View style={ styles.backButton }/>
 
-        </TouchableOpacity>
+            </TouchableOpacity>
+
+        </View>
     );
 };
 

@@ -1,9 +1,10 @@
 import React from 'react';
 import {View} from 'react-native';
 import styles from './styles'
-
-import ToShelvesButton from '../../components/ToShelvesButton'
 import { useSelector } from 'react-redux';
+
+import ShelvesPanel from '../../components/ShelvesPanel'
+import ClubPanel from '../../components/ClubPanel'
 import StartClubButton from '../../components/StartClubButton/StartClubButton';
 
 const home = (props) => {
@@ -12,7 +13,8 @@ const home = (props) => {
 
     return (
         <View style={[styles.background, { width }]}>
-            <ToShelvesButton />
+            <ShelvesPanel />
+    
             <StartClubButton />
         </View>
     );

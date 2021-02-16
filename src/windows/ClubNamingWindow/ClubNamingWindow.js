@@ -89,11 +89,7 @@ const ClubNamingWindow = () => {
         return (
             <View style={[ { height, width }, styles.background ]}>
 
-                <View style={ styles.backButtonContainer }>
-
-                    <BackButton function={ close } />
-
-                </View>
+                <BackButton function={ close } />
 
                 <View style={[ styles.textInputContainer, { marginBottom } ]}>
 

@@ -3,11 +3,17 @@ import { UiStateObject } from "../../../types";
 
 const initialState: UiStateObject = {
     tabWidth: null,
+
     showingBookDetailWindow: false,
     bookForDetailWindow: null,
+
     showingAddBookDialogue: false,
     bookForAddBookDialogue: null,
-    showingClubNamingWindow: true,
+
+    showingClubNamingWindow: false,
+
+    dataForClubWindow: null,
+    showingClubWindow: true,
 }
 
 const uiSlice = createSlice({
@@ -17,6 +23,8 @@ const uiSlice = createSlice({
         setTabWidth(state, action) {
             state.tabWidth = action.payload
         },
+        
+
         openBookDetailWindow(state, action) {
             state.bookForDetailWindow = action.payload
             state.showingBookDetailWindow = true
@@ -25,6 +33,8 @@ const uiSlice = createSlice({
             state.showingBookDetailWindow = false
             state.bookForDetailWindow = null
         },
+
+
         openAddBookDialogue(state, action) {
             state.bookForAddBookDialogue = action.payload
             state.showingAddBookDialogue = true
@@ -33,11 +43,22 @@ const uiSlice = createSlice({
             state.showingAddBookDialogue = false
             state.bookForAddBookDialogue = null
         },
+
+
         openClubNamingWindow(state) {
             state.showingClubNamingWindow = true
         },
         closeClubNamingWindow(state) {
             state.showingClubNamingWindow = false
+        },
+
+
+        openClubWindow(state, action) {
+            state.dataForClubWindow = action.payload
+            state.showingClubWindow = true
+        },
+        closeClubWindow(state) {
+            state.showingClubWindow = false 
         }
     }
 })
@@ -49,7 +70,9 @@ export const {
     openAddBookDialogue, 
     closeAddBookDialogue,
     openClubNamingWindow,
-    closeClubNamingWindow
+    closeClubNamingWindow,
+    openClubWindow,
+    closeClubWindow
 } = uiSlice.actions
 
 export default uiSlice.reducer

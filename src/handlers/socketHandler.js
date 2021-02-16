@@ -47,17 +47,21 @@ var io = require('socket.io-client');
 var store_1 = __importDefault(require("../state/store"));
 var clubsSlice_1 = require("../state/clubsSlice");
 var socket = null;
-exports.connectToServer = function () {
-    socket = io('ws://192.168.1.65:3000');
-    setListeners();
-};
-var setListeners = function () {
+exports.connectToServer = function () { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, new Promise(function (resolve, reject) {
+                socket = io('ws://192.168.1.65:3000');
+                setListeners(resolve, reject);
+            })];
+    });
+}); };
+var setListeners = function (resolve, reject) {
     if (socket) {
         socket.on('connect_error', function (error) {
-            console.log("Could not connect to server: " + error);
+            reject(error);
         });
         socket.on('connect', function () {
-            console.log("Socket connected to server.");
+            resolve("Socket connected to server.");
         });
         socket.on('disconnect', function () {
             console.log("Socket disconnected.");
@@ -108,14 +112,15 @@ exports.loginAsUser = function (user) { return __awaiter(void 0, void 0, void 0,
                 if (socket) {
                     console.log("Logging in as " + user.username);
                     socket.on('login_as_user_response', function (userData) {
-                        var user = userData.user, shelves = userData.shelves, books = userData.books;
+                        var user = userData.user, shelves = userData.shelves, books = userData.books, clubs = userData.clubs;
                         store_1.default.dispatch(booksSlice_1.setBooks(books));
                         store_1.default.dispatch(userSlice_1.setCurrentUser(user));
                         store_1.default.dispatch(shelvesSlice_1.setShelves(shelves));
+                        store_1.default.dispatch(clubsSlice_1.setClubs(clubs));
                         return resolve("Logged in as " + user.username);
                     });
                     socket.on('login_as_user_error', function (error) {
-                        return reject("Login as user Error " + error);
+                        return reject(error);
                     });
                     socket.emit('login_as_user', user);
                 }

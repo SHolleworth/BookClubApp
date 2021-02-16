@@ -12,9 +12,9 @@ import { connectToServer, registerNewUser, loginAsUser } from '../handlers/socke
 import BookDetailWindow from '../windows/BookDetailWindow'
 import AddBookDialogue from '../components/AddBookDialogue'
 import { setTabWidth } from '../state/uiSlice'
-import { v4 as uuidv4 } from 'uuid'
 import Clubs from '../tabs/Clubs/Clubs'
 import ClubNamingWindow from '../windows/ClubNamingWindow'
+import ClubWindow from '../windows/ClubWindow/ClubWindow'
 
 const App = () => {
 
@@ -36,36 +36,39 @@ const App = () => {
   
   useEffect(() => {
 
-    connectToServer()
+    (async () => {
 
-    dispatch(setTabWidth(windowWidth))
-
-    registerNewUser(testUser)
-      .then(response => {
-        
-        console.log(response)
-        
-      })
-      .then(() => {
-        
-        return loginAsUser(testUser)
-
-      })
-      .then((message) => {
-        
-        console.log(message)
-
-      })
-      .catch(error => {
-
-        console.error(error)
+      setLoading(true)
+    
+      dispatch(setTabWidth(windowWidth))
       
-      })
-      .finally(() => {
+      try {
+  
+        const connectionResponse = await connectToServer()
         
+        console.log(connectionResponse)
+  
+        const registerResponse = await registerNewUser(testUser)
+  
+        console.log(registerResponse)
+  
+        const loginResponse = await loginAsUser(testUser)
+  
+        console.log(loginResponse)
+  
+      }
+      catch (error) {
+  
+        console.error(error)
+  
+      }
+      finally {
+  
         setLoading(false)
-
-      })
+  
+      }
+      
+    })()
 
   },[])
 
@@ -123,6 +126,8 @@ const App = () => {
         {showingBookDetailWindow ? <BookDetailWindow /> : null}
 
         <ClubNamingWindow />
+
+        <ClubWindow />
 
         <AddBookDialogue />
       </>

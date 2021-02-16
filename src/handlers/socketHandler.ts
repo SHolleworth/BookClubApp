@@ -10,26 +10,29 @@ import { setClubs } from '../state/clubsSlice'
 
 let socket: Socket | null = null
 
-export const connectToServer = () => {
+export const connectToServer = async () => {
 
-    socket = io('ws://192.168.1.65:3000')
+    return new Promise((resolve, reject) => {
+            
+        socket = io('ws://192.168.1.65:3000')
 
-    setListeners()
+        setListeners(resolve, reject)
 
+    });
 }
 
-const setListeners = () => {
+const setListeners = (resolve: any, reject: any) => {
 
     if(socket) {
         socket.on('connect_error', (error: string) => {
 
-            console.log("Could not connect to server: " + error)
+            reject(error)
 
         })
         
         socket.on('connect', () => {
 
-            console.log("Socket connected to server.")
+            resolve("Socket connected to server.")
 
         })
 
@@ -38,6 +41,8 @@ const setListeners = () => {
             console.log("Socket disconnected.")
 
         })
+
+
     }
 }
  
@@ -112,7 +117,7 @@ export const loginAsUser = async (user: UserLoginObject) => {
 
             socket.on('login_as_user_response', (userData: UserLoginDataObject) => {
                 
-                const { user, shelves, books } = userData
+                const { user, shelves, books, clubs } = userData
 
                 store.dispatch(setBooks(books))
 
@@ -120,12 +125,14 @@ export const loginAsUser = async (user: UserLoginObject) => {
 
                 store.dispatch(setShelves(shelves))
 
+                store.dispatch(setClubs(clubs))
+
                 return resolve("Logged in as " + user.username)
             })
 
             socket.on('login_as_user_error', (error: string) => {
 
-                return reject("Login as user Error " + error)
+                return reject(error)
 
             })
 

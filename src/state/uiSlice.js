@@ -1,7 +1,7 @@
 "use strict";
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.closeClubNamingWindow = exports.openClubNamingWindow = exports.closeAddBookDialogue = exports.openAddBookDialogue = exports.closeBookDetailWindow = exports.openBookDetailWindow = exports.setTabWidth = void 0;
+exports.closeClubWindow = exports.openClubWindow = exports.closeClubNamingWindow = exports.openClubNamingWindow = exports.closeAddBookDialogue = exports.openAddBookDialogue = exports.closeBookDetailWindow = exports.openBookDetailWindow = exports.setTabWidth = void 0;
 var toolkit_1 = require("@reduxjs/toolkit");
 var initialState = {
     tabWidth: null,
@@ -9,7 +9,9 @@ var initialState = {
     bookForDetailWindow: null,
     showingAddBookDialogue: false,
     bookForAddBookDialogue: null,
-    showingClubNamingWindow: true,
+    showingClubNamingWindow: false,
+    dataForClubWindow: null,
+    showingClubWindow: true,
 };
 var uiSlice = toolkit_1.createSlice({
     name: 'ui',
@@ -39,8 +41,15 @@ var uiSlice = toolkit_1.createSlice({
         },
         closeClubNamingWindow: function (state) {
             state.showingClubNamingWindow = false;
+        },
+        openClubWindow: function (state, action) {
+            state.dataForClubWindow = action.payload;
+            state.showingClubWindow = true;
+        },
+        closeClubWindow: function (state) {
+            state.showingClubWindow = false;
         }
     }
 });
-exports.setTabWidth = (_a = uiSlice.actions, _a.setTabWidth), exports.openBookDetailWindow = _a.openBookDetailWindow, exports.closeBookDetailWindow = _a.closeBookDetailWindow, exports.openAddBookDialogue = _a.openAddBookDialogue, exports.closeAddBookDialogue = _a.closeAddBookDialogue, exports.openClubNamingWindow = _a.openClubNamingWindow, exports.closeClubNamingWindow = _a.closeClubNamingWindow;
+exports.setTabWidth = (_a = uiSlice.actions, _a.setTabWidth), exports.openBookDetailWindow = _a.openBookDetailWindow, exports.closeBookDetailWindow = _a.closeBookDetailWindow, exports.openAddBookDialogue = _a.openAddBookDialogue, exports.closeAddBookDialogue = _a.closeAddBookDialogue, exports.openClubNamingWindow = _a.openClubNamingWindow, exports.closeClubNamingWindow = _a.closeClubNamingWindow, exports.openClubWindow = _a.openClubWindow, exports.closeClubWindow = _a.closeClubWindow;
 exports.default = uiSlice.reducer;
