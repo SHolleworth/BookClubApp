@@ -11,7 +11,7 @@ var initialState = {
     bookForAddBookDialogue: null,
     showingClubNamingWindow: false,
     dataForClubWindow: null,
-    showingClubWindow: true,
+    showingClubWindow: false,
 };
 var uiSlice = toolkit_1.createSlice({
     name: 'ui',

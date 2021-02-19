@@ -30,8 +30,6 @@ const clubsSlice = createSlice({
                 
                 newClubs.forEach(club => state.push(club))
 
-                console.log(state[0].members)
-
             }
         },
 

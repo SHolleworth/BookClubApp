@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
-import { globalStyles } from '../../../constants';
+import MemberInviteSearchBar from '../../components/MemberInviteSearchBar/MemberInviteSearchBar';
+import { globalStyles } from '../../constants';
 import styles from './styles'
 
 const MembersTab = () => {
@@ -12,14 +13,18 @@ const MembersTab = () => {
 
     const members = club ? club.members : []
 
-    const memberEntries = members.map(member => <MemberEntry member={member} />)
+    const memberEntries = members.map((member, ind) => <MemberEntry key={ ind } member={ member } />)
 
     return (
+        <>
         <View style={[ globalStyles.clubTabBackground, { width } ]}>
 
-            {memberEntries}
+            <MemberInviteSearchBar />
+
+            { memberEntries }
 
         </View>
+        </>
     );
 };
 
@@ -39,7 +44,7 @@ const MemberEntry = ({ member }) => {
 
             <Text style={ styles.entryText }>{ username }</Text>
 
-            {admin ? <Text style={ styles.entryAdminText }>{ adminLabel }</Text> : null }
+            { admin ? <Text style={ styles.entryAdminText }>{ adminLabel }</Text> : null }
 
         </View>
     )

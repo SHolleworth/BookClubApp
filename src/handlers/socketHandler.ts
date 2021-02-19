@@ -5,7 +5,7 @@ import { setCurrentUser } from '../state/userSlice'
 const io = require('socket.io-client')
 import store from '../state/store'
 import { Socket } from 'socket.io-client'
-import { BookObject, ClubObject, ClubPostObject, ShelfObject, UserLoginDataObject, UserLoginObject, UserObject, UserRegisterObject } from '../../../types'
+import { BookObject, ClubInviteReceive, ClubObject, ClubPostObject, ShelfObject, UserLoginDataObject, UserLoginObject, UserObject, UserRegisterObject } from '../../../types'
 import { setClubs } from '../state/clubsSlice'
 
 let socket: Socket | null = null
@@ -37,7 +37,9 @@ const setListeners = (resolve: any, reject: any) => {
 
             const currentUserId = state.user.currentUser.id
 
-            socket?.emit('update_socket_id', currentUserId)
+            if(currentUserId)
+            
+                socket?.emit('update_socket_id', currentUserId)
 
             resolve("Socket connected to server.")
 
@@ -58,6 +60,12 @@ const setListeners = (resolve: any, reject: any) => {
         socket.on('update_socket_id_error', (error: string) => {
 
             console.error(error)
+            
+        })
+
+        socket.on('receiving_club_invite', (invite: ClubInviteReceive) => {
+
+            console.log(`Received invitation to club ${invite.club.name} from user: ${invite.inviter.username}.`)
             
         })
     }
@@ -368,4 +376,35 @@ export const retrieveClubs = async (user: UserObject) => {
 
     });
 
+}
+
+export const sendClubInvite = async (invite: ClubObject) => {
+
+    return new Promise((resolve, reject) => {
+        
+        if (socket) {
+            
+            socket.on('send_club_invite_response', (message: string) => {
+
+                return resolve(message)
+
+            })
+
+            socket.on('send_club_invite_error', (error: string) => {
+                
+                return reject(error)
+
+            })
+
+            socket.emit('send_club_invite', invite)
+
+        }
+        else {
+
+            return reject("Socket not connected")
+
+        }
+
+    });
+    
 }

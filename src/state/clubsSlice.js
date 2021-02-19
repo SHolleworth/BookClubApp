@@ -19,7 +19,6 @@ var clubsSlice = toolkit_1.createSlice({
                     newClubs = [action.payload];
                 }
                 newClubs.forEach(function (club) { return state.push(club); });
-                console.log(state[0].members);
             }
         },
     }

@@ -8,7 +8,8 @@ import { globalStyles } from '../../constants';
 import { closeClubWindow } from '../../state/uiSlice';
 import { updateClubTab } from '../../state/navSlice'
 import styles from './styles'
-import MembersTab from '../../app/clubTabs/MembersTab/MembersTab';
+import MembersTab from '../../clubTabs/MembersTab/MembersTab';
+import MemberInviteSearchBar from '../../components/MemberInviteSearchBar/MemberInviteSearchBar';
 
 const ClubWindow = () => {
 
@@ -94,7 +95,7 @@ const ClubWindow = () => {
                 ref={ scrollView }
                 >
 
-                    <View style={{ height: 700, width: tabWidth, backgroundColor: 'red' }} />
+                    <View style={{ flex: 1, width: tabWidth, backgroundColor: 'red' }} />
 
                     <View style={{ flex: 1, width: tabWidth, backgroundColor: 'blue' }} />
 

@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.retrieveClubs = exports.postNewClub = exports.retrieveBooks = exports.postNewBook = exports.retrieveShelves = exports.postNewShelf = exports.loginAsUser = exports.registerNewUser = exports.sendVolumeQuery = exports.connectToServer = void 0;
+exports.sendClubInvite = exports.retrieveClubs = exports.postNewClub = exports.retrieveBooks = exports.postNewBook = exports.retrieveShelves = exports.postNewShelf = exports.loginAsUser = exports.registerNewUser = exports.sendVolumeQuery = exports.connectToServer = void 0;
 var booksSlice_1 = require("../state/booksSlice");
 var shelvesSlice_1 = require("../state/shelvesSlice");
 var userSlice_1 = require("../state/userSlice");
@@ -63,7 +63,8 @@ var setListeners = function (resolve, reject) {
         socket.on('connect', function () {
             var state = store_1.default.getState();
             var currentUserId = state.user.currentUser.id;
-            socket === null || socket === void 0 ? void 0 : socket.emit('update_socket_id', currentUserId);
+            if (currentUserId)
+                socket === null || socket === void 0 ? void 0 : socket.emit('update_socket_id', currentUserId);
             resolve("Socket connected to server.");
         });
         socket.on('disconnect', function () {
@@ -74,6 +75,9 @@ var setListeners = function (resolve, reject) {
         });
         socket.on('update_socket_id_error', function (error) {
             console.error(error);
+        });
+        socket.on('receiving_club_invite', function (invite) {
+            console.log("Received invitation to club " + invite.club.name + " from user: " + invite.inviter.username + ".");
         });
     }
 };
@@ -249,6 +253,24 @@ exports.retrieveClubs = function (user) { return __awaiter(void 0, void 0, void 
                         return reject(error);
                     });
                     socket.emit('retrieve_clubs', user);
+                }
+                else {
+                    return reject("Socket not connected");
+                }
+            })];
+    });
+}); };
+exports.sendClubInvite = function (invite) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, new Promise(function (resolve, reject) {
+                if (socket) {
+                    socket.on('send_club_invite_response', function (message) {
+                        return resolve(message);
+                    });
+                    socket.on('send_club_invite_error', function (error) {
+                        return reject(error);
+                    });
+                    socket.emit('send_club_invite', invite);
                 }
                 else {
                     return reject("Socket not connected");

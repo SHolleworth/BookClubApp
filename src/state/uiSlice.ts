@@ -13,7 +13,7 @@ const initialState: UiStateObject = {
     showingClubNamingWindow: false,
 
     dataForClubWindow: null,
-    showingClubWindow: true,
+    showingClubWindow: false,
 }
 
 const uiSlice = createSlice({

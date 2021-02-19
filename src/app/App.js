@@ -30,9 +30,11 @@ const App = () => {
 
   const showingBookDetailWindow = useSelector(state => state.ui.showingBookDetailWindow)
 
-  const testNum = 4
+  const testNum = 13
 
-  const testUser = { username: `testuser${testNum}`, password: `testpassword${testNum}` }
+  //const testUser = { username: `testuser${testNum}`, password: `testpassword${testNum}` }
+
+  const testUser = { username: `jhe`, password: `123` }
   
   useEffect(() => {
 
