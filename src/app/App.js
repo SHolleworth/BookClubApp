@@ -5,20 +5,19 @@ import { updateTab } from '../state/navSlice'
 import { ScrollView } from 'react-native-gesture-handler'
 
 import NavBar from './NavBar/NavBar'
-
 import Home from '../tabs/Home'
 import Shelves from '../tabs/Shelves/Shelves'
-import { connectToServer, registerNewUser, loginAsUser } from '../handlers/socketHandler'
+import Clubs from '../tabs/Clubs/Clubs'
 import BookDetailWindow from '../windows/BookDetailWindow'
 import AddBookDialogue from '../components/AddBookDialogue'
-import { setTabWidth } from '../state/uiSlice'
-import Clubs from '../tabs/Clubs/Clubs'
 import ClubNamingWindow from '../windows/ClubNamingWindow'
 import ClubWindow from '../windows/ClubWindow/ClubWindow'
+import { connectToServer, registerNewUser, loginAsUser } from '../handlers/socketHandler'
+import { setTabWidth } from '../state/uiSlice'
 
 const App = () => {
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const dispatch = useDispatch()
 

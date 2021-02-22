@@ -5,8 +5,8 @@ import { setCurrentUser } from '../state/userSlice'
 const io = require('socket.io-client')
 import store from '../state/store'
 import { Socket } from 'socket.io-client'
-import { BookObject, ClubInviteReceive, ClubObject, ClubPostObject, ShelfObject, UserLoginDataObject, UserLoginObject, UserObject, UserRegisterObject } from '../../../types'
-import { setClubs } from '../state/clubsSlice'
+import { AcceptClubInviteObject, BookObject, ClubInviteReceive, ClubObject, ClubPostObject, MemberData, ShelfObject, UserLoginDataObject, UserLoginObject, UserObject, UserRegisterObject } from '../../../types'
+import { addInvite, setClubs, setInvites } from '../state/clubsSlice'
 
 let socket: Socket | null = null
 
@@ -66,6 +66,8 @@ const setListeners = (resolve: any, reject: any) => {
         socket.on('receiving_club_invite', (invite: ClubInviteReceive) => {
 
             console.log(`Received invitation to club ${invite.club.name} from user: ${invite.inviter.username}.`)
+
+            store.dispatch(addInvite(invite))
             
         })
     }
@@ -142,7 +144,7 @@ export const loginAsUser = async (user: UserLoginObject) => {
 
             socket.on('login_as_user_response', (userData: UserLoginDataObject) => {
                 
-                const { user, shelves, books, clubs } = userData
+                const { user, shelves, books, clubs, invites } = userData
 
                 store.dispatch(setBooks(books))
 
@@ -152,7 +154,10 @@ export const loginAsUser = async (user: UserLoginObject) => {
 
                 store.dispatch(setClubs(clubs))
 
+                store.dispatch(setInvites(invites))
+
                 return resolve("Logged in as " + user.username)
+                
             })
 
             socket.on('login_as_user_error', (error: string) => {
@@ -405,6 +410,102 @@ export const sendClubInvite = async (invite: ClubObject) => {
 
         }
 
+    });
+    
+}
+
+export const postClubMember = async (payload: AcceptClubInviteObject) => {
+
+    return new Promise((resolve, reject) => {
+        
+        if (socket) {
+            
+            socket.on('post_club_member_response', (message: string) => {
+
+                return resolve(message)
+
+            })
+
+            socket.on('post_club_member_error', (error: string) => {
+                
+                return reject(error)
+
+            })
+
+            socket.emit('post_club_member', payload)
+
+        }
+        else {
+
+            return reject("Socket not connected")
+
+        }
+
+    });
+    
+}
+
+
+export const retrieveInvites = async (user: UserObject) => {
+ 
+    return new Promise((resolve, reject) => {
+        
+        if (socket) {
+            
+            socket.on('retrieve_club_invites_response', (invites: ClubInviteReceive[]) => {
+
+                store.dispatch(setInvites(invites))
+
+                return resolve("Retrieved invites.")
+
+            })
+
+            socket.on('retrieve_club_invites_error', (error: string) => {
+                
+                return reject(error)
+
+            })
+
+            socket.emit('retrieve_club_invites', user)
+
+        }
+        else {
+
+            return reject("Socket not connected")
+
+        }
+
+    });
+
+}
+
+export const deleteInvite = async (invite: ClubInviteReceive) => {
+
+    return new Promise((resolve, reject) => {
+
+        if (socket) {
+            
+            socket.on('delete_club_invite_response', (message: string) => {
+
+                return resolve(message)
+
+            })
+
+            socket.on('delete_club_invite_error', (error: string) => {
+                
+                return reject(error)
+
+            })
+
+            socket.emit('delete_club_invite', invite)
+
+        }
+        else {
+
+            return reject("Socket not connected")
+
+        }
+        
     });
     
 }

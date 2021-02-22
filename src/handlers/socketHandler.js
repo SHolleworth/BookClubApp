@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendClubInvite = exports.retrieveClubs = exports.postNewClub = exports.retrieveBooks = exports.postNewBook = exports.retrieveShelves = exports.postNewShelf = exports.loginAsUser = exports.registerNewUser = exports.sendVolumeQuery = exports.connectToServer = void 0;
+exports.deleteInvite = exports.retrieveInvites = exports.postClubMember = exports.sendClubInvite = exports.retrieveClubs = exports.postNewClub = exports.retrieveBooks = exports.postNewBook = exports.retrieveShelves = exports.postNewShelf = exports.loginAsUser = exports.registerNewUser = exports.sendVolumeQuery = exports.connectToServer = void 0;
 var booksSlice_1 = require("../state/booksSlice");
 var shelvesSlice_1 = require("../state/shelvesSlice");
 var userSlice_1 = require("../state/userSlice");
@@ -78,6 +78,7 @@ var setListeners = function (resolve, reject) {
         });
         socket.on('receiving_club_invite', function (invite) {
             console.log("Received invitation to club " + invite.club.name + " from user: " + invite.inviter.username + ".");
+            store_1.default.dispatch(clubsSlice_1.addInvite(invite));
         });
     }
 };
@@ -125,11 +126,12 @@ exports.loginAsUser = function (user) { return __awaiter(void 0, void 0, void 0,
                 if (socket) {
                     console.log("Logging in as " + user.username);
                     socket.on('login_as_user_response', function (userData) {
-                        var user = userData.user, shelves = userData.shelves, books = userData.books, clubs = userData.clubs;
+                        var user = userData.user, shelves = userData.shelves, books = userData.books, clubs = userData.clubs, invites = userData.invites;
                         store_1.default.dispatch(booksSlice_1.setBooks(books));
                         store_1.default.dispatch(userSlice_1.setCurrentUser(user));
                         store_1.default.dispatch(shelvesSlice_1.setShelves(shelves));
                         store_1.default.dispatch(clubsSlice_1.setClubs(clubs));
+                        store_1.default.dispatch(clubsSlice_1.setInvites(invites));
                         return resolve("Logged in as " + user.username);
                     });
                     socket.on('login_as_user_error', function (error) {
@@ -271,6 +273,61 @@ exports.sendClubInvite = function (invite) { return __awaiter(void 0, void 0, vo
                         return reject(error);
                     });
                     socket.emit('send_club_invite', invite);
+                }
+                else {
+                    return reject("Socket not connected");
+                }
+            })];
+    });
+}); };
+exports.postClubMember = function (payload) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, new Promise(function (resolve, reject) {
+                if (socket) {
+                    socket.on('post_club_member_response', function (message) {
+                        return resolve(message);
+                    });
+                    socket.on('post_club_member_error', function (error) {
+                        return reject(error);
+                    });
+                    socket.emit('post_club_member', payload);
+                }
+                else {
+                    return reject("Socket not connected");
+                }
+            })];
+    });
+}); };
+exports.retrieveInvites = function (user) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, new Promise(function (resolve, reject) {
+                if (socket) {
+                    socket.on('retrieve_club_invites_response', function (invites) {
+                        store_1.default.dispatch(clubsSlice_1.setInvites(invites));
+                        return resolve("Retrieved invites.");
+                    });
+                    socket.on('retrieve_club_invites_error', function (error) {
+                        return reject(error);
+                    });
+                    socket.emit('retrieve_club_invites', user);
+                }
+                else {
+                    return reject("Socket not connected");
+                }
+            })];
+    });
+}); };
+exports.deleteInvite = function (invite) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, new Promise(function (resolve, reject) {
+                if (socket) {
+                    socket.on('delete_club_invite_response', function (message) {
+                        return resolve(message);
+                    });
+                    socket.on('delete_club_invite_error', function (error) {
+                        return reject(error);
+                    });
+                    socket.emit('delete_club_invite', invite);
                 }
                 else {
                     return reject("Socket not connected");

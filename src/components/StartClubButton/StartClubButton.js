@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { colors } from '../../constants';
+import { getClubs } from '../../state/clubsSlice';
 import { openClubNamingWindow } from '../../state/uiSlice';
 import styles from './styles'
 
@@ -12,33 +13,43 @@ const StartClubButton = () => {
 
     const dispatch = useDispatch()
 
-    const exisitingClubs = useSelector(state => state.clubs.length)
+    const exisitingClubs = useSelector(getClubs)
 
-    return (
-        <View style={ styles.background }>
+    if(!exisitingClubs.length) {
 
-            { !exisitingClubs ? 
-            <View style={{ flex: 1, marginTop: 10 }}>
-                <Text style={ styles.message }> { message } </Text>
-            </View>
-            : null }
-
-            
-            <View style={{ flex: 3, width: '100%' }}>
-                <TouchableOpacity 
+        return (
+            <View style={ styles.background }>
+     
+                <View style={{ flex: 1, marginTop: 10 }}>
+    
+                    <Text style={ styles.message }> { message } </Text>
+    
+                </View>
+    
+                <View style={{ flex: 3, width: '100%' }}>
+    
+                    <TouchableOpacity 
                     style={ styles.button }
-                    onPress={ () => { dispatch(openClubNamingWindow()) }}
-                >
-
-                    <Text style={ styles.buttonText }>Start a club</Text>
-
-                    <View style={{ height: 50, width: 50, borderRadius: 25, borderWidth: 2, borderColor: colors.lightColor }}/>
-
-                </TouchableOpacity>
+                    onPress={ () => { dispatch(openClubNamingWindow()) }}>
+    
+                        <Text style={ styles.buttonText }>Start a club</Text>
+    
+                        <View style={{ height: 50, width: 50, borderRadius: 25, borderWidth: 2, borderColor: colors.lightColor }}/>
+    
+                    </TouchableOpacity>
+    
+                </View>
+    
             </View>
+        );
 
-        </View>
-    );
+    }
+    else {
+
+        return null;
+        
+    }
+  
 };
 
 export default StartClubButton;
