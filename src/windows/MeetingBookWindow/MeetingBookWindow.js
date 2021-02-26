@@ -12,6 +12,8 @@ const BookForMeetingWindow = () => {
 
     const dispatch = useDispatch()
 
+    const clubId = useSelector(state => state.ui.clubIdForWindow)
+
     const close = () => {
         
         dispatch(closeMeetingBookWindow())
@@ -20,7 +22,7 @@ const BookForMeetingWindow = () => {
 
     const bookTouchableFunction = (book) => {
         
-        dispatch(setMeetingBook(book))
+        dispatch(setMeetingBook({ book, clubId }))
 
         dispatch(openMeetingDateAndTimeWindow())
 

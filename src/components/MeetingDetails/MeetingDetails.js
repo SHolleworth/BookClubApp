@@ -1,11 +1,14 @@
 import React from 'react';
 import { View, Text, ImageBackground } from 'react-native';
 import { useSelector } from 'react-redux';
+import { getMeeting } from '../../state/clubsSlice';
 import styles from './styles'
 
 const MeetingDetails = () => {
 
-    const meeting = useSelector(state => state.clubs.meeting)
+    const clubId = useSelector(state => state.ui.clubIdForWindow)
+
+    const meeting = useSelector(state => getMeeting(state, clubId))
 
     let title, thumbnail = ''
 

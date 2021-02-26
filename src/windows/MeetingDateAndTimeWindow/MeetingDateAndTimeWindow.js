@@ -5,9 +5,10 @@ import BackButton from '../../components/BackButton';
 import TimeInput from "../../components/TimeInput";
 import { Calendar } from 'react-native-calendars'
 import { globalStyles } from '../../constants';
-import { closeMeetingDateAndTimeWindow, openMeetingBookWindow } from '../../state/uiSlice';
+import uiSlice, { closeMeetingDateAndTimeWindow, openMeetingBookWindow } from '../../state/uiSlice';
 import styles from './styles'
-import { setMeetingDate, setMeeting } from '../../state/clubsSlice';
+import { setMeetingDate, setMeetingClubId, getMeeting } from '../../state/clubsSlice';
+import { postMeeting } from '../../handlers/socketHandler'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const MeetingDateAndTimeWindow = () => {
@@ -16,9 +17,11 @@ const MeetingDateAndTimeWindow = () => {
 
     const dispatch = useDispatch()
 
-    const book = useSelector(state => state.clubs.meeting.book)
+    const clubId = useSelector(state => state.ui.clubIdForWindow)
 
-    const thumbnail = book ? { uri: book.info.thumbnail } : ''
+    const meeting = useSelector(state => getMeeting(state, clubId))
+
+    const thumbnail = meeting.book ? { uri: meeting.book.info.thumbnail } : ''
 
     useEffect(() => {
 
@@ -54,7 +57,7 @@ const MeetingDateAndTimeWindow = () => {
 
     const storeSelectedDate = (date) => {
 
-        dispatch(setMeetingDate(date))
+        dispatch(setMeetingDate({ date, clubId }))
         
     }
 
@@ -86,11 +89,23 @@ const MeetingDateAndTimeWindow = () => {
         
     }
 
-    const handlePress = () => {
+    const handlePress = async () => {
         
-        dispatch(setMeeting(true))
+        try {
 
-        dispatch(closeMeetingDateAndTimeWindow())
+            const message = await postMeeting(meeting)
+
+            console.log(message)
+
+            dispatch(closeMeetingDateAndTimeWindow())
+
+        }
+        catch (error) {
+
+            console.error(error)
+
+        }
+
     }
 
     return (

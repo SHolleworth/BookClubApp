@@ -5,7 +5,7 @@ import { setCurrentUser } from '../state/userSlice'
 const io = require('socket.io-client')
 import store from '../state/store'
 import { Socket } from 'socket.io-client'
-import { AcceptClubInviteObject, BookObject, ClubInviteReceive, ClubObject, ClubPostObject, MemberData, ShelfObject, UserLoginDataObject, UserLoginObject, UserObject, UserRegisterObject } from '../../../types'
+import { AcceptClubInviteObject, BookObject, ClubInviteReceive, ClubObject, ClubPostObject, MeetingObject, MemberData, ShelfObject, UserLoginDataObject, UserLoginObject, UserObject, UserRegisterObject } from '../../../types'
 import { addInvite, setClubs, setInvites } from '../state/clubsSlice'
 
 let socket: Socket | null = null
@@ -78,6 +78,16 @@ const setListeners = (resolve: any, reject: any) => {
             const currentUser = store.getState().user.currentUser
     
             socket?.emit('retrieve_clubs', currentUser)
+
+        })
+
+        socket.on('retrieve_clubs_response', (clubs: ClubObject[]) => {
+                
+            store.dispatch(setClubs(clubs))
+
+            console.log("Retrieved clubs")
+
+            return resolve("Successfully retrieved clubs.")
 
         })
     }
@@ -370,6 +380,8 @@ export const retrieveClubs = async (user: UserObject) => {
                 
                 store.dispatch(setClubs(clubs))
 
+                console.log("Retrieved clubs")
+
                 return resolve("Successfully retrieved clubs.")
 
             })
@@ -516,6 +528,39 @@ export const deleteInvite = async (invite: ClubInviteReceive) => {
 
         }
         
+    });
+    
+}
+
+export const postMeeting = (meeting: MeetingObject) => {
+
+    return new Promise((resolve, reject) => {
+
+        if (socket) {
+            
+            socket.on('post_meeting_response', (message: string) => {
+
+                const user = store.getState().user.currentUser
+
+                return resolve(message)
+
+            })
+
+            socket.on('post_meeting_error', (error: string) => {
+                
+                return reject(error)
+
+            })
+    
+            socket.emit('post_meeting', meeting)
+    
+            }
+            else {
+    
+                return reject("Socket not connected")
+    
+            }
+
     });
     
 }

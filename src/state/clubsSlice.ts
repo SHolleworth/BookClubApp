@@ -4,21 +4,7 @@ import { RootState } from "./store"
 
 const initialState: ClubStateObject = { 
     clubs: [], 
-    invites: [], 
-    meeting: 
-    { 
-        book: null,
-        date: {
-            day: null,
-            month: null,
-            year: null
-        }, 
-        time: {
-            minutes: null,
-            hours: null
-        },
-        active: false,
-    } 
+    invites: [],
 }
 
 const clubsSlice = createSlice({
@@ -44,6 +30,8 @@ const clubsSlice = createSlice({
                     newClubs = [action.payload]
                 
                 newClubs.forEach(club => state.clubs.push(club))
+
+                console.log(state.clubs[0].meeting)
             }
         },
         addInvite(state, action) {
@@ -76,37 +64,61 @@ const clubsSlice = createSlice({
 
             if(action.payload){
 
-                state.meeting.book = action.payload
+                const { clubId, book } = action.payload
+
+                const index = state.clubs.findIndex(club => club.id === clubId)
+
+                console.log(index)
+
+                state.clubs[index].meeting.book = book 
 
             }
         },
         setMeetingDate(state, action) {
+
             if(action.payload){
 
-                state.meeting.date.day = action.payload.day
+                const { date , clubId } = action.payload
 
-                state.meeting.date.month = action.payload.month
+                const { year, month, day } = date
 
-                state.meeting.date.year = action.payload.year
+                const index = state.clubs.findIndex(club => club.id === clubId)
+
+                state.clubs[index].meeting.date.day = day
+
+                state.clubs[index].meeting.date.month = month
+
+                state.clubs[index].meeting.date.year = year
 
             }
         },
         setMeetingTime(state, action) {
             if(action.payload){
 
-                state.meeting.time.minutes = action.payload.minutes
+                const { time, clubId } = action.payload
 
-                state.meeting.time.hours = action.payload.hours
+                const { minutes, hours } = time
+
+                const index = state.clubs.findIndex(club => club.id === clubId)
+
+                state.clubs[index].meeting.time.minutes = minutes
+
+                state.clubs[index].meeting.time.hours = hours
+
+                console.log(state.clubs[index].meeting.time)
 
             }
         },
-        setMeeting(state, action) {
+        setMeetingClubId(state, action) {
             if(action.payload){
 
-                state.meeting.active = action.payload
+                const clubId = action.payload
 
+                const index = state.clubs.findIndex(club => club.id === clubId)
+
+                state.clubs[index].meeting.clubId = clubId
             }
-        }
+        },
     }
 })
 
@@ -114,6 +126,8 @@ export const getClubs = (state: RootState) => state.clubs.clubs
 
 export const getClubById = (state: RootState, clubId: number) => state.clubs.clubs.find((club: ClubObject) => club.id === clubId)
 
+export const getMeeting = (state: RootState, clubId: number) => state.clubs.clubs.find((club: ClubObject) => club.id === clubId)?.meeting 
+
 export default clubsSlice.reducer
 
-export const  { setClubs, setInvites, addInvite, setMeetingBook, setMeetingDate, setMeetingTime, setMeeting } = clubsSlice.actions
+export const  { setClubs, setInvites, addInvite, setMeetingBook, setMeetingDate, setMeetingTime, setMeetingClubId } = clubsSlice.actions

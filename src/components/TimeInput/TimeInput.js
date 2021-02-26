@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { globalStyles } from '../../constants';
 import { setMeetingTime } from '../../state/clubsSlice';
 import styles from './styles'
@@ -10,19 +10,21 @@ const TimeInput = () => {
 
     const dispatch = useDispatch()
 
+    const clubId = useSelector(state => state.ui.clubIdForWindow)
+
     const [hours, setHours] = useState(12)
 
     const [minutes, setMinutes] = useState(0)
 
     useEffect(() => {
         
-        let payload = {}
+        let time = {}
 
-        payload.minutes = minutes
+        time.minutes = minutes
 
-        payload.hours = hours
+        time.hours = hours
 
-        dispatch(setMeetingTime(payload))
+        dispatch(setMeetingTime({ time, clubId }))
 
     },[minutes, hours])
 

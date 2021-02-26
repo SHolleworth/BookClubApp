@@ -23,6 +23,7 @@ const Shelves = (props) => {
     const dispatch = useDispatch()
 
     const openDialogue = () => {
+        console.log("Pressed")
         setDialogueOpen(true)
     }
 
