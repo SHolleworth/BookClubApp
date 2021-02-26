@@ -10,14 +10,16 @@ import { updateClubTab } from '../../state/navSlice'
 import styles from './styles'
 import MembersTab from '../../clubTabs/MembersTab/MembersTab';
 import MemberInviteSearchBar from '../../components/MemberInviteSearchBar/MemberInviteSearchBar';
+import { getClubById } from '../../state/clubsSlice';
+import HomeTab from '../../clubTabs/HomeTab/HomeTab';
 
 const ClubWindow = () => {
 
     const dispatch = useDispatch()
 
-    const club = useSelector(state => state.ui.dataForClubWindow)
+    const clubId = useSelector(state => state.ui.clubIdForWindow)
 
-    const showing = useSelector(state => state.ui.showingClubWindow)
+    const club = useSelector(state => getClubById(state, clubId))
 
     const tabWidth = useSelector(state => state.ui.tabWidth)
 
@@ -33,7 +35,7 @@ const ClubWindow = () => {
 
             scrollView.current.scrollTo({ x: tab * tabWidth, animated: false })
         
-    }, [showing])
+    }, [])
 
     useEffect(() => {
   
@@ -68,53 +70,45 @@ const ClubWindow = () => {
 
     }
 
-    if(showing){
-        
-        return (
-            <ScrollView
-            style={[ globalStyles.windowBackground, { padding: 0 } ]}
-            contentContainerStyle={[ { alignItems: 'center' } ]}
+    return (
+        <ScrollView
+        style={[ globalStyles.windowBackground, { padding: 0 } ]}
+        contentContainerStyle={[ { alignItems: 'center' } ]}
+        >
+
+            <BackButton function={ close } style={{ marginLeft: 20, marginTop: 20, marginBottom: 5 }}/>
+
+            <View style={ styles.header }>
+
+                <View style={[ globalStyles.profilePlaceholder ]} />
+
+                <Text style={ styles.headerText }>{ name }</Text>
+
+            </View>
+
+            <ClubNav />
+
+            <ScrollView 
+            horizontal={ true }
+            pagingEnabled={ true }
+            showsHorizontalScrollIndicator={ false }
+            onMomentumScrollEnd={ handleTabUpdate }
+            ref={ scrollView }
             >
 
-                <BackButton function={ close } style={{ marginLeft: 20, marginTop: 20, marginBottom: 5 }}/>
+                <HomeTab />
 
-                <View style={ styles.header }>
+                <View style={{ flex: 1, width: tabWidth, backgroundColor: 'blue' }} />
 
-                    <View style={[ globalStyles.profilePlaceholder ]} />
+                <View style={{ flex: 1, width: tabWidth, backgroundColor: 'green' }} />
 
-                    <Text style={ styles.headerText }>{ name }</Text>
-
-                </View>
-
-                <ClubNav />
-
-                <ScrollView 
-                horizontal={ true }
-                pagingEnabled={ true }
-                onMomentumScrollEnd={ handleTabUpdate }
-                ref={ scrollView }
-                >
-
-                    <View style={{ flex: 1, width: tabWidth, backgroundColor: 'red' }} />
-
-                    <View style={{ flex: 1, width: tabWidth, backgroundColor: 'blue' }} />
-
-                    <View style={{ flex: 1, width: tabWidth, backgroundColor: 'green' }} />
-
-                    <MembersTab />
-                    
-
-                </ScrollView>
+                <MembersTab />
+                
 
             </ScrollView>
-        );
 
-    }
-    else {
-
-        return null
-
-    }
+        </ScrollView>
+    );
   
 };
 

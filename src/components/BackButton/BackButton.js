@@ -1,16 +1,18 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Image } from 'react-native';
 import { useDispatch } from 'react-redux';
 import styles from './styles'
 
 const BackButton = (props) => {
+
+    const back = require('../../assets/images/2x/back.png')
 
     return (
         <View style={[ styles.container, props.style ]}>
             
             <TouchableOpacity onPress={ props.function }>
 
-                <View style={ styles.backButton }/>
+                <Image style={{ height: 35, width: 35}} source={ back } />
 
             </TouchableOpacity>
 

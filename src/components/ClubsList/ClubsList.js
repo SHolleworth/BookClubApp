@@ -22,8 +22,10 @@ const ClubsList = () => {
 
         return (
 
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ paddingTop: 90 }}>
+
                 {clubPanels}
+
             </ScrollView>
     
         );     

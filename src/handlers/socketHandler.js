@@ -80,6 +80,15 @@ var setListeners = function (resolve, reject) {
             console.log("Received invitation to club " + invite.club.name + " from user: " + invite.inviter.username + ".");
             store_1.default.dispatch(clubsSlice_1.addInvite(invite));
         });
+        socket.on('refresh_clubs', function () { return __awaiter(void 0, void 0, void 0, function () {
+            var currentUser;
+            return __generator(this, function (_a) {
+                console.log("Received signal to refresh clubs.");
+                currentUser = store_1.default.getState().user.currentUser;
+                socket === null || socket === void 0 ? void 0 : socket.emit('retrieve_clubs', currentUser);
+                return [2 /*return*/];
+            });
+        }); });
     }
 };
 exports.sendVolumeQuery = function (query) { return __awaiter(void 0, void 0, void 0, function () {

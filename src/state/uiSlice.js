@@ -1,7 +1,7 @@
 "use strict";
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.closeClubWindow = exports.openClubWindow = exports.closeClubNamingWindow = exports.openClubNamingWindow = exports.closeAddBookDialogue = exports.openAddBookDialogue = exports.closeBookDetailWindow = exports.openBookDetailWindow = exports.setTabWidth = void 0;
+exports.closeMeetingDateAndTimeWindow = exports.openMeetingDateAndTimeWindow = exports.closeMeetingBookWindow = exports.openMeetingBookWindow = exports.closeClubWindow = exports.openClubWindow = exports.closeClubNamingWindow = exports.openClubNamingWindow = exports.closeAddBookDialogue = exports.openAddBookDialogue = exports.closeBookDetailWindow = exports.openBookDetailWindow = exports.setTabWidth = exports.getTabWidth = void 0;
 var toolkit_1 = require("@reduxjs/toolkit");
 var initialState = {
     tabWidth: null,
@@ -10,8 +10,10 @@ var initialState = {
     showingAddBookDialogue: false,
     bookForAddBookDialogue: null,
     showingClubNamingWindow: false,
-    dataForClubWindow: null,
+    clubIdForWindow: null,
     showingClubWindow: false,
+    showingMeetingBookWindow: false,
+    showingMeetingDateAndTimeWindow: false,
 };
 var uiSlice = toolkit_1.createSlice({
     name: 'ui',
@@ -43,13 +45,26 @@ var uiSlice = toolkit_1.createSlice({
             state.showingClubNamingWindow = false;
         },
         openClubWindow: function (state, action) {
-            state.dataForClubWindow = action.payload;
+            state.clubIdForWindow = action.payload;
             state.showingClubWindow = true;
         },
         closeClubWindow: function (state) {
             state.showingClubWindow = false;
-        }
+        },
+        openMeetingBookWindow: function (state) {
+            state.showingMeetingBookWindow = true;
+        },
+        closeMeetingBookWindow: function (state) {
+            state.showingMeetingBookWindow = false;
+        },
+        openMeetingDateAndTimeWindow: function (state) {
+            state.showingMeetingDateAndTimeWindow = true;
+        },
+        closeMeetingDateAndTimeWindow: function (state) {
+            state.showingMeetingDateAndTimeWindow = false;
+        },
     }
 });
-exports.setTabWidth = (_a = uiSlice.actions, _a.setTabWidth), exports.openBookDetailWindow = _a.openBookDetailWindow, exports.closeBookDetailWindow = _a.closeBookDetailWindow, exports.openAddBookDialogue = _a.openAddBookDialogue, exports.closeAddBookDialogue = _a.closeAddBookDialogue, exports.openClubNamingWindow = _a.openClubNamingWindow, exports.closeClubNamingWindow = _a.closeClubNamingWindow, exports.openClubWindow = _a.openClubWindow, exports.closeClubWindow = _a.closeClubWindow;
+exports.getTabWidth = function (state) { return state.ui.tabWidth; };
+exports.setTabWidth = (_a = uiSlice.actions, _a.setTabWidth), exports.openBookDetailWindow = _a.openBookDetailWindow, exports.closeBookDetailWindow = _a.closeBookDetailWindow, exports.openAddBookDialogue = _a.openAddBookDialogue, exports.closeAddBookDialogue = _a.closeAddBookDialogue, exports.openClubNamingWindow = _a.openClubNamingWindow, exports.closeClubNamingWindow = _a.closeClubNamingWindow, exports.openClubWindow = _a.openClubWindow, exports.closeClubWindow = _a.closeClubWindow, exports.openMeetingBookWindow = _a.openMeetingBookWindow, exports.closeMeetingBookWindow = _a.closeMeetingBookWindow, exports.openMeetingDateAndTimeWindow = _a.openMeetingDateAndTimeWindow, exports.closeMeetingDateAndTimeWindow = _a.closeMeetingDateAndTimeWindow;
 exports.default = uiSlice.reducer;

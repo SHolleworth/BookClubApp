@@ -70,6 +70,16 @@ const setListeners = (resolve: any, reject: any) => {
             store.dispatch(addInvite(invite))
             
         })
+
+        socket.on('refresh_clubs', async () => {
+
+            console.log("Received signal to refresh clubs.")
+
+            const currentUser = store.getState().user.currentUser
+    
+            socket?.emit('retrieve_clubs', currentUser)
+
+        })
     }
 }
  

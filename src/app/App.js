@@ -12,8 +12,12 @@ import BookDetailWindow from '../windows/BookDetailWindow'
 import AddBookDialogue from '../components/AddBookDialogue'
 import ClubNamingWindow from '../windows/ClubNamingWindow'
 import ClubWindow from '../windows/ClubWindow/ClubWindow'
+import MeetingBookWindow from '../windows/MeetingBookWindow'
+
 import { connectToServer, registerNewUser, loginAsUser } from '../handlers/socketHandler'
 import { setTabWidth } from '../state/uiSlice'
+import MeetingDateAndTimeWindow from '../windows/MeetingDateAndTimeWindow/MeetingDateAndTimeWindow'
+
 
 const App = () => {
 
@@ -29,11 +33,19 @@ const App = () => {
 
   const showingBookDetailWindow = useSelector(state => state.ui.showingBookDetailWindow)
 
+  const showingClubWindow = useSelector(state => state.ui.showingClubWindow)
+
+  const showingClubNamingWindow = useSelector(state => state.ui.showingClubNamingWindow)
+
+  const showingMeetingBookWindow = useSelector(state => state.ui.showingMeetingBookWindow)
+
+  const showingMeetingDateAndTimeWindow = useSelector(state => state.ui.showingMeetingDateAndTimeWindow)
+
   const testNum = 13
 
   //const testUser = { username: `testuser${testNum}`, password: `testpassword${testNum}` }
 
-  const testUser = { username: `jhe`, password: `123` }
+  const testUser = { username: `sam`, password: `123` }
   
   useEffect(() => {
 
@@ -124,11 +136,15 @@ const App = () => {
 
         </ScrollView>
 
-        {showingBookDetailWindow ? <BookDetailWindow /> : null}
+        {showingBookDetailWindow ? <BookDetailWindow /> : null }
 
-        <ClubNamingWindow />
+        {showingClubNamingWindow ? <ClubNamingWindow /> : null }
 
-        <ClubWindow />
+        {showingClubWindow ? <ClubWindow /> : null }
+
+        {showingMeetingBookWindow ?  <MeetingBookWindow /> : null }
+
+        {showingMeetingDateAndTimeWindow ? <MeetingDateAndTimeWindow /> : null }
 
         <AddBookDialogue />
       </>

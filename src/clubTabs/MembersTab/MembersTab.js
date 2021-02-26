@@ -3,13 +3,16 @@ import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 import MemberInviteSearchBar from '../../components/MemberInviteSearchBar/MemberInviteSearchBar';
 import { globalStyles } from '../../constants';
+import { getClubById } from '../../state/clubsSlice';
 import styles from './styles'
 
 const MembersTab = () => {
 
     const width = useSelector(state => state.ui.tabWidth)
 
-    const club = useSelector(state => state.ui.dataForClubWindow)
+    const clubId = useSelector(state => state.ui.clubIdForWindow)
+
+    const club = useSelector(state => getClubById(state, clubId))
 
     const members = club ? club.members : []
 

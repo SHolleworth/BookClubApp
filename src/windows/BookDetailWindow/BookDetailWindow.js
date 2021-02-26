@@ -15,9 +15,21 @@ const BookDetailWindow = () => {
 
     const book = useSelector(state => state.ui.bookForDetailWindow)
 
-    const bookInCollection = useSelector(state => state.books.find(ownedBook => ownedBook.volumeId === book.volumeId))
+    const volumeId = book ? book.volumeId : null 
 
-    let { id, title, authors, mainCategory, description, publisher, publishedDate, thumbnail } = book.info
+    const bookInCollection = useSelector(state => state.books.find(ownedBook => ownedBook.volumeId === volumeId))
+
+    const emptyBook = { 
+        title: '', 
+        authors: [], 
+        mainCategory: '', 
+        description: '', 
+        publisher: '', 
+        publishedDate: '', 
+        thumbnail: '' 
+    }
+
+    let { title, authors, mainCategory, description, publisher, publishedDate, thumbnail } = book ? book.info : emptyBook
 
     let authorsString = ""
   
@@ -88,6 +100,7 @@ const BookDetailWindow = () => {
             </ScrollView>
         </View>
     );
+
 };
 
 export default BookDetailWindow;

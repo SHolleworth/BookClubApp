@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { globalStyles } from '../../constants';
+import { colors, globalStyles } from '../../constants';
 import { openClubWindow } from '../../state/uiSlice';
 import styles from './styles'
 
@@ -9,20 +9,22 @@ const ClubPanel = ({ club }) => {
 
     const dispatch = useDispatch()
 
-    const { name } = club.name ? club : undefined
+    const { id, name } = club.name ? club : undefined
 
     const flag = require('../../assets/images/2x/flag.png')
 
     const handlePress = () => {
         
-        dispatch(openClubWindow(club))
+        dispatch(openClubWindow(id))
 
     }
+
+    const backgroundColor = colors.panelColors[Math.floor(Math.random() * colors.panelColors.length)]
 
     return (
         <TouchableOpacity style={ styles.touchable } onPress={ handlePress }>
 
-            <View style={ styles.background }>
+            <View style={[ styles.background, { backgroundColor } ]}>
 
                 <View style={ styles.top }>
 

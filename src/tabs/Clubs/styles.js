@@ -4,10 +4,13 @@ const styles = StyleSheet.create({
     background: {
         flex: 1,
         padding: 10,
+        paddingTop: 0,
         backgroundColor: 'white',
     },
     newShelfButton: {
-        marginBottom: 20,
+        position: 'absolute',
+        top:0, right: 0, bottom: 0, left: 0,
+        margin: 10,
     },
     newShelfButtonImage: {
         height: 15,

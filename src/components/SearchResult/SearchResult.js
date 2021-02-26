@@ -10,7 +10,7 @@ const SearchResult = ({ book }) => {
 
     let { title, authors, mainCategory, thumbnail } = book.info
 
-    const thumbnailDimensions = {width: 55, height: 90}
+    const thumbnailDimensions = { width: 55, height: 90 }
 
     if(title.length > 40) title = title.slice(0, 40) + "..."
 
@@ -55,20 +55,33 @@ const SearchResult = ({ book }) => {
 
     return (
         <View style={ styles.background }>
+
             <TouchableOpacity onPress={ dispatchBookDetailAction }>
+
                 <View style={ styles.detail }>
+
                     <Image source={{ uri: thumbnail }} style={{ flex:1, width: thumbnailDimensions.width, height: thumbnailDimensions.height }} />
+
                     <View style={{ flex: 4, marginLeft: 10 }}>
+
                         <Text style={ styles.title }>{title}</Text>
+
                         <Text style={ styles.authors }>{authorsString}</Text>
+
                         <Text style={ styles.genres }>{mainCategory}</Text>
+
                     </View>
+
                 </View>
+
             </TouchableOpacity>
+
             <TouchableOpacity
-                style={[  styles.addButton ]}
-                onPress={addBookToStore}>
+            style={[  styles.addButton ]}
+            onPress={addBookToStore}>
+
             </TouchableOpacity>
+
         </View>
     );
 };

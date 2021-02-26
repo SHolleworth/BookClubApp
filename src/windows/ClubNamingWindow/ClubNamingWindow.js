@@ -14,8 +14,6 @@ const ClubNamingWindow = () => {
 
     const width = useWindowDimensions().width
 
-    const showing = useSelector(state => state.ui.showingClubNamingWindow)
-
     const user = useSelector(state => state.user.currentUser)
 
     const dispatch = useDispatch()
@@ -83,46 +81,37 @@ const ClubNamingWindow = () => {
         setMarginBottom(0)
     }
 
+    return (
+        <View style={[ { height, width }, styles.background ]}>
 
-    if(showing) {
+            <BackButton function={ close } />
 
-        return (
-            <View style={[ { height, width }, styles.background ]}>
+            <View style={[ styles.textInputContainer, { marginBottom } ]}>
 
-                <BackButton function={ close } />
+                <Text style={[ globalStyles.h1, styles.header ]}>Name your new club</Text>
 
-                <View style={[ styles.textInputContainer, { marginBottom } ]}>
+                <TextInput 
+                    style={ styles.textInput }
+                    onChangeText={text => setName(text)}
+                    value={name}
+                    placeholder={ "Club Name" }
+                />
 
-                    <Text style={[ globalStyles.h1, styles.header ]}>Name your new club</Text>
+                <TouchableOpacity 
+                    style={[ globalStyles.button, { justifyContent: 'center' } ]}
+                    onPress={ createClub }
+                >
 
-                    <TextInput 
-                        style={ styles.textInput }
-                        onChangeText={text => setName(text)}
-                        value={name}
-                        placeholder={ "Club Name" }
-                    />
+                    <Text style={ globalStyles.buttonText }>Okay</Text>
+                </TouchableOpacity>
 
-                    <TouchableOpacity 
-                        style={[ globalStyles.button, { justifyContent: 'center' } ]}
-                        onPress={ createClub }
-                    >
-
-                        <Text style={ globalStyles.buttonText }>Okay</Text>
-                    </TouchableOpacity>
-
-
-                </View>
-
-                <View style={ styles.spacer } />
 
             </View>
-        );  
 
-    }
-    else {
+            <View style={ styles.spacer } />
 
-        return null
-    }
+        </View>
+    ); 
 };
 
 export default ClubNamingWindow;

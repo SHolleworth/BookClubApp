@@ -10,6 +10,8 @@ import SearchBar from '../../components/SearchBar'
 
 import { globalStyles } from '../../constants'
 import { getShelves } from '../../state/shelvesSlice';
+import ShelvesList from '../../components/ShelvesList/ShelvesList';
+import { openBookDetailWindow } from '../../state/uiSlice';
 
 const Shelves = (props) => {
     const plus = require('../../assets/images/2x/plus.png')
@@ -18,27 +20,29 @@ const Shelves = (props) => {
 
     const width = useSelector(state => state.ui.tabWidth)
 
-    const shelves = useSelector(getShelves)
+    const dispatch = useDispatch()
 
     const openDialogue = () => {
         setDialogueOpen(true)
     }
 
-    const shelvesToRender = shelves.map(shelf => (
-        <ShelfRenderer key={ shelf.id } shelf={ shelf }/>
-    ))
+    const openBookDetail = (book) => {
+        
+        dispatch(openBookDetailWindow(book))
+
+    }
+
+
 
     return (
         <>
-            <ScrollView 
-                style={[ styles.background, { width } ]}
-                showsVerticalScrollIndicator={ false }
-            >
+            <View 
+            style={[ styles.background, { width } ]}
+            showsVerticalScrollIndicator={ false }>
 
                 <TouchableOpacity
-                    style={[ globalStyles.button, styles.newShelfButton ]}
-                    onPress={ openDialogue }
-                >
+                style={[ globalStyles.button, styles.newShelfButton ]}
+                onPress={ openDialogue } >
 
                     <Text style={ globalStyles.buttonText }>New Shelf</Text>
 
@@ -46,13 +50,9 @@ const Shelves = (props) => {
 
                 </TouchableOpacity>
 
-                <View style={ styles.shelvesContainer }>
+                <ShelvesList contentContainerStyle={{ paddingTop: 90 }} bookTouchableFunction={ openBookDetail }/>
 
-                    { shelvesToRender }
-
-                </View> 
-
-            </ScrollView>
+            </View>
 
             { dialogueOpen ? <NewShelfDialogue setDialogueOpen={setDialogueOpen}/> : null }
 

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { UiStateObject } from "../../../types";
+import { RootState } from "./store";
 
 const initialState: UiStateObject = {
     tabWidth: null,
@@ -12,8 +13,11 @@ const initialState: UiStateObject = {
 
     showingClubNamingWindow: false,
 
-    dataForClubWindow: null,
+    clubIdForWindow: null,
     showingClubWindow: false,
+
+    showingMeetingBookWindow: false,
+    showingMeetingDateAndTimeWindow: false,
 }
 
 const uiSlice = createSlice({
@@ -54,14 +58,30 @@ const uiSlice = createSlice({
 
 
         openClubWindow(state, action) {
-            state.dataForClubWindow = action.payload
+            state.clubIdForWindow = action.payload
             state.showingClubWindow = true
         },
         closeClubWindow(state) {
             state.showingClubWindow = false 
-        }
+        },
+
+        openMeetingBookWindow(state) {
+            state.showingMeetingBookWindow = true
+        },
+        closeMeetingBookWindow(state) {
+            state.showingMeetingBookWindow = false
+        },
+
+        openMeetingDateAndTimeWindow(state) {
+            state.showingMeetingDateAndTimeWindow = true
+        },
+        closeMeetingDateAndTimeWindow(state) {
+            state.showingMeetingDateAndTimeWindow = false
+        },
     }
 })
+
+export const getTabWidth = (state: RootState) => state.ui.tabWidth
 
 export const { 
     setTabWidth, 
@@ -72,7 +92,11 @@ export const {
     openClubNamingWindow,
     closeClubNamingWindow,
     openClubWindow,
-    closeClubWindow
+    closeClubWindow,
+    openMeetingBookWindow,
+    closeMeetingBookWindow,
+    openMeetingDateAndTimeWindow,
+    closeMeetingDateAndTimeWindow
 } = uiSlice.actions
 
 export default uiSlice.reducer

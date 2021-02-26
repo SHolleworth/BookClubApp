@@ -5,6 +5,7 @@ import styles from './styles'
 import { useSelector } from 'react-redux';
 import { current } from '@reduxjs/toolkit';
 import { sendClubInvite } from '../../handlers/socketHandler';
+import { getClubById } from '../../state/clubsSlice';
 
 const MemberInviteSearchBar = () => {
     
@@ -12,7 +13,9 @@ const MemberInviteSearchBar = () => {
 
     const currentUser = useSelector(state => state.user.currentUser)
 
-    const club = useSelector(state => state.ui.dataForClubWindow)
+    const clubId = useSelector(state => state.ui.clubIdForWindow)
+
+    const club = useSelector(state => getClubById(state, clubId))
 
     const [value, onChangeText] = useState("")
 

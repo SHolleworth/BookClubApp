@@ -8,10 +8,18 @@ export const colors = {
     searchBar: '#e8e8e8',
     paleText: '#515151',
     darkText: '#191919',
-    lightColor: '#c5c5c5'
+    lightColor: '#c5c5c5',
+    panelColors: [
+        '#CEBEBE',
+        '#ECE2D0',
+        '#D5B9B2',
+        '#A26769',
+        '#6D2E46',
+    ]
 }
 
-export const borderRadius = 20
+
+export const borderRadius = 10
 
 export const globalStyles = StyleSheet.create({
     windowBackground: {
@@ -29,7 +37,7 @@ export const globalStyles = StyleSheet.create({
         backgroundColor: colors.button,
         borderRadius: 35,
         padding: 30,
-        elevation: 2,
+        elevation: 5,
     },
     buttonText: {
         color: 'white',
@@ -56,8 +64,6 @@ export const globalStyles = StyleSheet.create({
         height: 120,
         width: 120,
         borderRadius: 60,
-        borderWidth: 2,
-        borderColor: 'darkgrey',
         backgroundColor: 'white',
     },
     smallProfilePlaceholder: {
@@ -73,6 +79,17 @@ export const globalStyles = StyleSheet.create({
         flex: 1,
         padding: 20,
         backgroundColor: 'white',
+    },
+    book: {
+        height: 120,
+        width: 80,
+    },
+    bookContainer: {
+        height: 120,
+        width: 80,
+        marginLeft: 10,
+        backgroundColor: 'white',
+        elevation: 5,
     },
     p: {
         fontFamily: 'NotoSans-Regular',
