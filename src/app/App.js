@@ -13,10 +13,12 @@ import AddBookDialogue from '../components/AddBookDialogue'
 import ClubNamingWindow from '../windows/ClubNamingWindow'
 import ClubWindow from '../windows/ClubWindow/ClubWindow'
 import MeetingBookWindow from '../windows/MeetingBookWindow'
+import MeetingDateAndTimeWindow from '../windows/MeetingDateAndTimeWindow/MeetingDateAndTimeWindow'
+import DeleteShelfDialogue from '../components/DeleteShelfDialogue'
+import DeleteBookDialogue from '../components/DeleteBookDialogue'
 
 import { connectToServer, registerNewUser, loginAsUser } from '../handlers/socketHandler'
 import { setTabWidth } from '../state/uiSlice'
-import MeetingDateAndTimeWindow from '../windows/MeetingDateAndTimeWindow/MeetingDateAndTimeWindow'
 
 
 const App = () => {
@@ -40,6 +42,12 @@ const App = () => {
   const showingMeetingBookWindow = useSelector(state => state.ui.showingMeetingBookWindow)
 
   const showingMeetingDateAndTimeWindow = useSelector(state => state.ui.showingMeetingDateAndTimeWindow)
+
+  const showingAddBookDialogue = useSelector(state => state.ui.showingAddBookDialogue)
+
+  const showingDeleteBookDialogue = useSelector(state => state.ui.showingDeleteBookDialogue)
+
+  const showingDeleteShelfDialogue = useSelector(state => state.ui.showingDeleteShelfDialogue)
 
   const testNum = 13
 
@@ -146,7 +154,11 @@ const App = () => {
 
         {showingMeetingDateAndTimeWindow ? <MeetingDateAndTimeWindow /> : null }
 
-        <AddBookDialogue />
+        {showingAddBookDialogue ? <AddBookDialogue /> : null }
+
+        {showingDeleteBookDialogue ? <DeleteBookDialogue /> : null }
+
+        {showingDeleteShelfDialogue ? <DeleteShelfDialogue /> : null }
       </>
     )
   }

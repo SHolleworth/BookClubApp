@@ -8,8 +8,13 @@ const initialState: UiStateObject = {
     showingBookDetailWindow: false,
     bookForDetailWindow: null,
 
+    showingDeleteShelfDialogue: false,
+    shelfForDeletion: null,
+
     showingAddBookDialogue: false,
     bookForAddBookDialogue: null,
+
+    showingDeleteBookDialogue: false,
 
     showingClubNamingWindow: false,
 
@@ -38,6 +43,13 @@ const uiSlice = createSlice({
             state.bookForDetailWindow = null
         },
 
+        openDeleteShelfDialogue(state, action) {
+            state.shelfForDeletion = action.payload
+            state.showingDeleteShelfDialogue = true
+        },
+        closeDeleteShelfDialogue(state) {
+            state.showingDeleteShelfDialogue = false
+        },
 
         openAddBookDialogue(state, action) {
             state.bookForAddBookDialogue = action.payload
@@ -48,6 +60,12 @@ const uiSlice = createSlice({
             state.bookForAddBookDialogue = null
         },
 
+        openDeleteBookDialogue(state, action) {
+            state.showingDeleteBookDialogue = true
+        },
+        closeDeleteBookDialogue(state) {
+            state.showingDeleteBookDialogue = false
+        },
 
         openClubNamingWindow(state) {
             state.showingClubNamingWindow = true
@@ -86,9 +104,13 @@ export const getTabWidth = (state: RootState) => state.ui.tabWidth
 export const { 
     setTabWidth, 
     openBookDetailWindow, 
-    closeBookDetailWindow, 
+    closeBookDetailWindow,
+    openDeleteShelfDialogue,
+    closeDeleteShelfDialogue, 
     openAddBookDialogue, 
     closeAddBookDialogue,
+    openDeleteBookDialogue,
+    closeDeleteBookDialogue,
     openClubNamingWindow,
     closeClubNamingWindow,
     openClubWindow,

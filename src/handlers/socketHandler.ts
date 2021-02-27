@@ -230,6 +230,43 @@ export const postNewShelf = async (shelf: ShelfObject) => {
 
 }
 
+export const deleteShelf = async (shelf: ShelfObject) => {
+
+    
+    return new Promise((resolve, reject) => {
+        
+        if (socket) {
+
+            console.log("Deleting Shelf: " + shelf.name)
+
+            socket.on('delete_shelf_response', async (response: string) => {
+
+                const currentUser = store.getState().user.currentUser
+                
+                await retrieveBooks(currentUser)
+
+                return resolve(response)
+
+            })
+
+            socket.on('delete_shelf_error', (error: string)=> {
+
+                return reject(error)
+
+            })
+
+            socket.emit('delete_shelf', shelf)
+
+        }
+      else {
+
+            return reject( "Socket not connected")
+
+        }
+    })
+
+}
+
 export const retrieveShelves = async (user: UserObject) => {
 
     return new Promise((resolve, reject) => {
@@ -296,6 +333,43 @@ export const postNewBook = async (book: BookObject) => {
         }
 
     })
+}
+
+export const deleteBook = async (book:BookObject) => {
+
+    return new Promise((resolve, reject) => {
+        
+        if (socket) {
+
+            console.log("Deleting Book: " + book.info.title)
+
+            socket.on('delete_book_response', async (response: string) => {
+
+                const currentUser = store.getState().user.currentUser
+
+                await retrieveBooks(currentUser)
+                
+                return resolve(response)
+
+            })
+
+            socket.on('delete_book_error', (error: string) => {
+
+                return reject(error)
+
+            })
+
+            socket.emit('delete_book', book)
+
+        }
+      else {
+
+            return reject( "Socket not connected")
+
+        }
+
+    })
+    
 }
 
 export const retrieveBooks = async (user: UserObject) => {

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Text, useWindowDimensions, View, Image } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeBookDetailWindow, openAddBookDialogue } from '../../state/uiSlice';
+import { closeBookDetailWindow, openAddBookDialogue, openDeleteBookDialogue } from '../../state/uiSlice';
 import { globalStyles } from '../../constants';
 import styles from './styles'
 import BackButton from '../../components/BackButton';
@@ -63,8 +63,12 @@ const BookDetailWindow = () => {
 
     const publishedBlock = `Published ${publishedDate} by ${publisher}.`
 
-    const openDialogue = () => {
+    const openAddDialogue = () => {
         dispatch(openAddBookDialogue(book))
+    }
+
+    const openDeleteDialogue = () => {
+        dispatch(openDeleteBookDialogue())
     }
 
     const close = () => {
@@ -89,8 +93,13 @@ const BookDetailWindow = () => {
                     </View>
                 </View>
                 {bookInCollection ?
-                    null :
-                    <TouchableOpacity onPress={ openDialogue }>
+                    <TouchableOpacity onPress={ openDeleteDialogue }>
+                        <View style={[ globalStyles.button, { width: 230, marginBottom: 20, } ]}>
+                            <Text style={ globalStyles.buttonText }>Remove from collection</Text>
+                        </View>
+                    </TouchableOpacity> 
+                    :
+                    <TouchableOpacity onPress={ openAddDialogue }>
                         <View style={[ globalStyles.button, { width: 200, marginBottom: 20, } ]}>
                             <Text style={ globalStyles.buttonText }>Add to Collection</Text>
                         </View>

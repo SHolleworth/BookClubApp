@@ -47,6 +47,7 @@ export const globalStyles = StyleSheet.create({
     dialogueBackground: {
         position: 'absolute',
         top:0, right: 0, bottom: 0, left: 0,
+        alignItems: 'center',
         justifyContent:'space-between',
         height: 230,
         margin: 20,
@@ -57,7 +58,7 @@ export const globalStyles = StyleSheet.create({
     },
     dialogueHeader: {
         fontFamily: 'NotoSans-Regular',
-        fontSize: 25,
+        fontSize: 15,
     },
     profilePlaceholder: {
         alignSelf: 'center',

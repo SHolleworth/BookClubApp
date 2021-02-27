@@ -31,20 +31,23 @@ const Clubs = () => {
 
             <InviteList />
 
-           { exisitingClubs.length ? 
-           <TouchableOpacity
-            style={[ globalStyles.button, styles.newShelfButton ]}
-            onPress={ handlePress }>
-
-                <Text style={ globalStyles.buttonText }>New Club</Text>
-
-                <Image style={ styles.newShelfButtonImage } source={ plus }/>
-
-            </TouchableOpacity> : null }
-
-            <StartClubButton />
+            
 
             <ClubsList />
+
+           { exisitingClubs.length ? 
+                <TouchableOpacity
+                style={[ globalStyles.button, styles.newShelfButton ]}
+                onPress={ handlePress }>
+
+                    <Text style={ globalStyles.buttonText }>New Club</Text>
+
+                    <Image style={ styles.newShelfButtonImage } source={ plus }/>
+
+                </TouchableOpacity> 
+            : 
+                <StartClubButton /> 
+            }
 
         </View>
     );

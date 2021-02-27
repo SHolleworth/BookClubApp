@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postMeeting = exports.deleteInvite = exports.retrieveInvites = exports.postClubMember = exports.sendClubInvite = exports.retrieveClubs = exports.postNewClub = exports.retrieveBooks = exports.postNewBook = exports.retrieveShelves = exports.postNewShelf = exports.loginAsUser = exports.registerNewUser = exports.sendVolumeQuery = exports.connectToServer = void 0;
+exports.postMeeting = exports.deleteInvite = exports.retrieveInvites = exports.postClubMember = exports.sendClubInvite = exports.retrieveClubs = exports.postNewClub = exports.retrieveBooks = exports.deleteBook = exports.postNewBook = exports.retrieveShelves = exports.deleteShelf = exports.postNewShelf = exports.loginAsUser = exports.registerNewUser = exports.sendVolumeQuery = exports.connectToServer = void 0;
 var booksSlice_1 = require("../state/booksSlice");
 var shelvesSlice_1 = require("../state/shelvesSlice");
 var userSlice_1 = require("../state/userSlice");
@@ -178,6 +178,35 @@ exports.postNewShelf = function (shelf) { return __awaiter(void 0, void 0, void 
             })];
     });
 }); };
+exports.deleteShelf = function (shelf) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, new Promise(function (resolve, reject) {
+                if (socket) {
+                    console.log("Deleting Shelf: " + shelf.name);
+                    socket.on('delete_shelf_response', function (response) { return __awaiter(void 0, void 0, void 0, function () {
+                        var currentUser;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    currentUser = store_1.default.getState().user.currentUser;
+                                    return [4 /*yield*/, exports.retrieveBooks(currentUser)];
+                                case 1:
+                                    _a.sent();
+                                    return [2 /*return*/, resolve(response)];
+                            }
+                        });
+                    }); });
+                    socket.on('delete_shelf_error', function (error) {
+                        return reject(error);
+                    });
+                    socket.emit('delete_shelf', shelf);
+                }
+                else {
+                    return reject("Socket not connected");
+                }
+            })];
+    });
+}); };
 exports.retrieveShelves = function (user) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         return [2 /*return*/, new Promise(function (resolve, reject) {
@@ -210,6 +239,35 @@ exports.postNewBook = function (book) { return __awaiter(void 0, void 0, void 0,
                         return reject(error);
                     });
                     socket.emit('post_new_book', book);
+                }
+                else {
+                    return reject("Socket not connected");
+                }
+            })];
+    });
+}); };
+exports.deleteBook = function (book) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, new Promise(function (resolve, reject) {
+                if (socket) {
+                    console.log("Deleting Book: " + book.info.title);
+                    socket.on('delete_book_response', function (response) { return __awaiter(void 0, void 0, void 0, function () {
+                        var currentUser;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    currentUser = store_1.default.getState().user.currentUser;
+                                    return [4 /*yield*/, exports.retrieveBooks(currentUser)];
+                                case 1:
+                                    _a.sent();
+                                    return [2 /*return*/, resolve(response)];
+                            }
+                        });
+                    }); });
+                    socket.on('delete_book_error', function (error) {
+                        return reject(error);
+                    });
+                    socket.emit('delete_book', book);
                 }
                 else {
                     return reject("Socket not connected");

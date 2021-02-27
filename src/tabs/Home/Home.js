@@ -8,21 +8,19 @@ import ClubPanel from '../../components/ClubPanel'
 import StartClubButton from '../../components/StartClubButton/StartClubButton';
 import { getClubs } from '../../state/clubsSlice';
 
-const home = (props) => {
+const home = () => {
 
     const width = useSelector(state => state.ui.tabWidth)
 
-    const clubs = useSelector(getClubs)
+    const exisitingClubs = useSelector(getClubs)
 
     return (
         <View style={[styles.background, { width }]}>
 
             <ShelvesPanel />
 
-            {clubs.length ? <ClubPanel club={ clubs[0] } /> : null}
-    
-            <StartClubButton />
-
+            { exisitingClubs.length ? <ClubPanel club={ exisitingClubs[0] } /> : <StartClubButton /> }
+            
         </View>
     );
 };

@@ -15,8 +15,6 @@ const AddBookDialogue = () => {
 
     const [shelfId, setShelfId] = useState(-99) 
 
-    const showing = useSelector(state => state.ui.showingAddBookDialogue)
-
     const shelves = useSelector(getShelves)
 
     const book = {...useSelector(state => state.ui.bookForAddBookDialogue)}
@@ -56,30 +54,25 @@ const AddBookDialogue = () => {
 
     const pickerItems = shelves.map((shelf, i) => <Picker.Item key={ i } label={ shelf.name } value={ shelf.id } /> )
 
-    if (showing) {
-        return (
-            <View style={[ globalStyles.dialogueBackground, styles.background ]}>
-                <Text style={ globalStyles.dialogueHeader }>Add To Shelf</Text>
-                <Picker
-                    selectedValue={ shelfId }
-                    onValueChange={ value => updateShelfId(value) }
-                >
-                    <Picker.Item label={ "Select a shelf" } value={ -99 }/>
-                    {pickerItems}
-                </Picker>
-                <TouchableOpacity 
-                    style={[ globalStyles.button, styles.button ]}
-                    onPress={ addNewBook }
-                >
-                    <Text style={ globalStyles.buttonText }>Okay</Text>
-                </TouchableOpacity>
-                <CloseButton close={ close } />
-            </View>
-        );
-    }
-    else {
-        return null
-    }
+    return (
+        <View style={[ globalStyles.dialogueBackground, styles.background ]}>
+            <Text style={ globalStyles.dialogueHeader }>Add To Shelf</Text>
+            <Picker
+                selectedValue={ shelfId }
+                onValueChange={ value => updateShelfId(value) }
+            >
+                <Picker.Item label={ "Select a shelf" } value={ -99 }/>
+                {pickerItems}
+            </Picker>
+            <TouchableOpacity 
+                style={[ globalStyles.button, styles.button ]}
+                onPress={ addNewBook }
+            >
+                <Text style={ globalStyles.buttonText }>Okay</Text>
+            </TouchableOpacity>
+            <CloseButton close={ close } />
+        </View>
+    );
 };
 
 export default AddBookDialogue;

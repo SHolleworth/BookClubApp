@@ -41,6 +41,8 @@ const Shelves = (props) => {
             style={[ styles.background, { width } ]}
             showsVerticalScrollIndicator={ false }>
 
+                <ShelvesList contentContainerStyle={{ paddingTop: 90 }} bookTouchableFunction={ openBookDetail }/>
+
                 <TouchableOpacity
                 style={[ globalStyles.button, styles.newShelfButton ]}
                 onPress={ openDialogue } >
@@ -50,8 +52,6 @@ const Shelves = (props) => {
                     <Image style={ styles.newShelfButtonImage } source={ plus }/>
 
                 </TouchableOpacity>
-
-                <ShelvesList contentContainerStyle={{ paddingTop: 90 }} bookTouchableFunction={ openBookDetail }/>
 
             </View>
 
