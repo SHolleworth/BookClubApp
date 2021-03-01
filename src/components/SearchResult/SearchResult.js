@@ -8,6 +8,8 @@ import { openAddBookDialogue, openBookDetailWindow } from '../../state/uiSlice'
 
 const SearchResult = ({ book }) => {
 
+    const dispatch = useDispatch()
+    
     let { title, authors, mainCategory, thumbnail } = book.info
 
     const thumbnailDimensions = { width: 55, height: 90 }
@@ -21,9 +23,8 @@ const SearchResult = ({ book }) => {
         authorsString = authors[0]
 
         if (authors.length > 1) {
-
             authorsString = authors.reduce((acc, cur, ind) => {
-    
+
                 if (ind === authors.length - 1) {
     
                     return `${acc} and ${cur}.`
@@ -31,27 +32,22 @@ const SearchResult = ({ book }) => {
                 }
     
                 return `${acc}, ${cur}`
-                
             })
-    
         }
-
     }
-    
-    // Image.getSize(thumbnail, (width, height) => {
-    //     thumbnailDimensions.width = width
-    //     thumbnailDimensions.height = height
-    // })
 
-    const dispatch = useDispatch()
 
     const dispatchBookDetailAction = () => {
         dispatch(openBookDetailWindow(book))
     }
+
+
     
     const addBookToStore = () => {
         dispatch(openAddBookDialogue(book))
     }
+
+
 
     return (
         <View style={ styles.background }>
@@ -78,9 +74,7 @@ const SearchResult = ({ book }) => {
 
             <TouchableOpacity
             style={[  styles.addButton ]}
-            onPress={addBookToStore}>
-
-            </TouchableOpacity>
+            onPress={addBookToStore} />
 
         </View>
     );

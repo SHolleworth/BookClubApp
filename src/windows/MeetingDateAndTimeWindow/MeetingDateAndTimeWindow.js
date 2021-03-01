@@ -109,6 +109,7 @@ const MeetingDateAndTimeWindow = () => {
     }
 
     return (
+        
         <ScrollView style={[ globalStyles.windowBackground, { padding: 0 } ]}
         contentContainerStyle={{ alignItems: 'center' }}>
 
@@ -117,7 +118,9 @@ const MeetingDateAndTimeWindow = () => {
                 <BackButton function={close} />
 
                 <View style={[ globalStyles.bookContainer, { marginBottom: 20 } ]}>
+
                     <Image source={ thumbnail } style={ globalStyles.book }/>
+
                 </View>
     
                 <Text style={ globalStyles.h1 }>Set a date and time</Text>
@@ -125,10 +128,12 @@ const MeetingDateAndTimeWindow = () => {
             </View>
 
             <View style={{width: "100%"}}>
+
                 <Calendar 
                 onDayPress={ day => { markDate(day) } }
                 markedDates={ markedDates }
                 />
+
             </View>
 
             <TimeInput />

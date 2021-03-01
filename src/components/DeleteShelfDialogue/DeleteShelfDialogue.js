@@ -17,7 +17,9 @@ const DeleteShelfDialogue = () => {
     const dispatch = useDispatch()
 
     const close = () => {
+
         dispatch(closeDeleteShelfDialogue())
+        
     }
 
     const removeShelf = async () => {

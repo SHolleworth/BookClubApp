@@ -17,7 +17,9 @@ const DeleteBookDialogue = () => {
     const dispatch = useDispatch()
 
     const close = () => {
+
         dispatch(closeDeleteBookDialogue())
+
     }
 
     const removeBook = async () => {
@@ -47,6 +49,7 @@ const DeleteBookDialogue = () => {
             <Text style={[ globalStyles.dialogueHeader, styles.header ]}>{ headerText }</Text>
             
             <View style={{ flexDirection: 'row' }}>
+                
                 <TouchableOpacity 
                 style={[ globalStyles.button, styles.button ]}
                 onPress={ close }

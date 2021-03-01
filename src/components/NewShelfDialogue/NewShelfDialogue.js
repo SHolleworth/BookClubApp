@@ -12,8 +12,6 @@ import { globalStyles } from '../../constants';
 const NewShelfDialogue = (props) => {
     const [value, onChangeText] = useState("Enter Shelf Name")
 
-    const dispatch = useDispatch()
-
     const shelfStatus = useSelector(getShelfStatus)
 
     const currentUser = useSelector(state => state.user.currentUser)
@@ -49,7 +47,9 @@ const NewShelfDialogue = (props) => {
 
     return (
         <View style={[ globalStyles.dialogueBackground, { width: width - 40, left: width  } ]}>
+
             <Text style={ globalStyles.dialogueHeader }>New Shelf</Text>
+
             <TextInput
                 style={ styles.textInput }
                 onChangeText={ text => onChangeText(text) }
@@ -61,10 +61,13 @@ const NewShelfDialogue = (props) => {
                 style={[ globalStyles.button, styles.button ]}
                 onPress={ addNewShelf }
                 disabled={ shelfStatus === 'loading' }>
+
                 <Text style={ globalStyles.buttonText }>Add Shelf</Text>
+
             </TouchableOpacity>
 
             <CloseButton close={ close } />
+            
         </View>
     );
 };

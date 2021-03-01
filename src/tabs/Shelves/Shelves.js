@@ -9,6 +9,7 @@ import { openBookDetailWindow } from '../../state/uiSlice';
 import { globalStyles } from '../../constants'
 
 const Shelves = () => {
+    
     const plus = require('../../assets/images/2x/plus.png')
 
     const [dialogueOpen, setDialogueOpen] = useState(false)
@@ -18,15 +19,22 @@ const Shelves = () => {
     const dispatch = useDispatch()
 
     const openDialogue = () => {
+
         console.log("Pressed")
+
         setDialogueOpen(true)
+
     }
+
+
 
     const openBookDetail = (book) => {
         
         dispatch(openBookDetailWindow(book))
 
     }
+
+
 
     return (
         <>

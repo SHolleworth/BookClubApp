@@ -60,7 +60,9 @@ const ShelfRenderer = (props) => {
                 <Text style={ styles.name }>{ shelf.name }</Text>
 
                 <TouchableOpacity onPress={ openDeleteDialogue }>
+
                     <Text style={{ color: 'blue', marginRight: 20 }}>remove</Text>
+                    
                 </TouchableOpacity>
 
             </View>

@@ -11,6 +11,7 @@ const BookDetailWindow = () => {
     const dispatch = useDispatch()
 
     const height = useWindowDimensions().height
+
     const width = useWindowDimensions().width
 
     const book = useSelector(state => state.ui.bookForDetailWindow)
@@ -57,19 +58,25 @@ const BookDetailWindow = () => {
 
     }
 
-    //if(title.length > 40) title = title.slice(0, 40) + "..."
-
     const thumbnailDimensions = { width: 130, height: 200 }
 
     const publishedBlock = `Published ${publishedDate} by ${publisher}.`
 
     const openAddDialogue = () => {
+
         dispatch(openAddBookDialogue(book))
+
     }
 
+
+
     const openDeleteDialogue = () => {
+
         dispatch(openDeleteBookDialogue())
+
     }
+
+
 
     const close = () => {
         
@@ -77,36 +84,65 @@ const BookDetailWindow = () => {
 
     }
 
+
+
     return (
         <View style={[ styles.background, { height, width }]}>
+
             <BackButton function={ close }/>
+
             <ScrollView>
+
                 <View style={{ flexDirection: 'row', height: thumbnailDimensions.height + 20}}>
+
                     <Image
-                        style={{ height: thumbnailDimensions.height, width: thumbnailDimensions.width }}
-                        source={{ uri: thumbnail }} />
+                    style={{ height: thumbnailDimensions.height, width: thumbnailDimensions.width }}
+                    source={{ uri: thumbnail }} />
+
                     <View style={{ flex: 1, marginLeft: 20 }}>
+
                         <Text style={ styles.title }>{title}</Text>
+
                         <Text style={ styles.authors }>{authorsString}</Text>
+
                         <Text style={ styles.mainCategory }>{mainCategory}</Text>
+
                         <Text style={ styles.publishedBlock }>{publishedBlock}</Text>
+
                     </View>
+
                 </View>
+
+
                 {bookInCollection ?
+
                     <TouchableOpacity onPress={ openDeleteDialogue }>
+
                         <View style={[ globalStyles.button, { width: 230, marginBottom: 20, } ]}>
+
                             <Text style={ globalStyles.buttonText }>Remove from collection</Text>
+
                         </View>
+
                     </TouchableOpacity> 
-                    :
+
+                :
                     <TouchableOpacity onPress={ openAddDialogue }>
+
                         <View style={[ globalStyles.button, { width: 200, marginBottom: 20, } ]}>
+
                             <Text style={ globalStyles.buttonText }>Add to Collection</Text>
+
                         </View>
+
                     </TouchableOpacity>
+
                 }
+
                 <Text style={ styles.description }>{description}</Text>
+
             </ScrollView>
+            
         </View>
     );
 

@@ -10,17 +10,26 @@ const ShelvesPanel = () => {
     const dispatch = useDispatch()
 
     const handlePress = () => {
+
         dispatch(updateTab(1))
+        
     }
 
     return (
         <TouchableOpacity style={ styles.touchable } onPress={handlePress}>
+
             <View style={ styles.background }>
+
                 <Image source={ book } style={ styles.image }/>
+
                 <View style= {styles.textBackground }>
+
                     <Text style={ styles.text }>Book Shelves</Text>
+
                 </View>
+
             </View>
+
         </TouchableOpacity>
     );
 };

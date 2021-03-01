@@ -9,11 +9,15 @@ const CloseButton = (props) => {
 
     return (
         <View style={[ styles.cross, { left: width - 70 } ]}>
+
             <TouchableOpacity
-                style={{ minHeight: 40 }}
-                onPress={ () => props.close() }>
+            style={{ minHeight: 40 }}
+            onPress={ () => props.close() }>
+
                 <Image style={{ height: 40, width: 40 }} source={cross} />
+
             </TouchableOpacity>
+            
         </View>
     );
 };

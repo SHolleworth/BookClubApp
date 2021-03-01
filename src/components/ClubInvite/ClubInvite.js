@@ -62,6 +62,7 @@ const ClubInvite = ({ invite }) => {
     return (
 
         <View style={ styles.background }>
+            
             <View style={[ globalStyles.smallProfilePlaceholder, { height: 50, width: 50 } ]} />
 
             <View style={ styles.textContainer }>

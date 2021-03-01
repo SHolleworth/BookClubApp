@@ -43,15 +43,23 @@ const ClubPanel = ({ club }) => {
                     <View>
 
                         <View style={ styles.imageContainer }>
+
                             <Image style={ styles.image } source={ flag } />
+                            
                         </View>
 
-                        { thumbnail ?
-                        <View style={[ globalStyles.bookContainer, {position: 'absolute',
-                        top:60, right: 0, bottom: 0, left: 0,} ]}>
-                            <Image style={ globalStyles.book } source={{ uri: thumbnail }} /> 
-                        </View>
-                        : null }
+                        {thumbnail ?
+                            <View style={[ globalStyles.bookContainer, {position: 'absolute',
+                            top:60, right: 0, bottom: 0, left: 0,} ]}>
+
+                                <Image style={ globalStyles.book } source={{ uri: thumbnail }} /> 
+
+                            </View>
+
+                        :
+
+                            null
+                        }
 
                     </View>
 

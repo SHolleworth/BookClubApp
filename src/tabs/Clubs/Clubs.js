@@ -31,11 +31,9 @@ const Clubs = () => {
 
             <InviteList />
 
-            
-
             <ClubsList />
 
-           { exisitingClubs.length ? 
+            { exisitingClubs.length ? 
                 <TouchableOpacity
                 style={[ globalStyles.button, styles.newShelfButton ]}
                 onPress={ handlePress }>
@@ -45,7 +43,9 @@ const Clubs = () => {
                     <Image style={ styles.newShelfButtonImage } source={ plus }/>
 
                 </TouchableOpacity> 
+
             : 
+
                 <StartClubButton /> 
             }
 

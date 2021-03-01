@@ -17,7 +17,9 @@ const DeleteMeetingDialogue = () => {
     const dispatch = useDispatch()
 
     const close = () => {
+
         dispatch(closeDeleteMeetingDialogue())
+
     }
 
     const cancelMeeting = async () => {
@@ -45,6 +47,7 @@ const DeleteMeetingDialogue = () => {
             <Text style={[ globalStyles.dialogueHeader, styles.header ]}>{ headerText }</Text>
             
             <View style={{ flexDirection: 'row' }}>
+                
                 <TouchableOpacity 
                 style={[ globalStyles.button, styles.button ]}
                 onPress={ close }

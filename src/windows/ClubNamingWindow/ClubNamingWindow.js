@@ -62,24 +62,35 @@ const ClubNamingWindow = () => {
     }
 
     useEffect(() => {
+
         Keyboard.addListener('keyboardDidShow', keyboardDidShow)
         Keyboard.addListener('keyboardDidHide', keyboardDidHide)
 
         return () => {
+
             Keyboard.removeListener('keyboardDidShow', keyboardDidShow)
             Keyboard.removeListener('keyboardDidHide', keyboardDidHide)
+            
         }
     },[])
+    
 
 
     const keyboardDidShow = (event) => {
+
         setMarginBottom(event.endCoordinates.height / 2)
+
     }
+
 
 
     const keyboardDidHide = (event) => {
+
         setMarginBottom(0)
+
     }
+
+
 
     return (
         <View style={[ { height, width }, styles.background ]}>

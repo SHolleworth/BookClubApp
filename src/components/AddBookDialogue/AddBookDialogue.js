@@ -48,29 +48,40 @@ const AddBookDialogue = () => {
     }
 
     const updateShelfId = (value) => {
+
         setShelfId(value)
+
         console.log("Shelf id: " + value)
+
     }
 
     const pickerItems = shelves.map((shelf, i) => <Picker.Item key={ i } label={ shelf.name } value={ shelf.id } /> )
 
     return (
         <View style={[ globalStyles.dialogueBackground, styles.background ]}>
+
             <Text style={ globalStyles.dialogueHeader }>Add To Shelf</Text>
+
             <Picker
-                selectedValue={ shelfId }
-                onValueChange={ value => updateShelfId(value) }
-            >
+            selectedValue={ shelfId }
+            onValueChange={ value => updateShelfId(value) }>
+
                 <Picker.Item label={ "Select a shelf" } value={ -99 }/>
+
                 {pickerItems}
+
             </Picker>
+
             <TouchableOpacity 
-                style={[ globalStyles.button, styles.button ]}
-                onPress={ addNewBook }
-            >
+            style={[ globalStyles.button, styles.button ]}
+            onPress={ addNewBook }>
+
                 <Text style={ globalStyles.buttonText }>Okay</Text>
+
             </TouchableOpacity>
+
             <CloseButton close={ close } />
+            
         </View>
     );
 };

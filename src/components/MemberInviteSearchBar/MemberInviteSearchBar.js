@@ -7,8 +7,6 @@ import { getClubById } from '../../state/clubsSlice';
 import { sendClubInvite } from '../../handlers/socketHandler';
 
 const MemberInviteSearchBar = () => {
-    
-    const width = useSelector(state => state.ui.tabWidth)
 
     const currentUser = useSelector(state => state.user.currentUser)
 

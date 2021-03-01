@@ -12,10 +12,9 @@ const SearchBar = (props) => {
 
     const width = useSelector(state => state.ui.tabWidth)
 
-
     const defaultStyle = { width: width - 40, left: width + 20, top: useWindowDimensions().height - 200, height: 80 }
-    const contentShowingStyle = { ...defaultStyle, height: 500, top: defaultStyle.top - 500 + defaultStyle.height, alignItems: 'flex-end' }
 
+    const contentShowingStyle = { ...defaultStyle, height: 500, top: defaultStyle.top - 500 + defaultStyle.height, alignItems: 'flex-end' }
 
     const [value, onChangeText] = useState("")
 
@@ -39,13 +38,11 @@ const SearchBar = (props) => {
 
 
 
-
     const keyboardDidShow = (event) => {
         const newStyle = {...defaultStyle, top: defaultStyle.top - event.endCoordinates.height}
         setStyle(newStyle)
         setShowingResults(false)
     }
-
 
 
 
@@ -72,6 +69,7 @@ const SearchBar = (props) => {
 
 
     const displayResults = (response) => {
+
         const books = (response.map(item => formatGoogleBooksVolumeData(item)))
 
         setResults(books.map((book, index) => <SearchResult key={ index } id={ index } book={ book } />))
@@ -79,12 +77,17 @@ const SearchBar = (props) => {
         setStyle(contentShowingStyle)
 
         setShowingResults(true)
+
     }
 
+    
+
     const hideResults = () => {
+
         setStyle(defaultStyle)
 
         setShowingResults(false)
+
     }
 
 
