@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Text, useWindowDimensions, View, Keyboard } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import { useDispatch, useSelector } from 'react-redux';
 import BackButton from '../../components/BackButton';
-import { globalStyles } from '../../constants';
+import styles from './styles'
+import { useDispatch, useSelector } from 'react-redux';
 import { closeClubNamingWindow } from '../../state/uiSlice';
 import { postNewClub, retrieveClubs } from '../../handlers/socketHandler'
-import styles from './styles'
+import { globalStyles } from '../../constants';
 
 const ClubNamingWindow = () => {
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import {Image, Text, Touchable, View} from 'react-native';
+import { Image, Text, View} from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import { useDispatch, useSelector } from 'react-redux';
-import { globalStyles } from '../../constants';
-import { openDeleteShelfDialogue } from '../../state/uiSlice';
 import styles from './styles'
+import { useDispatch, useSelector } from 'react-redux';
+import { openDeleteShelfDialogue } from '../../state/uiSlice';
+import { globalStyles } from '../../constants';
 
 const placeholderOpacities = [0.5, 0.4, 0.3, 0.2, 0.1, 0.0]
 

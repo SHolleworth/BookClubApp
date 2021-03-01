@@ -3,10 +3,10 @@ import { View, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import BackButton from '../../components/BackButton';
 import ShelvesList from '../../components/ShelvesList/ShelvesList';
-import { globalStyles } from '../../constants';
-import { setMeetingBook } from '../../state/clubsSlice';
-import { closeMeetingBookWindow, openMeetingDateAndTimeWindow } from '../../state/uiSlice';
 import styles from './styles'
+import { closeMeetingBookWindow, openMeetingDateAndTimeWindow } from '../../state/uiSlice';
+import { setMeetingBook } from '../../state/clubsSlice';
+import { globalStyles } from '../../constants';
 
 const BookForMeetingWindow = () => {
 

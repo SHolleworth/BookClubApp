@@ -1,7 +1,7 @@
 "use strict";
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.closeMeetingDateAndTimeWindow = exports.openMeetingDateAndTimeWindow = exports.closeMeetingBookWindow = exports.openMeetingBookWindow = exports.closeClubWindow = exports.openClubWindow = exports.closeClubNamingWindow = exports.openClubNamingWindow = exports.closeDeleteBookDialogue = exports.openDeleteBookDialogue = exports.closeAddBookDialogue = exports.openAddBookDialogue = exports.closeDeleteShelfDialogue = exports.openDeleteShelfDialogue = exports.closeBookDetailWindow = exports.openBookDetailWindow = exports.setTabWidth = exports.getTabWidth = void 0;
+exports.closeDeleteMeetingDialogue = exports.openDeleteMeetingDialogue = exports.closeMeetingDateAndTimeWindow = exports.openMeetingDateAndTimeWindow = exports.closeMeetingBookWindow = exports.openMeetingBookWindow = exports.closeClubWindow = exports.openClubWindow = exports.closeClubNamingWindow = exports.openClubNamingWindow = exports.closeDeleteBookDialogue = exports.openDeleteBookDialogue = exports.closeAddBookDialogue = exports.openAddBookDialogue = exports.closeDeleteShelfDialogue = exports.openDeleteShelfDialogue = exports.closeBookDetailWindow = exports.openBookDetailWindow = exports.setTabWidth = exports.getTabWidth = void 0;
 var toolkit_1 = require("@reduxjs/toolkit");
 var initialState = {
     tabWidth: null,
@@ -17,6 +17,8 @@ var initialState = {
     showingClubWindow: false,
     showingMeetingBookWindow: false,
     showingMeetingDateAndTimeWindow: false,
+    showingDeleteMeetingDialogue: false,
+    meetingForDeletion: null,
 };
 var uiSlice = toolkit_1.createSlice({
     name: 'ui',
@@ -79,8 +81,15 @@ var uiSlice = toolkit_1.createSlice({
         closeMeetingDateAndTimeWindow: function (state) {
             state.showingMeetingDateAndTimeWindow = false;
         },
+        openDeleteMeetingDialogue: function (state, action) {
+            state.showingDeleteMeetingDialogue = true;
+            state.meetingForDeletion = action.payload;
+        },
+        closeDeleteMeetingDialogue: function (state) {
+            state.showingDeleteMeetingDialogue = false;
+        },
     }
 });
 exports.getTabWidth = function (state) { return state.ui.tabWidth; };
-exports.setTabWidth = (_a = uiSlice.actions, _a.setTabWidth), exports.openBookDetailWindow = _a.openBookDetailWindow, exports.closeBookDetailWindow = _a.closeBookDetailWindow, exports.openDeleteShelfDialogue = _a.openDeleteShelfDialogue, exports.closeDeleteShelfDialogue = _a.closeDeleteShelfDialogue, exports.openAddBookDialogue = _a.openAddBookDialogue, exports.closeAddBookDialogue = _a.closeAddBookDialogue, exports.openDeleteBookDialogue = _a.openDeleteBookDialogue, exports.closeDeleteBookDialogue = _a.closeDeleteBookDialogue, exports.openClubNamingWindow = _a.openClubNamingWindow, exports.closeClubNamingWindow = _a.closeClubNamingWindow, exports.openClubWindow = _a.openClubWindow, exports.closeClubWindow = _a.closeClubWindow, exports.openMeetingBookWindow = _a.openMeetingBookWindow, exports.closeMeetingBookWindow = _a.closeMeetingBookWindow, exports.openMeetingDateAndTimeWindow = _a.openMeetingDateAndTimeWindow, exports.closeMeetingDateAndTimeWindow = _a.closeMeetingDateAndTimeWindow;
+exports.setTabWidth = (_a = uiSlice.actions, _a.setTabWidth), exports.openBookDetailWindow = _a.openBookDetailWindow, exports.closeBookDetailWindow = _a.closeBookDetailWindow, exports.openDeleteShelfDialogue = _a.openDeleteShelfDialogue, exports.closeDeleteShelfDialogue = _a.closeDeleteShelfDialogue, exports.openAddBookDialogue = _a.openAddBookDialogue, exports.closeAddBookDialogue = _a.closeAddBookDialogue, exports.openDeleteBookDialogue = _a.openDeleteBookDialogue, exports.closeDeleteBookDialogue = _a.closeDeleteBookDialogue, exports.openClubNamingWindow = _a.openClubNamingWindow, exports.closeClubNamingWindow = _a.closeClubNamingWindow, exports.openClubWindow = _a.openClubWindow, exports.closeClubWindow = _a.closeClubWindow, exports.openMeetingBookWindow = _a.openMeetingBookWindow, exports.closeMeetingBookWindow = _a.closeMeetingBookWindow, exports.openMeetingDateAndTimeWindow = _a.openMeetingDateAndTimeWindow, exports.closeMeetingDateAndTimeWindow = _a.closeMeetingDateAndTimeWindow, exports.openDeleteMeetingDialogue = _a.openDeleteMeetingDialogue, exports.closeDeleteMeetingDialogue = _a.closeDeleteMeetingDialogue;
 exports.default = uiSlice.reducer;

@@ -18,7 +18,6 @@ export const colors = {
     ]
 }
 
-
 export const borderRadius = 10
 
 export const globalStyles = StyleSheet.create({
@@ -47,7 +46,6 @@ export const globalStyles = StyleSheet.create({
     dialogueBackground: {
         position: 'absolute',
         top:0, right: 0, bottom: 0, left: 0,
-        alignItems: 'center',
         justifyContent:'space-between',
         height: 230,
         margin: 20,

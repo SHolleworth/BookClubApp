@@ -1,10 +1,8 @@
 import React from 'react';
-import {View} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import ClubPanel from '../ClubPanel';
 import { useSelector } from 'react-redux';
 import { getClubs } from '../../state/clubsSlice';
-import ClubPanel from '../ClubPanel';
-import styles from './styles'
 
 const ClubsList = () => {
 

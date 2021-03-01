@@ -4,33 +4,31 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import CloseButton from '../CloseButton';
 import styles from './styles'
 import { useDispatch, useSelector } from 'react-redux';
-import { closeBookDetailWindow, closeDeleteBookDialogue } from '../../state/uiSlice'
-import { deleteBook } from '../../handlers/socketHandler';
+import { closeDeleteMeetingDialogue } from '../../state/uiSlice';
+import { deleteMeeting } from '../../handlers/socketHandler'
 import { globalStyles } from '../../constants';
 
-const DeleteBookDialogue = () => {
+const DeleteMeetingDialogue = () => {
 
-    const book = useSelector(state => state.ui.bookForDetailWindow)
+    const meeting = useSelector(state => state.ui.meetingForDeletion)
 
-    const headerText = `Delete ${book ? book.info.title : ''} from collection?`
+    const headerText = `Delete meeting?`
 
     const dispatch = useDispatch()
 
     const close = () => {
-        dispatch(closeDeleteBookDialogue())
+        dispatch(closeDeleteMeetingDialogue())
     }
 
-    const removeBook = async () => {
+    const cancelMeeting = async () => {
 
         try {
 
-            const message = await deleteBook(book)
+            const message = await deleteMeeting(meeting)
 
             console.log(message)
 
-            dispatch(closeBookDetailWindow())
-
-            dispatch(closeDeleteBookDialogue())
+            dispatch(closeDeleteMeetingDialogue())
 
         }
         catch (error) {
@@ -58,7 +56,7 @@ const DeleteBookDialogue = () => {
 
                 <TouchableOpacity 
                 style={[ globalStyles.button, styles.button ]}
-                onPress={ removeBook }
+                onPress={ cancelMeeting }
                 >
 
                     <Text style={ globalStyles.buttonText }>Okay</Text>
@@ -73,4 +71,4 @@ const DeleteBookDialogue = () => {
     );
 };
 
-export default DeleteBookDialogue;
+export default DeleteMeetingDialogue;

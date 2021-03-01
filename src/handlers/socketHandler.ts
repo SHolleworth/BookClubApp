@@ -1,12 +1,23 @@
+const io = require('socket.io-client')
+import { Socket } from 'socket.io-client'
+import store from '../state/store'
+import { addInvite, setClubs, setInvites } from '../state/clubsSlice'
 import { setBooks } from '../state/booksSlice'
 import { setShelves } from '../state/shelvesSlice'
 import { setCurrentUser } from '../state/userSlice'
-
-const io = require('socket.io-client')
-import store from '../state/store'
-import { Socket } from 'socket.io-client'
-import { AcceptClubInviteObject, BookObject, ClubInviteReceive, ClubObject, ClubPostObject, MeetingObject, MemberData, ShelfObject, UserLoginDataObject, UserLoginObject, UserObject, UserRegisterObject } from '../../../types'
-import { addInvite, setClubs, setInvites } from '../state/clubsSlice'
+import {
+    AcceptClubInviteObject,
+    BookObject,
+    ClubInviteReceive,
+    ClubObject,
+    ClubPostObject,
+    MeetingObject,
+    ShelfObject,
+    UserLoginDataObject,
+    UserLoginObject,
+    UserObject,
+    UserRegisterObject
+} from '../../../types'
 
 let socket: Socket | null = null
 
@@ -635,6 +646,41 @@ export const postMeeting = (meeting: MeetingObject) => {
     
             }
 
+    });
+    
+}
+
+export const deleteMeeting = (meeting: MeetingObject) => {
+
+    return new Promise((resolve, reject) => {
+
+        if (socket) {
+            
+            socket.on('delete_meeting_response', async (message: string) => {
+
+                const currentUser = store.getState().user.currentUser
+
+                await retrieveClubs(currentUser)
+
+                return resolve(message)
+
+            })
+
+            socket.on('delete_meeting_error', (error: string) => {
+                
+                return reject(error)
+
+            })
+
+            socket.emit('delete_meeting', meeting)
+
+        }
+        else {
+
+            return reject("Socket not connected")
+
+        }
+        
     });
     
 }

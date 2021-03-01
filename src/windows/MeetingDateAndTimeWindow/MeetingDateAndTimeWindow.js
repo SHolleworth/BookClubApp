@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { View, ScrollView, Text, Image } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Calendar } from 'react-native-calendars'
 import BackButton from '../../components/BackButton';
 import TimeInput from "../../components/TimeInput";
-import { Calendar } from 'react-native-calendars'
-import { globalStyles } from '../../constants';
-import uiSlice, { closeMeetingDateAndTimeWindow, openMeetingBookWindow } from '../../state/uiSlice';
 import styles from './styles'
-import { setMeetingDate, setMeetingClubId, getMeeting } from '../../state/clubsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMeetingDate, getMeeting } from '../../state/clubsSlice';
+import { closeMeetingDateAndTimeWindow, openMeetingBookWindow } from '../../state/uiSlice';
 import { postMeeting } from '../../handlers/socketHandler'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { globalStyles } from '../../constants';
 
 const MeetingDateAndTimeWindow = () => {
 

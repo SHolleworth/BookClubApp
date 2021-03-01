@@ -23,6 +23,9 @@ const initialState: UiStateObject = {
 
     showingMeetingBookWindow: false,
     showingMeetingDateAndTimeWindow: false,
+
+    showingDeleteMeetingDialogue: false,
+    meetingForDeletion: null,
 }
 
 const uiSlice = createSlice({
@@ -96,6 +99,14 @@ const uiSlice = createSlice({
         closeMeetingDateAndTimeWindow(state) {
             state.showingMeetingDateAndTimeWindow = false
         },
+
+        openDeleteMeetingDialogue(state, action) {
+            state.showingDeleteMeetingDialogue = true
+            state.meetingForDeletion = action.payload
+        },
+        closeDeleteMeetingDialogue(state) {
+            state.showingDeleteMeetingDialogue = false
+        },
     }
 })
 
@@ -118,7 +129,9 @@ export const {
     openMeetingBookWindow,
     closeMeetingBookWindow,
     openMeetingDateAndTimeWindow,
-    closeMeetingDateAndTimeWindow
+    closeMeetingDateAndTimeWindow,
+    openDeleteMeetingDialogue,
+    closeDeleteMeetingDialogue
 } = uiSlice.actions
 
 export default uiSlice.reducer

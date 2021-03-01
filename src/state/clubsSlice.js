@@ -21,7 +21,6 @@ var clubsSlice = toolkit_1.createSlice({
                 else
                     newClubs = [action.payload];
                 newClubs.forEach(function (club) { return state.clubs.push(club); });
-                console.log(state.clubs[0].meeting);
             }
         },
         addInvite: function (state, action) {
@@ -43,7 +42,6 @@ var clubsSlice = toolkit_1.createSlice({
             if (action.payload) {
                 var _a = action.payload, clubId_1 = _a.clubId, book = _a.book;
                 var index = state.clubs.findIndex(function (club) { return club.id === clubId_1; });
-                console.log(index);
                 state.clubs[index].meeting.book = book;
             }
         },
@@ -64,7 +62,6 @@ var clubsSlice = toolkit_1.createSlice({
                 var index = state.clubs.findIndex(function (club) { return club.id === clubId_3; });
                 state.clubs[index].meeting.time.minutes = minutes;
                 state.clubs[index].meeting.time.hours = hours;
-                console.log(state.clubs[index].meeting.time);
             }
         },
         setMeetingClubId: function (state, action) {

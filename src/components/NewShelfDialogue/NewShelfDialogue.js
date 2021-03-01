@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import {Image, Text, TextInput, useWindowDimensions, View} from 'react-native';
+import {Image, Text, TextInput, View} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useDispatch, useSelector } from 'react-redux';
-import { colors, globalStyles } from '../../constants';
-import { postNewShelf, retrieveBooks } from '../../handlers/socketHandler';
-import Shelf from '../../objects/Shelf';
-import { addShelf, getShelfStatus } from '../../state/shelvesSlice';
 import CloseButton from '../CloseButton';
+import Shelf from '../../objects/Shelf';
 import styles from './styles'
+import { useDispatch, useSelector } from 'react-redux';
+import { postNewShelf, retrieveBooks } from '../../handlers/socketHandler';
+import { getShelfStatus } from '../../state/shelvesSlice';
+import { globalStyles } from '../../constants';
 
 const NewShelfDialogue = (props) => {
     const [value, onChangeText] = useState("Enter Shelf Name")

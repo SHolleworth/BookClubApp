@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Keyboard, useColorScheme } from 'react-native';
+import { View } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import styles from './styles'
 import { useSelector } from 'react-redux';
-import { current } from '@reduxjs/toolkit';
-import { sendClubInvite } from '../../handlers/socketHandler';
 import { getClubById } from '../../state/clubsSlice';
+import { sendClubInvite } from '../../handlers/socketHandler';
 
 const MemberInviteSearchBar = () => {
     

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { useDispatch, useSelector } from 'react-redux';
-import { globalStyles } from '../../constants';
-import { setMeetingTime } from '../../state/clubsSlice';
 import styles from './styles'
+import { useDispatch, useSelector } from 'react-redux';
+import { setMeetingTime } from '../../state/clubsSlice';
+import { globalStyles } from '../../constants';
 
 const TimeInput = () => {
 

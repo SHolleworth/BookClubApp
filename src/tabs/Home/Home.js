@@ -1,11 +1,10 @@
 import React from 'react';
 import {View} from 'react-native';
 import styles from './styles'
-import { useDispatch, useSelector } from 'react-redux';
-
 import ShelvesPanel from '../../components/ShelvesPanel'
 import ClubPanel from '../../components/ClubPanel'
 import StartClubButton from '../../components/StartClubButton/StartClubButton';
+import { useSelector } from 'react-redux';
 import { getClubs } from '../../state/clubsSlice';
 
 const home = () => {

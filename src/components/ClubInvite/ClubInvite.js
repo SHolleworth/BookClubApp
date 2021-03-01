@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useSelector } from 'react-redux';
-import { globalStyles } from '../../constants';
-import { postClubMember, retrieveClubs, retrieveInvites, deleteInvite } from '../../handlers/socketHandler'
-import { getCurrentUser } from '../../state/userSlice'
 import styles from './styles'
+import { useSelector } from 'react-redux';
+import { getCurrentUser } from '../../state/userSlice'
+import { postClubMember, retrieveClubs, retrieveInvites, deleteInvite } from '../../handlers/socketHandler'
+import { globalStyles } from '../../constants';
 
 const ClubInvite = ({ invite }) => {
 

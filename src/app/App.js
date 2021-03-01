@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { View, useWindowDimensions } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateTab } from '../state/navSlice'
 import { ScrollView } from 'react-native-gesture-handler'
-
 import NavBar from './NavBar/NavBar'
 import Home from '../tabs/Home'
 import Shelves from '../tabs/Shelves/Shelves'
@@ -16,9 +14,10 @@ import MeetingBookWindow from '../windows/MeetingBookWindow'
 import MeetingDateAndTimeWindow from '../windows/MeetingDateAndTimeWindow/MeetingDateAndTimeWindow'
 import DeleteShelfDialogue from '../components/DeleteShelfDialogue'
 import DeleteBookDialogue from '../components/DeleteBookDialogue'
-
-import { connectToServer, registerNewUser, loginAsUser } from '../handlers/socketHandler'
+import DeleteMeetingDialogue from '../components/DeleteMeetingDialogue'
+import { updateTab } from '../state/navSlice'
 import { setTabWidth } from '../state/uiSlice'
+import { connectToServer, registerNewUser, loginAsUser } from '../handlers/socketHandler'
 
 
 const App = () => {
@@ -48,6 +47,8 @@ const App = () => {
   const showingDeleteBookDialogue = useSelector(state => state.ui.showingDeleteBookDialogue)
 
   const showingDeleteShelfDialogue = useSelector(state => state.ui.showingDeleteShelfDialogue)
+
+  const showingDeleteMeetingDialogue = useSelector(state => state.ui.showingDeleteMeetingDialogue)
 
   const testNum = 13
 
@@ -157,8 +158,11 @@ const App = () => {
         {showingAddBookDialogue ? <AddBookDialogue /> : null }
 
         {showingDeleteBookDialogue ? <DeleteBookDialogue /> : null }
+        
+        {showingDeleteShelfDialogue ? <DeleteShelfDialogue /> : null}
 
-        {showingDeleteShelfDialogue ? <DeleteShelfDialogue /> : null }
+        {showingDeleteMeetingDialogue ? <DeleteMeetingDialogue /> : null }
+        
       </>
     )
   }

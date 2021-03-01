@@ -1,13 +1,13 @@
 import React from 'react'
 import { View, TouchableOpacity, Text, Image } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
+import InviteList from '../../components/InviteList/InviteList'
 import ClubsList from '../../components/ClubsList/ClubsList'
 import StartClubButton from '../../components/StartClubButton/StartClubButton'
 import styles from './styles'
-import { globalStyles } from '../../constants'
+import { useDispatch, useSelector } from 'react-redux'
 import { openClubNamingWindow } from '../../state/uiSlice'
 import { getClubs } from '../../state/clubsSlice'
-import InviteList from '../../components/InviteList/InviteList'
+import { globalStyles } from '../../constants'
 
 const Clubs = () => {
 

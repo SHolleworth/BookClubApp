@@ -1,8 +1,7 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import { useSelector } from 'react-redux';
+import { View} from 'react-native';
 import ClubInvite from '../ClubInvite/ClubInvite';
-import styles from './styles'
+import { useSelector } from 'react-redux';
 
 const InviteList = () => {
 

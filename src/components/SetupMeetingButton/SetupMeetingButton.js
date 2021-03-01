@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useDispatch } from 'react-redux';
-import { globalStyles, colors } from '../../constants';
-import { closeClubWindow, openMeetingBookWindow } from '../../state/uiSlice';
 import styles from './styles'
+import { useDispatch } from 'react-redux';
+import { openMeetingBookWindow } from '../../state/uiSlice';
+import { globalStyles, colors } from '../../constants';
 
 const SetupMeetingButton = () => {
 

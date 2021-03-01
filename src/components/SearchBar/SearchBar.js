@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Image, useWindowDimensions, View, Keyboard } from 'react-native';
+import { useWindowDimensions, View, Keyboard } from 'react-native';
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import styles from './styles'
-
-import { sendVolumeQuery } from '../../handlers/socketHandler';
+import CloseButton from '../CloseButton';
 import SearchResult from '../SearchResult/';
 import { formatGoogleBooksVolumeData } from '../../objects/Book';
+import styles from './styles'
 import { useSelector } from 'react-redux';
-import CloseButton from '../CloseButton';
+import { sendVolumeQuery } from '../../handlers/socketHandler';
 
 const SearchBar = (props) => {
 

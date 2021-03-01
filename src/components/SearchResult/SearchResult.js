@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Image, Text} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useDispatch } from 'react-redux';
 import styles from './styles'
-
+import { useDispatch } from 'react-redux';
 import { openAddBookDialogue, openBookDetailWindow } from '../../state/uiSlice'
+
 
 const SearchResult = ({ book }) => {
 

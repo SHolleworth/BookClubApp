@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { globalStyles } from '../../constants';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import CloseButton from '../CloseButton';
 import styles from './styles'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { deleteShelf } from '../../handlers/socketHandler';
 import { closeDeleteShelfDialogue } from '../../state/uiSlice';
+import { globalStyles } from '../../constants';
 
 const DeleteShelfDialogue = () => {
 

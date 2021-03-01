@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { useSelector } from 'react-redux';
 import MemberInviteSearchBar from '../../components/MemberInviteSearchBar/MemberInviteSearchBar';
-import { globalStyles } from '../../constants';
-import { getClubById } from '../../state/clubsSlice';
 import styles from './styles'
+import { useSelector } from 'react-redux';
+import { getClubById } from '../../state/clubsSlice';
+import { globalStyles } from '../../constants';
 
 const MembersTab = () => {
 

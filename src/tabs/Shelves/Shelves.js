@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
-import {Image, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
-import { ScrollView } from 'react-native-gesture-handler'
-import styles from './styles'
-
-import ShelfRenderer from '../../components/ShelfRenderer'
+import {Image, Text, TouchableOpacity, View} from 'react-native'
 import NewShelfDialogue from '../../components/NewShelfDialogue'
 import SearchBar from '../../components/SearchBar'
-
-import { globalStyles } from '../../constants'
-import { getShelves } from '../../state/shelvesSlice';
 import ShelvesList from '../../components/ShelvesList/ShelvesList';
+import styles from './styles'
+import { useDispatch, useSelector } from 'react-redux'
 import { openBookDetailWindow } from '../../state/uiSlice';
+import { globalStyles } from '../../constants'
 
-const Shelves = (props) => {
+const Shelves = () => {
     const plus = require('../../assets/images/2x/plus.png')
 
     const [dialogueOpen, setDialogueOpen] = useState(false)
@@ -32,8 +27,6 @@ const Shelves = (props) => {
         dispatch(openBookDetailWindow(book))
 
     }
-
-
 
     return (
         <>

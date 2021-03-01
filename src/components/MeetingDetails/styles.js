@@ -29,6 +29,16 @@ const styles = StyleSheet.create({
         width: '50%',
         margin: 10,
         backgroundColor: 'black'
+    },
+    button: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 50,
+        width: 120,
+        marginTop: 30,
+        marginBottom: -30,
+        backgroundColor: 'black',
+        borderRadius: 5,
     }
 });
 

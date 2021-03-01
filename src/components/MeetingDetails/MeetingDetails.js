@@ -1,10 +1,14 @@
 import React from 'react';
 import { View, Text, ImageBackground } from 'react-native';
-import { useSelector } from 'react-redux';
-import { getMeeting } from '../../state/clubsSlice';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from './styles'
+import { useDispatch, useSelector } from 'react-redux';
+import { getMeeting } from '../../state/clubsSlice';
+import { openDeleteMeetingDialogue } from '../../state/uiSlice';
 
 const MeetingDetails = () => {
+
+    const dispatch = useDispatch()
 
     const clubId = useSelector(state => state.ui.clubIdForWindow)
 
@@ -38,6 +42,11 @@ const MeetingDetails = () => {
 
     const timeString = `${hoursString}:${minutesString}`
 
+    const cancelMeeting = () => {
+        
+        dispatch(openDeleteMeetingDialogue(meeting))
+        
+    }
 
     return (
         <ImageBackground 
@@ -58,6 +67,10 @@ const MeetingDetails = () => {
             <View style={ styles.seperatorLine } />
 
             <Text style={ styles.dateAndTime }>{ timeString }</Text>
+
+            <View style={{ height: 30}} />
+
+            <TouchableOpacity style={ styles.button } onPress={ cancelMeeting }><Text style={{ color: 'white' }}>Cancel</Text></TouchableOpacity>
 
         </ImageBackground>
     );

@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
+import ShelfRenderer from '../ShelfRenderer';
 import { useSelector } from 'react-redux';
 import { getShelves } from '../../state/shelvesSlice';
-import ShelfRenderer from '../ShelfRenderer';
-import styles from './styles'
 
 const ShelvesList = ({ contentContainerStyle, bookTouchableFunction }) => {
 

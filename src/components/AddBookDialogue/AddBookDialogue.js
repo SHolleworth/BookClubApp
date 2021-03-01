@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { Picker } from '@react-native-picker/picker'
-import { useDispatch, useSelector } from 'react-redux';
-import { closeAddBookDialogue } from '../../state/uiSlice';
-import { globalStyles } from '../../constants';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import CloseButton from '../CloseButton';
 import styles from './styles'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeAddBookDialogue } from '../../state/uiSlice';
 import { addBook } from '../../state/booksSlice';
 import { getShelves } from '../../state/shelvesSlice';
 import { postNewBook } from '../../handlers/socketHandler';
+import { globalStyles } from '../../constants';
 
 const AddBookDialogue = () => {
 

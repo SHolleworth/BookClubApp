@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Text, useWindowDimensions, View, Image } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import BackButton from '../../components/BackButton';
+import styles from './styles'
 import { useDispatch, useSelector } from 'react-redux';
 import { closeBookDetailWindow, openAddBookDialogue, openDeleteBookDialogue } from '../../state/uiSlice';
 import { globalStyles } from '../../constants';
-import styles from './styles'
-import BackButton from '../../components/BackButton';
 
 const BookDetailWindow = () => {
     const dispatch = useDispatch()

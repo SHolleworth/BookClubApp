@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useDispatch, useSelector } from 'react-redux';
-import { colors } from '../../constants';
-import { getClubs } from '../../state/clubsSlice';
-import { openClubNamingWindow } from '../../state/uiSlice';
 import styles from './styles'
+import { useDispatch } from 'react-redux';
+import { openClubNamingWindow } from '../../state/uiSlice';
+import { colors } from '../../constants';
 
 const StartClubButton = () => {
 

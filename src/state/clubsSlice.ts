@@ -31,7 +31,6 @@ const clubsSlice = createSlice({
                 
                 newClubs.forEach(club => state.clubs.push(club))
 
-                console.log(state.clubs[0].meeting)
             }
         },
         addInvite(state, action) {
@@ -68,8 +67,6 @@ const clubsSlice = createSlice({
 
                 const index = state.clubs.findIndex(club => club.id === clubId)
 
-                console.log(index)
-
                 state.clubs[index].meeting.book = book 
 
             }
@@ -104,8 +101,6 @@ const clubsSlice = createSlice({
                 state.clubs[index].meeting.time.minutes = minutes
 
                 state.clubs[index].meeting.time.hours = hours
-
-                console.log(state.clubs[index].meeting.time)
 
             }
         },
