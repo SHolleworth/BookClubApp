@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
     newShelfButton: {
         position: 'absolute',
         top:0, right: 0, bottom: 0, left: 0,
-        margin,
+        margin: 5,
+        marginTop: 10,
     },
     newShelfButtonImage: {
         height: 12,

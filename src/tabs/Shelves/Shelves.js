@@ -42,7 +42,7 @@ const Shelves = () => {
             style={[ styles.background, { width } ]}
             showsVerticalScrollIndicator={ false }>
 
-                <ShelvesList contentContainerStyle={{ paddingTop: 90 }} bookTouchableFunction={ openBookDetail }/>
+                <ShelvesList contentContainerStyle={{ paddingTop: 75 }} bookTouchableFunction={ openBookDetail }/>
 
                 <TouchableOpacity
                 style={[ globalStyles.button, styles.newShelfButton ]}

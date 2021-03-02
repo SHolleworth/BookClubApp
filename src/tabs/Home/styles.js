@@ -4,7 +4,7 @@ import { colors } from '../../constants';
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        padding: 20,
+        padding: 10,
         backgroundColor: colors.tabBackground,
     },
 });

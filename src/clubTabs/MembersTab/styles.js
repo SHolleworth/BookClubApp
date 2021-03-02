@@ -1,14 +1,21 @@
 import {StyleSheet} from 'react-native';
+import { colors } from '../../constants';
 
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: colors.clubTabBackground,
+    },
+    entryBackground: {
+        padding: 5,
+        borderRadius: 5,
+        backgroundColor: 'white',
+        elevation: 1,
     },
     memberEntry: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 20,
+        margin: 10,
     },
     entryText: {
         fontFamily: 'NotoSans-Regular',

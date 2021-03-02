@@ -24,7 +24,11 @@ const MembersTab = () => {
 
                 <MemberInviteSearchBar />
 
-                { memberEntries }
+                <View style={ styles.entryBackground }>
+
+                    { memberEntries }
+
+                </View>
 
             </View>
         </>

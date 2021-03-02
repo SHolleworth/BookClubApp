@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     touchable: {
         height: 250,
         width: '100%',
-        marginBottom: 30,
+        marginBottom: 20,
         borderRadius: radius,
         backgroundColor: 'white',
         elevation: 2,

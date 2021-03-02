@@ -5,7 +5,7 @@ import BackButton from '../../components/BackButton';
 import styles from './styles'
 import { useDispatch, useSelector } from 'react-redux';
 import { closeBookDetailWindow, openAddBookDialogue, openDeleteBookDialogue } from '../../state/uiSlice';
-import { globalStyles } from '../../constants';
+import { colors, globalStyles } from '../../constants';
 
 const BookDetailWindow = () => {
     const dispatch = useDispatch()
@@ -118,7 +118,7 @@ const BookDetailWindow = () => {
 
                     <TouchableOpacity onPress={ openDeleteDialogue }>
 
-                        <View style={[ globalStyles.button, { width: 230, marginBottom: 20, } ]}>
+                        <View style={[ globalStyles.button, { width: 230, marginBottom: 20, backgroundColor: colors.redButton } ]}>
 
                             <Text style={ globalStyles.buttonText }>Remove from collection</Text>
 

@@ -4,7 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import BackButton from '../../components/BackButton';
 import ClubNav from '../../components/ClubNav/ClubNav';
-import { globalStyles } from '../../constants';
+import { colors, globalStyles } from '../../constants';
 import { closeClubWindow } from '../../state/uiSlice';
 import { updateClubTab } from '../../state/navSlice'
 import styles from './styles'
@@ -72,9 +72,8 @@ const ClubWindow = () => {
 
     return (
         <ScrollView
-        style={[ globalStyles.windowBackground, { padding: 0 } ]}
-        contentContainerStyle={[ { alignItems: 'center' } ]}
-        >
+        style={[ globalStyles.windowBackground, { padding: 0, backgroundColor: colors.tabBackground } ]}
+        contentContainerStyle={[ { alignItems: 'center', backgroundColor: colors.tab } ]} >
 
 
             <View style={ styles.header }>
@@ -83,12 +82,15 @@ const ClubWindow = () => {
 
                 <View style={[ globalStyles.profilePlaceholder ]} />
 
-                <Text style={ styles.headerText }>{ name }</Text>
+            </View>
 
-                <ClubNav />
+            <View style={{ backgroundColor: 'white', width: '100%', alignItems: 'center' }}>
+
+                <Text style={ styles.headerText }>{ name }</Text>
 
             </View>
 
+            <ClubNav />
 
             <ScrollView 
             horizontal={ true }

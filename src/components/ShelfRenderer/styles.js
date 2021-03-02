@@ -2,15 +2,21 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
     background: {
-        height: 210,
+        height: 230,
         paddingBottom: 10,
         paddingTop: 10,
         margin: 5,
-        marginTop: 10,
-        marginBottom: 10,
-        borderRadius: 5,
+        marginHorizontal: 5,
         backgroundColor: 'white',
         elevation: 5,
+    },
+    headerBackground: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        elevation: 1,
     },
     name: {
         fontFamily: 'NotoSans-Regular',

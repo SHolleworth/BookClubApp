@@ -8,11 +8,10 @@ const styles = StyleSheet.create({
         height: 80,
         padding: 10,
         paddingLeft: 20,
-        marginBottom: 20,
+        marginBottom: 10,
         backgroundColor: 'white',
         borderRadius: 40,
-        borderWidth: 1,
-        borderColor: colors.button,
+        elevation: 5,
     },
     inputContainer: {
         flex: 1,

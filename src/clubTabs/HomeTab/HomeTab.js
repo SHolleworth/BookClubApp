@@ -16,7 +16,7 @@ const HomeTab = () => {
     const meeting = useSelector(state => getMeeting(state, clubId))
 
     return (
-        <View style={[ styles.background, { width } ]}>
+        <View style={[ styles.clubTabBackground, { width } ]}>
 
             { meeting.id ? <MeetingDetails /> : <SetupMeetingButton /> }
 

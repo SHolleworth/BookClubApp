@@ -56,11 +56,11 @@ const MeetingDetails = () => {
             <View style={{ position: 'absolute',
             top:0, right: 0, bottom: 0, left: 0,
             backgroundColor: 'white',
-            opacity: 0.8,
+            opacity: 0.9,
             borderWidth: 1,
             borderColor: 'black', }} />
 
-            <Text style={ styles.bookTitle }>{ title }</Text>
+            <Text style={{ textAlign: 'center' }}><Text style={ styles.bookTitle }>{ title }</Text></Text>
 
             <Text style={ styles.nextMeeting }>Next Meeting</Text>
 

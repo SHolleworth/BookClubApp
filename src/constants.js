@@ -1,9 +1,11 @@
 import { StyleSheet } from "react-native"
 
 export const colors = {
-    tabBackground: '#eaeaea',
+    tabBackground: '#efefef',
+    clubTabBackground: '#ffffff',
     background: 'white',
     button: '#1b1b1b',
+    redButton: '#db3a33',
     textInput: '#f2f0f0',
     textInputText: '#a9a8a8',
     searchBar: '#e8e8e8',
@@ -35,7 +37,7 @@ export const globalStyles = StyleSheet.create({
         alignItems: 'center',
         height: 40,
         padding: 30,
-        backgroundColor: 'green',
+        backgroundColor: '#46aa4f',
         borderRadius: 5,
         elevation: 5,
     },
@@ -79,8 +81,7 @@ export const globalStyles = StyleSheet.create({
     },
     clubTabBackground: {
         flex: 1,
-        padding: 20,
-        backgroundColor: 'white',
+        padding: 10,
     },
     book: {
         height: 125,
@@ -90,9 +91,8 @@ export const globalStyles = StyleSheet.create({
     bookContainer: {
         height: 125,
         width: 80,
-        marginLeft: 10,
-        marginTop: 10,
-        marginBottom: 10,
+        marginHorizontal: 5,
+        marginVertical: 10,
         borderRadius: 5,
         backgroundColor: 'white',
         elevation: 5,
@@ -104,7 +104,7 @@ export const globalStyles = StyleSheet.create({
     h1: {
         fontFamily: 'NotoSans-Regular',
         fontSize: 20,
-        color: colors.lightColor,
+        color: 'black',
     },
     h3: {
         fontFamily: 'NotoSans-Regular',

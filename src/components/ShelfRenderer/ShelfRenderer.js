@@ -55,13 +55,17 @@ const ShelfRenderer = (props) => {
 
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
 
-                <Text style={ styles.name }>{ shelf.name }</Text>
+                <View style={ styles.headerBackground }>
 
-                <TouchableOpacity onPress={ openDeleteDialogue }>
+                    <Text style={ styles.name }>{ shelf.name }</Text>
 
-                    <Text style={{ color: 'blue', marginRight: 20 }}>remove</Text>
-                    
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={ openDeleteDialogue }>
+
+                        <Text style={{ color: 'blue', marginRight: 20 }}>remove</Text>
+                        
+                    </TouchableOpacity>
+
+                </View>
 
             </View>
 
