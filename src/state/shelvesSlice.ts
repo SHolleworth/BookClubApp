@@ -78,10 +78,6 @@ const shelvesSlice = createSlice({
 
             }
         },
-
-        findBook(state, action) {
-
-        }
     }
 })
 
@@ -91,4 +87,4 @@ export const getShelfStatus = (state: RootState) => state.shelves.status
 
 export default shelvesSlice.reducer
 
-export const { setShelves, addShelf, setName, findBook } = shelvesSlice.actions
+export const { setShelves, addShelf, setName } = shelvesSlice.actions

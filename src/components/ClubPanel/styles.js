@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 18,
-        fontFamily: 'NotoSans-Regular'
+        fontFamily: 'NotoSans-Bold'
     }
 });
 

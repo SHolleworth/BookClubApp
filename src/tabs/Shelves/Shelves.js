@@ -59,6 +59,7 @@ const Shelves = () => {
             { dialogueOpen ? <NewShelfDialogue setDialogueOpen={setDialogueOpen}/> : null }
 
             <SearchBar />
+
         </>
     );
 };

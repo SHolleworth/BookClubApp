@@ -15,13 +15,30 @@ const styles = StyleSheet.create({
     background: {
         flex: 1,
         justifyContent:'flex-end',
-        backgroundColor: '#e2e2e2',
+        backgroundColor: '#f2f2f2',
         borderRadius: radius,
     },
+    backgroundImage: {
+        position: 'absolute',
+        top: 0, right: 0, bottom: 0, left: 0,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        overflow: 'hidden',
+    },
+    overlay: {
+        position: 'absolute',
+        top:0, right: 0, bottom: 0, left: 0,
+        backgroundColor: 'white',
+        opacity: 0.5,
+    },
     image: {
-        height: 120,
-        width: 120,
-        marginBottom: 35,
+        height: 80,
+        width: 80,
+    },
+    imageBackground: {
+        alignSelf: 'auto',
+        marginBottom: 30,
+        marginLeft: 20,
     },
     textBackground: {
         height: 60,
@@ -33,7 +50,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 18,
-        fontFamily: 'NotoSans-Regular'
+        fontFamily: 'NotoSans-Bold'
     }
 });
 

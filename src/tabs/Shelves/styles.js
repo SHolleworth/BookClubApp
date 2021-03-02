@@ -6,7 +6,7 @@ const margin = 20
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: colors.tabBackground
     },
     newShelfButton: {
         position: 'absolute',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Text, View} from 'react-native';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 import styles from './styles'
 import { useDispatch, useSelector } from 'react-redux';
 import { openDeleteShelfDialogue } from '../../state/uiSlice';
@@ -20,15 +20,13 @@ const ShelfRenderer = (props) => {
     
     const createShelfItem = (book, id) => {
         return (
-            <TouchableOpacity key={ id } onPress={() => handlePressOnBook(book) }> 
 
-                <View key={ id } style={ globalStyles.bookContainer }>
+                <TouchableHighlight style={ globalStyles.bookContainer } key={ id } onPress={() => handlePressOnBook(book) }> 
 
-                    <Image key={ id } style={ globalStyles.book } source={{ uri: book.info.thumbnail }}/>
+                        <Image key={ id } style={ globalStyles.book } source={{ uri: book.info.thumbnail }}/>
 
-                </View>
+                </TouchableHighlight>
 
-            </TouchableOpacity>
         )
     }
 

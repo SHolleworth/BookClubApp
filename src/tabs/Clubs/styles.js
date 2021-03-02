@@ -1,11 +1,12 @@
 import {StyleSheet} from 'react-native';
+import { colors } from '../../constants';
 
 const styles = StyleSheet.create({
     background: {
         flex: 1,
         padding: 10,
         paddingTop: 0,
-        backgroundColor: 'white',
+        backgroundColor: colors.tabBackground
     },
     newShelfButton: {
         position: 'absolute',

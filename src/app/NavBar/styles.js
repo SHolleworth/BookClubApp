@@ -24,9 +24,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     navIndicator: {
-        height: 1.2,
+        height: 1.5,
         width: '100%',
         backgroundColor: 'black',
+        borderRadius: 1,
     },
     navTouchable: {
         flex: 1,

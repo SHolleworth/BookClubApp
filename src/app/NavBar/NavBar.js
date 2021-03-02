@@ -48,7 +48,9 @@ const NavBar = () => {
 
     const home = require("../../assets/images/2x/home.png")
 
-    const book = require("../../assets/images/2x/book.png")
+    const book = require("../../assets/images/2x/bookNav.png")
+
+    const clubsIcon = require("../../assets/images/2x/clubs.png")
 
     const settings = require("../../assets/images/2x/settings.png")
     
@@ -99,7 +101,7 @@ const NavBar = () => {
 
                 <NavTouchable id={ 1 } tab={ "Shelves" } image={ book } />
 
-                <NavTouchable id={ 2 } tab={ "Clubs" } />
+                <NavTouchable id={ 2 } tab={ "Clubs" } image={ clubsIcon }/>
 
                 <NavTouchable id={ 3 } tab={ "Settings" } image={ settings } />
 

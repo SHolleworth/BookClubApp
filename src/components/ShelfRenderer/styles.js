@@ -2,13 +2,19 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
     background: {
-        height: 180,
+        height: 210,
+        paddingBottom: 10,
+        paddingTop: 10,
+        margin: 5,
         marginTop: 10,
+        marginBottom: 10,
+        borderRadius: 5,
+        backgroundColor: 'white',
+        elevation: 5,
     },
     name: {
         fontFamily: 'NotoSans-Regular',
         fontSize: 25,
-        marginBottom: 10,
         marginLeft: 20,
     },
     shelf: {

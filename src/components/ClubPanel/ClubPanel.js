@@ -10,17 +10,17 @@ const ClubPanel = ({ club }) => {
 
     const dispatch = useDispatch()
 
+    const clubs = require('../../assets/images/2x/clubsLight.png')
+
+    const flag = require('../../assets/images/2x/flag.png')
+
     const { id, name } = club.name ? club : undefined
 
     const meeting = useSelector(state => getMeeting(state, club.id))
 
-    console.log(meeting)
-
     let thumbnail = null
 
     if(meeting.book) thumbnail = meeting.book.info.thumbnail
-
-    const flag = require('../../assets/images/2x/flag.png')
 
     const handlePress = () => {
         
@@ -37,8 +37,11 @@ const ClubPanel = ({ club }) => {
 
                 <View style={ styles.top }>
 
-                    <View style={ globalStyles.profilePlaceholder} />
+                    <View style={ globalStyles.profilePlaceholder} >
 
+                        <Image source={ clubs } style={{ height: 90, width: 90 }} />
+
+                    </View>
 
                     <View>
 
@@ -50,7 +53,7 @@ const ClubPanel = ({ club }) => {
 
                         {thumbnail ?
                             <View style={[ globalStyles.bookContainer, {position: 'absolute',
-                            top:60, right: 0, bottom: 0, left: 0,} ]}>
+                            top:50, right: 0, bottom: 0, left: 0,} ]}>
 
                                 <Image style={ globalStyles.book } source={{ uri: thumbnail }} /> 
 

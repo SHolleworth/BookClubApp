@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native"
 
 export const colors = {
+    tabBackground: '#eaeaea',
     background: 'white',
     button: '#1b1b1b',
     textInput: '#f2f0f0',
@@ -18,7 +19,7 @@ export const colors = {
     ]
 }
 
-export const borderRadius = 10
+export const borderRadius = 5
 
 export const globalStyles = StyleSheet.create({
     windowBackground: {
@@ -60,10 +61,12 @@ export const globalStyles = StyleSheet.create({
     },
     profilePlaceholder: {
         alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         height: 120,
         width: 120,
         borderRadius: 60,
-        backgroundColor: 'white',
+        backgroundColor: 'black',
     },
     smallProfilePlaceholder: {
         alignSelf: 'center',
@@ -80,14 +83,16 @@ export const globalStyles = StyleSheet.create({
         backgroundColor: 'white',
     },
     book: {
-        height: 120,
-        width: 75,
+        height: 125,
+        width: 80,
         borderRadius: 5,
     },
     bookContainer: {
-        height: 120,
-        width: 75,
+        height: 125,
+        width: 80,
         marginLeft: 10,
+        marginTop: 10,
+        marginBottom: 10,
         borderRadius: 5,
         backgroundColor: 'white',
         elevation: 5,

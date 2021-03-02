@@ -13,11 +13,7 @@ const HomeTab = () => {
 
     const clubId = useSelector(state => state.ui.clubIdForWindow)
 
-    console.log(clubId)
-
     const meeting = useSelector(state => getMeeting(state, clubId))
-
-    console.log(meeting)
 
     return (
         <View style={[ styles.background, { width } ]}>
