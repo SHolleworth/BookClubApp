@@ -3,11 +3,13 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
     background: {
         flex: 1,
+        width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
+        backgroundColor: 'red',
     },
     detail: {
-        width: 300,
+        flex: 3,
         flexDirection: 'row',
         height: 100,
     },
@@ -20,8 +22,8 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     addButton: {
+        flex: 1,
         height: 50,
-        width: 30,
         backgroundColor: 'green',
         borderRadius: 5,
     },

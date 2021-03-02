@@ -30,12 +30,12 @@ export const globalStyles = StyleSheet.create({
     },
     button: {
         flexDirection: 'row',
+        justifyContent: 'center',
         alignItems: 'center',
-        height: 70,
-        width: 180,
-        backgroundColor: colors.button,
-        borderRadius: 35,
+        height: 40,
         padding: 30,
+        backgroundColor: 'green',
+        borderRadius: 5,
         elevation: 5,
     },
     buttonText: {
@@ -81,12 +81,14 @@ export const globalStyles = StyleSheet.create({
     },
     book: {
         height: 120,
-        width: 80,
+        width: 75,
+        borderRadius: 5,
     },
     bookContainer: {
         height: 120,
-        width: 80,
+        width: 75,
         marginLeft: 10,
+        borderRadius: 5,
         backgroundColor: 'white',
         elevation: 5,
     },

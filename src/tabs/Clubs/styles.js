@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     newShelfButtonImage: {
-        height: 15,
-        width: 15,
-        marginLeft: 35,
+        height: 12,
+        width: 12,
+        marginLeft: 10,
     },
 });
 

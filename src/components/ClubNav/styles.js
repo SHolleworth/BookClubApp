@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
         width,
         paddingBottom: padding - 5,
         backgroundColor: 'white',
-        elevation: 1,
     },
     navIndicatorContainer: {
         position: 'absolute',

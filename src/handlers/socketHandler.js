@@ -40,12 +40,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteMeeting = exports.postMeeting = exports.deleteInvite = exports.retrieveInvites = exports.postClubMember = exports.sendClubInvite = exports.retrieveClubs = exports.postNewClub = exports.retrieveBooks = exports.deleteBook = exports.postNewBook = exports.retrieveShelves = exports.deleteShelf = exports.postNewShelf = exports.loginAsUser = exports.registerNewUser = exports.sendVolumeQuery = exports.connectToServer = void 0;
-var booksSlice_1 = require("../state/booksSlice");
-var shelvesSlice_1 = require("../state/shelvesSlice");
-var userSlice_1 = require("../state/userSlice");
 var io = require('socket.io-client');
 var store_1 = __importDefault(require("../state/store"));
 var clubsSlice_1 = require("../state/clubsSlice");
+var booksSlice_1 = require("../state/booksSlice");
+var shelvesSlice_1 = require("../state/shelvesSlice");
+var userSlice_1 = require("../state/userSlice");
 var socket = null;
 exports.connectToServer = function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {

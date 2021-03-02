@@ -8,9 +8,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 10,
         backgroundColor: 'white',
-        borderRadius: 40,
+        borderRadius: 40, 
         borderWidth: 1,
-        borderColor: colors.searchBar,
+        borderColor: colors.button,
         elevation: 2,
     },
     inputContainer: {
@@ -25,8 +25,11 @@ const styles = StyleSheet.create({
         color: colors.textInputText
     },
     button: {
-        height: 60,
-        width: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 55,
+        width: 55,
+        borderWidth: 1,
         backgroundColor: 'black',
         borderRadius: 30,
     },
@@ -35,7 +38,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     resultsContainer: {
-        padding: 20,
+        padding: 10,
     }
 });
 

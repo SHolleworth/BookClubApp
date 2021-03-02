@@ -20,13 +20,13 @@ const MembersTab = () => {
 
     return (
         <>
-        <View style={[ globalStyles.clubTabBackground, { width } ]}>
+            <View style={[ globalStyles.clubTabBackground, { width } ]}>
 
-            <MemberInviteSearchBar />
+                <MemberInviteSearchBar />
 
-            { memberEntries }
+                { memberEntries }
 
-        </View>
+            </View>
         </>
     );
 };

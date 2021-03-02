@@ -76,17 +76,19 @@ const ClubWindow = () => {
         contentContainerStyle={[ { alignItems: 'center' } ]}
         >
 
-            <BackButton function={ close } style={{ marginLeft: 20, marginTop: 20, marginBottom: 5 }}/>
 
             <View style={ styles.header }>
+
+                <BackButton function={ close } style={{ marginLeft: 20, marginTop: 20, marginBottom: 5, alignSelf: 'flex-start' }}/>
 
                 <View style={[ globalStyles.profilePlaceholder ]} />
 
                 <Text style={ styles.headerText }>{ name }</Text>
 
+                <ClubNav />
+
             </View>
 
-            <ClubNav />
 
             <ScrollView 
             horizontal={ true }

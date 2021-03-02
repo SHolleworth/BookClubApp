@@ -7,11 +7,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 80,
         padding: 10,
+        paddingLeft: 20,
         marginBottom: 20,
         backgroundColor: 'white',
         borderRadius: 40,
         borderWidth: 1,
-        borderColor: colors.searchBar,
+        borderColor: colors.button,
     },
     inputContainer: {
         flex: 1,
@@ -22,9 +23,12 @@ const styles = StyleSheet.create({
         flex: 5,
         height: 80,
         padding: 30,
-        color: colors.textInputText
+        color: colors.textInputText,
+
     },
     button: {
+        justifyContent: 'center',
+        alignItems: 'center',
         height: 60,
         width: 60,
         backgroundColor: 'black',

@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     button: {
         alignSelf: 'flex-end',
         justifyContent: 'center',
-        width: 150,
+        width: 140,
         margin: 10
     }
 });

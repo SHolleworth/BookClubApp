@@ -50,19 +50,17 @@ const DeleteMeetingDialogue = () => {
                 
                 <TouchableOpacity 
                 style={[ globalStyles.button, styles.button ]}
-                onPress={ close }
-                >
+                onPress={ close }>
 
-                    <Text style={ globalStyles.buttonText }>Cancel</Text>
+                    <Text style={ globalStyles.buttonText }>No</Text>
 
                 </TouchableOpacity>
 
                 <TouchableOpacity 
                 style={[ globalStyles.button, styles.button ]}
-                onPress={ cancelMeeting }
-                >
+                onPress={ cancelMeeting }>
 
-                    <Text style={ globalStyles.buttonText }>Okay</Text>
+                    <Text style={ globalStyles.buttonText }>Yes</Text>
 
                 </TouchableOpacity>
 

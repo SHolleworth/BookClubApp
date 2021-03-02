@@ -31,7 +31,7 @@ const BookForMeetingWindow = () => {
     }
 
     return (
-        <View style={[ globalStyles.windowBackground, { elevation: 15, alignItems: 'center', padding: 0 } ]}>
+        <View style={[ globalStyles.windowBackground, { elevation: 15, padding: 0 } ]}>
 
             <View style={ styles.header }>
 

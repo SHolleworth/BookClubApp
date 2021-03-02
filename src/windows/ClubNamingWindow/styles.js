@@ -16,9 +16,10 @@ const styles = StyleSheet.create({
         width: 300,
         padding: 20,
         marginBottom: 20,
+        backgroundColor: colors.textInput,
         borderWidth: 1,
         borderColor: colors.darkText,
-        borderRadius: 35,
+        borderRadius: 5,
     },
     textInputContainer: {
         flex: 2,

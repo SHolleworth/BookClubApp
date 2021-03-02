@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useWindowDimensions, View, Keyboard } from 'react-native';
+import { Image, useWindowDimensions, View, Keyboard } from 'react-native';
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import CloseButton from '../CloseButton';
 import SearchResult from '../SearchResult/';
@@ -12,9 +12,11 @@ const SearchBar = (props) => {
 
     const width = useSelector(state => state.ui.tabWidth)
 
-    const defaultStyle = { width: width - 40, left: width + 20, top: useWindowDimensions().height - 200, height: 80 }
+    const defaultStyle = { width: width - 40, left: width + 20, top: useWindowDimensions().height - 200, height: 70 }
 
     const contentShowingStyle = { ...defaultStyle, height: 500, top: defaultStyle.top - 500 + defaultStyle.height, alignItems: 'flex-end' }
+
+    const searchIcon = require('../../assets/images/2x/search.png')
 
     const [value, onChangeText] = useState("")
 
@@ -27,12 +29,15 @@ const SearchBar = (props) => {
 
 
     useEffect(() => {
+
         Keyboard.addListener('keyboardDidShow', keyboardDidShow)
         Keyboard.addListener('keyboardDidHide', keyboardDidHide)
 
         return () => {
+
             Keyboard.removeListener('keyboardDidShow', keyboardDidShow)
             Keyboard.removeListener('keyboardDidHide', keyboardDidHide)
+
         }
     },[])
 
@@ -94,27 +99,45 @@ const SearchBar = (props) => {
 
     return (
         <View style={[ styles.background, style]}>
+
             {showingResults ?
-            <View style={ styles.scrollView }>
-                <ScrollView contentContainerStyle={ styles.resultsContainer }>
-                    {results}
-                </ScrollView>
-            </View>: null}
+
+                <View style={ styles.scrollView }>
+
+                    <ScrollView contentContainerStyle={ styles.resultsContainer }>
+
+                        {results}
+
+                    </ScrollView>
+
+                </View>
+            : 
+                null
+            }
+
             <View style={ styles.inputContainer }>
+
                 <TextInput 
                 style={ styles.textInput }
                 placeholder={ "Search by title" }
                 onChangeText={ text => onChangeText(text) } />
-                <TouchableOpacity 
+
+                <TouchableOpacity
                 style={ styles.button }
                 onPress={ search }>
-                    <View style={ styles.button }></View>
+
+                    <Image style={{ height: 30, width: 30 }} source={ searchIcon }/>
+
                 </TouchableOpacity>
+
             </View>
+
             {showingResults ?
+
                 <CloseButton close={ hideResults } />
             :
                 null
+
             } 
         </View>
     );

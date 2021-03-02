@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     background: {
         flex: 1,
         justifyContent:'flex-end',
-        backgroundColor: colors.lightColor,
+        backgroundColor: '#e2e2e2',
         borderRadius: radius,
     },
     image: {

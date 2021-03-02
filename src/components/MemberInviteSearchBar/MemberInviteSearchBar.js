@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import React, { useState } from 'react';
+import { View, Image } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import styles from './styles'
 import { useSelector } from 'react-redux';
@@ -7,6 +7,8 @@ import { getClubById } from '../../state/clubsSlice';
 import { sendClubInvite } from '../../handlers/socketHandler';
 
 const MemberInviteSearchBar = () => {
+
+    const searchIcon = require('../../assets/images/2x/search.png')
 
     const currentUser = useSelector(state => state.user.currentUser)
 
@@ -46,14 +48,13 @@ const MemberInviteSearchBar = () => {
                 placeholder={ "Invite by username" }
                 onChangeText={ text => onChangeText(text) } />
 
-                <TouchableOpacity 
+                <TouchableOpacity
                 style={ styles.button }
                 onPress={ invite }>
 
-                    <View style={ styles.button }></View>
+                    <Image style={{ height: 35, width: 35 }} source={ searchIcon }/>
 
                 </TouchableOpacity>
-
             </View>
 
         </View>
