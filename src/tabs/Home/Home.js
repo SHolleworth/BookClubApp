@@ -18,7 +18,7 @@ const home = () => {
 
             <ShelvesPanel />
 
-            { exisitingClubs.length ? <ClubPanel club={ exisitingClubs[0] } /> : <StartClubButton /> }
+            { exisitingClubs.length ? <ClubPanel club={ exisitingClubs[exisitingClubs.length - 1] } /> : <StartClubButton /> }
             
         </View>
     );

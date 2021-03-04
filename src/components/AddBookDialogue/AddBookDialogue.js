@@ -8,8 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeAddBookDialogue } from '../../state/uiSlice';
 import { addBook } from '../../state/booksSlice';
 import { getShelves } from '../../state/shelvesSlice';
-import { postNewBook } from '../../handlers/socketHandler';
+import { postNewBook, retrieveBooks } from '../../handlers/socketHandler';
 import { globalStyles } from '../../constants';
+import { getCurrentUser } from '../../state/userSlice';
 
 const AddBookDialogue = () => {
 
@@ -18,6 +19,8 @@ const AddBookDialogue = () => {
     const shelves = useSelector(getShelves)
 
     const book = {...useSelector(state => state.ui.bookForAddBookDialogue)}
+
+    const currentUser = useSelector(getCurrentUser)
 
     const dispatch = useDispatch()
 
@@ -34,7 +37,7 @@ const AddBookDialogue = () => {
                 
                 const response = await postNewBook(book)
 
-                dispatch(addBook(book))
+                await retrieveBooks(currentUser)
 
                 dispatch(closeAddBookDialogue())
 

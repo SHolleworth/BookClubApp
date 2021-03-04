@@ -30,7 +30,9 @@ const TimeInput = () => {
 
     const updateHours = (text) => {
 
-        const int = Number.parseInt(text)
+        let int = 0;
+
+        int = text === '' ? 0 :  Number.parseInt(text)
 
         setHours(int)
         
@@ -38,7 +40,9 @@ const TimeInput = () => {
 
     const updateMinutes = (text) => {
 
-        const int = Number.parseInt(text)
+        let int = 0;
+
+        int = text === '' ? 0 :  Number.parseInt(text)
 
         setMinutes(int)
         
