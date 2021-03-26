@@ -61,7 +61,7 @@ export const indicatorTransition = (clock) => {
 
 const ClubNav = () => {
     
-    const indicatorWidth = ((useWindowDimensions().width)) / 4
+    const indicatorWidth = ((useWindowDimensions().width)) / 2
 
     const tab = useSelector(state => state.nav.clubTab)
 
@@ -108,11 +108,7 @@ const ClubNav = () => {
 
                 <NavTouchable id={ 0 } tab={ "Home" } />
 
-                <NavTouchable id={ 1 } tab={ "Messages" } />
-
-                <NavTouchable id={ 2 } tab={ "Voting" } />
-
-                <NavTouchable id={ 3 } tab={ "Members" } />
+                <NavTouchable id={ 1 } tab={ "Members" } />
 
             </View>
 

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { openDeleteShelfDialogue } from '../../state/uiSlice';
 import { globalStyles } from '../../constants';
 
-const placeholderOpacities = [0.5, 0.4, 0.3, 0.2, 0.1, 0.0]
+const placeholderOpacities = [0.8, 0.6, 0.4, 0.2, 0.1, 0.0]
 
 const ShelfRenderer = (props) => {
 

@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         top:0, right: 0, bottom: 0, left: 0,
         alignItems: 'center',
         padding: 10,
-        backgroundColor: 'white',
+        backgroundColor: colors.raised,
         borderRadius: 40, 
         elevation: 5,
     },
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         height: 55,
         width: 55,
         borderWidth: 1,
-        backgroundColor: 'black',
+        backgroundColor: colors.highlight,
         borderRadius: 30,
     },
     scrollView: {

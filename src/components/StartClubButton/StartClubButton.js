@@ -29,7 +29,7 @@ const StartClubButton = () => {
 
                     <Text style={ styles.buttonText }>Start a club</Text>
 
-                    <View style={{ height: 50, width: 50, borderRadius: 25, borderWidth: 2, borderColor: colors.lightColor }}/>
+                    <View style={{ height: 50, width: 50, borderRadius: 25, borderWidth: 2, borderColor: 'black' }}/>
 
                 </TouchableOpacity>
 

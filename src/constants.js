@@ -1,7 +1,9 @@
 import { StyleSheet } from "react-native"
 
 export const colors = {
-    tabBackground: '#efefef',
+    highlight: '#46484A',
+    raised: '#F2F2F2',
+    tabBackground: 'white',
     clubTabBackground: '#ffffff',
     background: 'white',
     button: '#1b1b1b',
@@ -36,9 +38,11 @@ export const globalStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: 40,
+        width: '50%',
         padding: 30,
-        backgroundColor: '#46aa4f',
-        borderRadius: 5,
+        marginRight: 40,
+        borderRadius: 2,
+        backgroundColor: colors.highlight,
         elevation: 5,
     },
     buttonText: {

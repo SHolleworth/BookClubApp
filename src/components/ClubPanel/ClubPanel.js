@@ -53,7 +53,7 @@ const ClubPanel = ({ club }) => {
 
                         {thumbnail ?
                             <View style={[ globalStyles.bookContainer, {position: 'absolute',
-                            top:50, right: 0, bottom: 0, left: 0,} ]}>
+                            top:50, right: 0, bottom: 0, left: 5,} ]}>
 
                                 <Image style={ globalStyles.book } source={{ uri: thumbnail }} /> 
 

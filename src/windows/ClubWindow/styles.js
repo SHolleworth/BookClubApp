@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     header: {
         alignItems: 'center',
         width: '100%',
-        paddingBottom: 20,
+        paddingBottom: 10,
         backgroundColor: colors.panelColors[randomColorIndex],
         elevation: 1,
     },
@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
         color: 'black',
         fontFamily: 'NotoSans-Bold',
         fontSize: 25,
-        margin: 20,
+        margin: 10,
+        marginTop: 20,
     },
 });
 

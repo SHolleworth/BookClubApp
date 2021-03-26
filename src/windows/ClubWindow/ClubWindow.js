@@ -1,17 +1,16 @@
 import React, { useRef, useEffect } from 'react';
 import { Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useDispatch, useSelector } from 'react-redux';
 import BackButton from '../../components/BackButton';
 import ClubNav from '../../components/ClubNav/ClubNav';
-import { colors, globalStyles } from '../../constants';
+import MembersTab from '../../clubTabs/MembersTab/MembersTab';
+import HomeTab from '../../clubTabs/HomeTab/HomeTab';
+import styles from './styles'
+import { useDispatch, useSelector } from 'react-redux';
 import { closeClubWindow } from '../../state/uiSlice';
 import { updateClubTab } from '../../state/navSlice'
-import styles from './styles'
-import MembersTab from '../../clubTabs/MembersTab/MembersTab';
-import MemberInviteSearchBar from '../../components/MemberInviteSearchBar/MemberInviteSearchBar';
 import { getClubById } from '../../state/clubsSlice';
-import HomeTab from '../../clubTabs/HomeTab/HomeTab';
+import { colors, globalStyles } from '../../constants';
 
 const ClubWindow = () => {
 
@@ -101,10 +100,6 @@ const ClubWindow = () => {
             >
 
                 <HomeTab />
-
-                <View style={{ flex: 1, width: tabWidth, backgroundColor: 'blue' }} />
-
-                <View style={{ flex: 1, width: tabWidth, backgroundColor: 'green' }} />
 
                 <MembersTab />
                 

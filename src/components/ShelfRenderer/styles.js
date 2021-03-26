@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { colors } from '../../constants'
 
 const styles = StyleSheet.create({
     background: {
@@ -7,16 +8,14 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         margin: 5,
         marginHorizontal: 5,
-        backgroundColor: 'white',
-        elevation: 5,
     },
     headerBackground: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: 'white',
-        elevation: 1,
+        borderBottomColor: colors.highlight,
+        borderBottomWidth: 1
     },
     name: {
         fontFamily: 'NotoSans-Regular',

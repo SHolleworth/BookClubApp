@@ -6,6 +6,7 @@ import NavBar from './NavBar/NavBar'
 import Home from '../tabs/Home'
 import Shelves from '../tabs/Shelves/Shelves'
 import Clubs from '../tabs/Clubs/Clubs'
+import Settings from '../tabs/Settings'
 import BookDetailWindow from '../windows/BookDetailWindow'
 import AddBookDialogue from '../components/AddBookDialogue'
 import ClubNamingWindow from '../windows/ClubNamingWindow'
@@ -15,9 +16,10 @@ import MeetingDateAndTimeWindow from '../windows/MeetingDateAndTimeWindow/Meetin
 import DeleteShelfDialogue from '../components/DeleteShelfDialogue'
 import DeleteBookDialogue from '../components/DeleteBookDialogue'
 import DeleteMeetingDialogue from '../components/DeleteMeetingDialogue'
+import LoginRegisterWindow from '../windows/LoginRegisterWindow'
 import { updateTab } from '../state/navSlice'
 import { setTabWidth } from '../state/uiSlice'
-import { connectToServer, registerNewUser, loginAsUser } from '../handlers/socketHandler'
+import { connectToServer } from '../handlers/socketHandler'
 
 
 const App = () => {
@@ -50,6 +52,8 @@ const App = () => {
 
   const showingDeleteMeetingDialogue = useSelector(state => state.ui.showingDeleteMeetingDialogue)
 
+  const loggedIn = useSelector(state => state.user.currentUser.id)
+
   const testNum = 9
 
   //const testUser = { username: `testuser${testNum}`, password: `testpassword${testNum}` }
@@ -69,15 +73,7 @@ const App = () => {
         const connectionResponse = await connectToServer()
         
         console.log(connectionResponse)
-  
-        const registerResponse = await registerNewUser(testUser)
-  
-        console.log(registerResponse)
-  
-        const loginResponse = await loginAsUser(testUser)
-  
-        console.log(loginResponse)
-  
+
       }
       catch (error) {
   
@@ -141,7 +137,7 @@ const App = () => {
 
           <Clubs />
 
-          <View style={{ backgroundColor: "yellow", flex: 1, width: tabWidth }}></View>
+          <Settings />
 
         </ScrollView>
 
@@ -162,6 +158,8 @@ const App = () => {
         {showingDeleteShelfDialogue ? <DeleteShelfDialogue /> : null}
 
         {showingDeleteMeetingDialogue ? <DeleteMeetingDialogue /> : null }
+
+        {loggedIn ? null : <LoginRegisterWindow />}
         
       </>
     )

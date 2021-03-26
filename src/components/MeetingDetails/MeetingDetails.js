@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, ImageBackground } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from './styles'
 import { useDispatch, useSelector } from 'react-redux';
 import { getMeeting } from '../../state/clubsSlice';
 import { openDeleteMeetingDialogue } from '../../state/uiSlice';
+import { globalStyles } from '../../constants';
 
 const MeetingDetails = () => {
 
@@ -13,6 +14,12 @@ const MeetingDetails = () => {
     const clubId = useSelector(state => state.ui.clubIdForWindow)
 
     const meeting = useSelector(state => getMeeting(state, clubId))
+
+    const { book } = globalStyles
+
+    const height = book.height * 2
+
+    const width = book.width * 2
 
     let title, thumbnail = ''
 
@@ -49,32 +56,34 @@ const MeetingDetails = () => {
     }
 
     return (
-        <ImageBackground 
-        style={ styles.background }
-        source={ thumbnail }>
+        
+        <View style={{ flexDirection: 'row', height, marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
 
-            <View style={{ position: 'absolute',
-            top:0, right: 0, bottom: 0, left: 0,
-            backgroundColor: 'white',
-            opacity: 0.9,
-            borderWidth: 1,
-            borderColor: 'black', }} />
+            <View style={{ flex: 1, marginHorizontal: 10, alignItems: 'center', padding: 20, borderRadius: 5, backgroundColor: 'white', elevation: 2 }}>
 
-            <Text style={{ textAlign: 'center' }}><Text style={ styles.bookTitle }>{ title }</Text></Text>
+                <Text style={{ textAlign: 'center' }}><Text style={ styles.bookTitle }>{ title }</Text></Text>
 
-            <Text style={ styles.nextMeeting }>Next Meeting</Text>
+                <Text style={ styles.nextMeeting }>Next Meeting</Text>
 
-            <Text style={ styles.dateAndTime }>{ dateString }</Text>
+                <Text style={ styles.dateAndTime }>{ dateString }</Text>
 
-            <View style={ styles.seperatorLine } />
+                <View style={ styles.seperatorLine } />
 
-            <Text style={ styles.dateAndTime }>{ timeString }</Text>
+                <Text style={ styles.dateAndTime }>{ timeString }</Text>
 
-            <View style={{ height: 30}} />
+                <View style={{ height: 30}} />
 
-            <TouchableOpacity style={ styles.button } onPress={ cancelMeeting }><Text style={{ color: 'white' }}>Cancel</Text></TouchableOpacity>
+                <TouchableOpacity style={ styles.button } onPress={ cancelMeeting }><Text style={{ color: 'white' }}>Cancel</Text></TouchableOpacity>
 
-        </ImageBackground>
+            </View>
+
+            <View style={{ height, width, marginRight: 10, elevation: 2, backgroundColor: 'white' }}>
+
+                <Image source={ thumbnail } style={{ height, width }} />
+
+            </View>
+
+        </View>
     );
 };
 

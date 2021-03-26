@@ -21,14 +21,15 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     nextMeeting: {
-        fontFamily: 'NotoSans-Bold',
+        fontFamily: 'NotoSans-Regular',
         margin: 10,
     },
     dateAndTime: {
-        fontFamily: 'NotoSans-Italic',
+        fontFamily: 'NotoSans-Bold',
+        fontSize: 18,
     },
     seperatorLine: {
-        height: 1,
+        height: 2,
         width: '50%',
         margin: 10,
         backgroundColor: 'black'
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 50,
         width: 120,
+        marginTop: -20,
         backgroundColor: 'black',
         borderRadius: 5,
     }

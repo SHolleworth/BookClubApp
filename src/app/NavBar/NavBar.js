@@ -46,13 +46,13 @@ export const indicatorTransition = (clock) => {
 
 const NavBar = () => {
 
-    const home = require("../../assets/images/2x/home.png")
+    const homeIcon = require("../../assets/images/2x/home.png")
 
-    const book = require("../../assets/images/2x/bookNav.png")
+    const bookIcon = require("../../assets/images/2x/bookNav.png")
 
     const clubsIcon = require("../../assets/images/2x/clubs.png")
 
-    const settings = require("../../assets/images/2x/settings.png")
+    const settingsIcon = require("../../assets/images/2x/settings.png")
     
     const indicatorWidth = (useWindowDimensions().width - (styles.navBar.padding )) / 4
 
@@ -70,7 +70,7 @@ const NavBar = () => {
 
         setCurrentIndicatorPosition(indicatorTranslate),
 
-        set(indicatorDest, tab * indicatorWidth),
+        set(indicatorDest, (tab * indicatorWidth) - 5),
 
         cond(not(clockRunning(clock)), startClock(clock)),
 
@@ -97,13 +97,13 @@ const NavBar = () => {
 
                 </Animated.View>
 
-                <NavTouchable id={ 0 } tab={ "Home" } image={ home } />
+                <NavTouchable id={ 0 } tab={ "Home" } image={ homeIcon } />
 
-                <NavTouchable id={ 1 } tab={ "Shelves" } image={ book } />
+                <NavTouchable id={ 1 } tab={ "Shelves" } image={ bookIcon } />
 
                 <NavTouchable id={ 2 } tab={ "Clubs" } image={ clubsIcon }/>
-
-                <NavTouchable id={ 3 } tab={ "Settings" } image={ settings } />
+                
+                <NavTouchable id={ 3 } tab={ "Settings" } image={ settingsIcon }/>
 
             </View>
 

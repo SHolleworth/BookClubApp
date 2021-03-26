@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         width: '100%',
         borderWidth: 2,
         borderRadius,
-        borderColor: colors.lightColor,
+        borderColor: 'black',
     },
     buttonText: {
         ...globalStyles.h1,

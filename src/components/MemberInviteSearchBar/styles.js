@@ -1,11 +1,11 @@
 import {StyleSheet} from 'react-native';
-import { borderRadius, colors } from '../../constants';
+import { colors } from '../../constants';
 
 const styles = StyleSheet.create({
     background: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: 80,
+        height: 60,
         padding: 10,
         paddingLeft: 20,
         marginBottom: 10,
@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: 60,
-        width: 60,
+        height: 50,
+        width: 50,
         backgroundColor: 'black',
         borderRadius: 30,
     },

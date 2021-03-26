@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const padding = 15
+const padding = 10
 const height = 70
 const width = '100%'
 const highlightWidth = 70
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0, right: 0, bottom: 0, left: 0,
         height: '100%',
-        width: "20%",
+        width: "25%",
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     navTouchable: {
         flex: 1,
         flexDirection: 'row',
+        justifyContent: 'center',
         alignItems: 'center',
 
     },

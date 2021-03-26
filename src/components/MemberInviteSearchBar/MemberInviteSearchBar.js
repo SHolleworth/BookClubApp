@@ -52,7 +52,7 @@ const MemberInviteSearchBar = () => {
                 style={ styles.button }
                 onPress={ invite }>
 
-                    <Image style={{ height: 35, width: 35 }} source={ searchIcon }/>
+                    <Image style={{ height: 25, width: 25 }} source={ searchIcon }/>
 
                 </TouchableOpacity>
             </View>
