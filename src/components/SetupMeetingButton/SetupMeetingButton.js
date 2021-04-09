@@ -23,7 +23,7 @@ const SetupMeetingButton = () => {
 
             <Text style={[ globalStyles.h1, styles.text ]}>Setup a meeting</Text>
 
-            <View style={{ height: 50, width: 50, borderRadius: 25, borderWidth: 1, borderColor: colors.lightColor }}/>
+            <View style={{ height: 50, width: 50, borderRadius: 25, borderWidth: 1, borderColor: 'black' }}/>
 
         </TouchableOpacity>
     );

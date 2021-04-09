@@ -5,16 +5,11 @@ const { height, width } = globalStyles.book
 
 const styles = StyleSheet.create({
     background: {
-        justifyContent: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
         alignItems: 'center',
-        textAlign: 'center',
-        alignSelf: 'center',
         padding: 20,
-        height: height * 3,
-        width: width * 3,
-        marginTop: 20,
         borderRadius: borderRadius,
-        elevation: 5,
     },
     bookTitle: {
         fontFamily: 'NotoSans-Bold',

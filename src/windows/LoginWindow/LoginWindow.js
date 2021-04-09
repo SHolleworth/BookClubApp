@@ -8,8 +8,8 @@ import styles from './styles'
 const LoginWindow = (props) => {
 
     const [paddingTop, setPaddingTop] = useState(120)
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('sam')
+    const [password, setPassword] = useState('123')
 
     useEffect(() => {
 

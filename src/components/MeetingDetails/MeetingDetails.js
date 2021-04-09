@@ -5,7 +5,7 @@ import styles from './styles'
 import { useDispatch, useSelector } from 'react-redux';
 import { getMeeting } from '../../state/clubsSlice';
 import { openDeleteMeetingDialogue } from '../../state/uiSlice';
-import { globalStyles } from '../../constants';
+import { colors, globalStyles } from '../../constants';
 
 const MeetingDetails = () => {
 
@@ -57,11 +57,11 @@ const MeetingDetails = () => {
 
     return (
         
-        <View style={{ flexDirection: 'row', height, marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={ styles.background }>
 
-            <View style={{ flex: 1, marginHorizontal: 10, alignItems: 'center', padding: 20, borderRadius: 5, backgroundColor: 'white', elevation: 2 }}>
+            <View style={{ alignItems: 'center' }}>
 
-                <Text style={{ textAlign: 'center' }}><Text style={ styles.bookTitle }>{ title }</Text></Text>
+                <Text style={{ textAlign: 'center', width: '50%' }}><Text style={ styles.bookTitle }>{ title }</Text></Text>
 
                 <Text style={ styles.nextMeeting }>Next Meeting</Text>
 
@@ -73,15 +73,15 @@ const MeetingDetails = () => {
 
                 <View style={{ height: 30}} />
 
-                <TouchableOpacity style={ styles.button } onPress={ cancelMeeting }><Text style={{ color: 'white' }}>Cancel</Text></TouchableOpacity>
+                <TouchableOpacity style={[ styles.button, { backgroundColor: colors.redButton } ]} onPress={ cancelMeeting }><Text style={{ color: 'white' }}>Cancel</Text></TouchableOpacity>
 
             </View>
 
-            <View style={{ height, width, marginRight: 10, elevation: 2, backgroundColor: 'white' }}>
+                <View style={{ height, width, marginRight: 10, elevation: 2, backgroundColor: 'white' }}>
 
-                <Image source={ thumbnail } style={{ height, width }} />
+                    <Image source={ thumbnail } style={{ height, width }} />
 
-            </View>
+                </View>
 
         </View>
     );

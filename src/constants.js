@@ -40,7 +40,6 @@ export const globalStyles = StyleSheet.create({
         height: 40,
         width: '50%',
         padding: 30,
-        marginRight: 40,
         borderRadius: 2,
         backgroundColor: colors.highlight,
         elevation: 5,

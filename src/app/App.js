@@ -53,12 +53,6 @@ const App = () => {
   const showingDeleteMeetingDialogue = useSelector(state => state.ui.showingDeleteMeetingDialogue)
 
   const loggedIn = useSelector(state => state.user.currentUser.id)
-
-  const testNum = 9
-
-  //const testUser = { username: `testuser${testNum}`, password: `testpassword${testNum}` }
-
-  const testUser = { username: `sam`, password: `123` }
   
   useEffect(() => {
 

@@ -3,7 +3,7 @@ import { colors } from '../../constants'
 
 const styles = StyleSheet.create({
     background: {
-        height: 230,
+        height: 210,
         paddingBottom: 10,
         paddingTop: 10,
         margin: 5,

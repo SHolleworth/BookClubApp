@@ -139,7 +139,7 @@ const MeetingDateAndTimeWindow = () => {
             <TimeInput />
 
             <TouchableOpacity 
-            style={[ globalStyles.button, { justifyContent: 'center' } ]}
+            style={[ globalStyles.button, { width: 150 } ]}
             onPress={ handlePress }>
 
                 <Text style={ globalStyles.buttonText }>Accept</Text>
