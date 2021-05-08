@@ -60,7 +60,21 @@ const BookDetailWindow = () => {
 
     const thumbnailDimensions = { width: 130, height: 200 }
 
-    const publishedBlock = `Published ${publishedDate} by ${publisher}.`
+    let publishedBlock = `Published`
+
+    if(publishedDate) {
+
+        publishedBlock += ` ${publishedDate}`
+
+    }
+
+    if(publisher) {
+
+        publishedBlock += ` by ${publisher}`
+
+    }
+
+    publishedBlock += '.'
 
     const openAddDialogue = () => {
 

@@ -11,7 +11,7 @@ exports.default = Book;
 exports.formatGoogleBooksVolumeData = function (data) {
     var volumeInfo = data.volumeInfo;
     var title = volumeInfo.title, authors = volumeInfo.authors, publishedDate = volumeInfo.publishedDate, publisher = volumeInfo.publisher, description = volumeInfo.description, mainCategory = volumeInfo.mainCategory;
-    var thumbnail = volumeInfo.hasOwnProperty('imageLinks') ? volumeInfo.imageLinks.thumbnail : '../../../assets/images/2x/book.png';
+    var thumbnail = volumeInfo.hasOwnProperty('imageLinks') ? volumeInfo.imageLinks.thumbnail : '../../assets/images/2x/bookShadow.png';
     var info = {
         id: null,
         bookId: null,

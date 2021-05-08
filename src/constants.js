@@ -98,7 +98,7 @@ export const globalStyles = StyleSheet.create({
         marginVertical: 10,
         borderRadius: 5,
         backgroundColor: 'white',
-        elevation: 5,
+        elevation: 10,
     },
     p: {
         fontFamily: 'NotoSans-Regular',

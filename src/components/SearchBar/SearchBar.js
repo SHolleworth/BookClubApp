@@ -66,7 +66,7 @@ const SearchBar = (props) => {
         }
         catch (error) {
 
-            console.log(error)
+            console.error(error)
 
         }
     }
@@ -76,6 +76,8 @@ const SearchBar = (props) => {
     const displayResults = (response) => {
 
         const books = (response.map(item => formatGoogleBooksVolumeData(item)))
+
+        books.forEach(el => {console.log(el.info.thumbnail)} )
 
         setResults(books.map((book, index) => <SearchResult key={ index } id={ index } book={ book } />))
 

@@ -13,7 +13,7 @@ const InviteList = () => {
 
         return (
 
-            <View>
+            <View style={{ marginTop: 90 }}>
 
                 { inviteNames }
 

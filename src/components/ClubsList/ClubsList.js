@@ -20,7 +20,7 @@ const ClubsList = () => {
 
         return (
 
-            <ScrollView contentContainerStyle={{ paddingTop: 90 }}>
+            <ScrollView contentContainerStyle={{ paddingTop: 10 }}>
 
                 {clubPanels}
 
@@ -32,7 +32,7 @@ const ClubsList = () => {
     else {
 
         return null
-
+ 
     }
 
 };

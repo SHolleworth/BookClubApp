@@ -50,33 +50,39 @@ const ShelfRenderer = (props) => {
         
     }
 
-    return (
-        <View style={ styles.background }>
-
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-
-                <View style={ styles.headerBackground }>
-
-                    <Text style={ styles.name }>{ shelf.name }</Text>
-
-                    <TouchableOpacity onPress={ openDeleteDialogue }>
-
-                        <Text style={{ color: 'blue', marginRight: 20 }}>remove</Text>
-                        
-                    </TouchableOpacity>
-
+    if(shelf) {
+        return (
+            <View style={ styles.background }>
+    
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+    
+                    <View style={ styles.headerBackground }>
+    
+                        <Text style={ styles.name }>{ shelf.name }</Text>
+    
+                        <TouchableOpacity onPress={ openDeleteDialogue }>
+    
+                            <Text style={{ color: 'blue', marginRight: 20 }}>remove</Text>
+                            
+                        </TouchableOpacity>
+    
+                    </View>
+    
                 </View>
-
+    
+                    <ScrollView horizontal={ true } showsHorizontalScrollIndicator={ false }>
+    
+                        <View style={ styles.shelfContent }>{ bookComponents }</View>
+    
+                    </ScrollView>
+    
             </View>
-
-                <ScrollView horizontal={ true } showsHorizontalScrollIndicator={ false }>
-
-                    <View style={ styles.shelfContent }>{ bookComponents }</View>
-
-                </ScrollView>
-
-        </View>
-    );
+        );
+    }
+    else {
+        return null
+    }
+    
 };
 
 export default ShelfRenderer;

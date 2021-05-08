@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ImageBackground } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from './styles'
 import { useDispatch, useSelector } from 'react-redux';
@@ -50,38 +50,36 @@ const MeetingDetails = () => {
     const timeString = `${hoursString}:${minutesString}`
 
     const cancelMeeting = () => {
-        
+
         dispatch(openDeleteMeetingDialogue(meeting))
-        
+
     }
 
     return (
-        
+
         <View style={ styles.background }>
 
-            <View style={{ alignItems: 'center' }}>
+            <ImageBackground style={[ globalStyles.book, { height: 400, width: 280 } ]} source={ thumbnail }>
 
-                <Text style={{ textAlign: 'center', width: '50%' }}><Text style={ styles.bookTitle }>{ title }</Text></Text>
+                <View style={ styles.overlay }>
 
-                <Text style={ styles.nextMeeting }>Next Meeting</Text>
+                  <Text style={{ textAlign: 'center', width: '50%' }}><Text style={ styles.bookTitle }>{ title }</Text></Text>
 
-                <Text style={ styles.dateAndTime }>{ dateString }</Text>
+                  <Text style={ styles.nextMeeting }>Next Meeting</Text>
 
-                <View style={ styles.seperatorLine } />
+                  <Text style={ styles.dateAndTime }>{ dateString }</Text>
 
-                <Text style={ styles.dateAndTime }>{ timeString }</Text>
+                  <View style={ styles.seperatorLine } />
 
-                <View style={{ height: 30}} />
+                  <Text style={ styles.dateAndTime }>{ timeString }</Text>
 
-                <TouchableOpacity style={[ styles.button, { backgroundColor: colors.redButton } ]} onPress={ cancelMeeting }><Text style={{ color: 'white' }}>Cancel</Text></TouchableOpacity>
+                  <View style={{ height: 30}} />
 
-            </View>
-
-                <View style={{ height, width, marginRight: 10, elevation: 2, backgroundColor: 'white' }}>
-
-                    <Image source={ thumbnail } style={{ height, width }} />
+                  <TouchableOpacity style={[ styles.button ]} onPress={ cancelMeeting }><Text style={{ color: 'white' }}>Cancel</Text></TouchableOpacity>
 
                 </View>
+
+            </ImageBackground>
 
         </View>
     );

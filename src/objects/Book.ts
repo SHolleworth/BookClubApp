@@ -13,7 +13,7 @@ export const formatGoogleBooksVolumeData = (data: any) => {
 
     const { title, authors, publishedDate, publisher, description, mainCategory } = volumeInfo
 
-    const thumbnail = volumeInfo.hasOwnProperty('imageLinks') ? volumeInfo.imageLinks.thumbnail : '../../../assets/images/2x/book.png'
+    const thumbnail = volumeInfo.hasOwnProperty('imageLinks') ? volumeInfo.imageLinks.thumbnail : '../../assets/images/2x/bookShadow.png'
 
     const info: BookInfoObject = {
         id: null,

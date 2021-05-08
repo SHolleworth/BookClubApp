@@ -6,11 +6,12 @@ const radius = borderRadius
 const styles = StyleSheet.create({
     touchable: {
         height: 250,
-        width: '100%',
-        marginBottom: 20,
+        width: '95%',
+        alignSelf: 'center',
+        marginVertical: 10,
         borderRadius: radius,
         backgroundColor: 'white',
-        elevation: 2,
+        elevation: 20,
     },
     background: {
         flex: 1,

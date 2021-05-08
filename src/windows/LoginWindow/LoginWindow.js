@@ -55,32 +55,51 @@ const LoginWindow = (props) => {
 
     return (
         <View style={[styles.background, { paddingTop }]}>
+
             <Text style={styles.heading}>Welcome To Book Clubs.</Text>
+
             <Text style={styles.loginHeading}>Log In</Text>
+
             <Text style={styles.loginText}>Username</Text>
+
             <TextInput 
             style={styles.textInput}
             value={username}
             onChangeText={text => setUsername(text)}
             />
             <Text style={styles.loginText}>Password</Text>
+
             <TextInput 
             style={styles.textInput}
             value={password}
+            secureTextEntry={true}
+            textContentType={'password'}
             onChangeText={text => setPassword(text)}
             />
-            <View style={{flexDirection: 'row'}}>
+
+            <View style={{flexDirection: 'row', marginTop: 20}}>
+
                 <Text style={styles.loginText}>Need to </Text>
+
                 <TouchableOpacity
                 onPress={() => props.setScreenShowing('register')}
-                ><Text style={[styles.loginText, {color: 'blue'}]}>register</Text></TouchableOpacity>
+                >
+                
+                    <Text style={[styles.loginText, {color: 'blue'}]}>register</Text>
+
+                </TouchableOpacity>
+
                 <Text style={styles.loginText}>?</Text>
+
             </View>
+
             <TouchableHighlight
-            style={[ globalStyles.button, { marginRight: 0, padding: 0, height: 60, width: 100 }]}
+            style={[ globalStyles.button, { marginRight: 0, marginTop: 20, padding: 0, height: 60, width: 100 }]}
             onPress={ login }
             >
+
                 <Text style={ globalStyles.buttonText }>Log In</Text>
+
             </TouchableHighlight>
         </View>
     );

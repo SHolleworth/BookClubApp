@@ -11,12 +11,19 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: borderRadius,
     },
+    overlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(255,255,255,0.6)',
+    },
     bookTitle: {
         fontFamily: 'NotoSans-Bold',
-        fontSize: 20,
+        fontSize: 25,
     },
     nextMeeting: {
-        fontFamily: 'NotoSans-Regular',
+        fontFamily: 'NotoSans-Bold',
+        fontSize: 20,
         margin: 10,
     },
     dateAndTime: {

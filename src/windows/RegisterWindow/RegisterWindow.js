@@ -49,7 +49,7 @@ const RegisterWindow = (props) => {
         }
         catch (error) {
 
-            Alert.alert("Error", error)
+            Alert.alert("Register Error", error)
 
             console.error(error)
 
@@ -58,32 +58,51 @@ const RegisterWindow = (props) => {
 
     return (
         <View style={[styles.background, { paddingTop }]}>
+
             <Text style={styles.heading}>Welcome To Book Clubs.</Text>
+
             <Text style={styles.loginHeading}>Register</Text>
+
             <Text style={styles.loginText}>Username</Text>
+
             <TextInput 
             style={styles.textInput}
             value={username}
             onChangeText={text => setUsername(text)}
             />
+
             <Text style={styles.loginText}>Password</Text>
+
             <TextInput 
             style={styles.textInput}
             value={password}
+            secureTextEntry={true}
+            textContentType={'newPassword'}
             onChangeText={text => setPassword(text)}
             />
+
             <View style={{flexDirection: 'row'}}>
+
                 <Text style={styles.loginText}>Got an account already? </Text>
+
                 <TouchableOpacity
                 onPress={() => props.setScreenShowing('login')}
-                ><Text style={[styles.loginText, {color: 'blue'}]}>Log In</Text></TouchableOpacity>
+                >
+                
+                <Text style={[styles.loginText, {color: 'blue'}]}>Log In</Text>
+                
+                </TouchableOpacity>
             </View>
+
             <TouchableHighlight 
             style={[ globalStyles.button, { marginRight: 0, padding: 0, height: 60, width: 100 }]}
             onPress={ register }
             >
+
                 <Text style={ globalStyles.buttonText }>Register</Text>
+
             </TouchableHighlight>
+
         </View>
     );
 };

@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         width: '90%',
+        paddingLeft: 20,
         backgroundColor: colors.textInput,
         marginBottom: 20,
     }
